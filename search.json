@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "WIO-fish",
     "section": "",
-    "text": "The wio-fishStats guide and course provide an introduction to data science that is tailored to the needs of fisheries, but is also suitable for freshwater and marine scientists and other biological or social sciences. This audience typically has some knowledge of statistics, but rarely an idea how data is prepared and shaped to allow for statistical testing.\nBy using various data types and working with many examples, the book will guide on transforming, summarizing, and visualizing data. By keeping our eyes open for the perils of misleading representations, the book fosters fundamental skills of data literacy and cultivates reproducible research practices that enable and precede any practical use of statistics.\nThis guide provides datasets and functions that help people want to code fisheries data in R language. Its source code is hosted at https://github.com/lugoga/fishstats. The book and course introduce the principles and methods of data science for fisheries scientists and other biological or social sciences. The guide is available at https://github.com/lugoga/fishstats/manual."
+    "text": "The wio-fishStats guide and course provide an introduction to data science that is tailored to the needs of fisheries, but is also suitable for freshwater and marine scientists and other biological or social sciences. This audience typically has some knowledge of statistics, but rarely an idea how data is prepared and shaped to allow for statistical testing.\nBy using various data types and working with many examples, the book will guide on transforming, summarizing, and visualizing data. By keeping our eyes open for the perils of misleading representations, the book fosters fundamental skills of data literacy and cultivates reproducible research practices that enable and precede any practical use of statistics.\nThis guide provides datasets and functions that help people want to code fisheries data in R language. Its source code is hosted at https://github.com/lugoga/fishstats. The book and course introduce the principles and methods of data science for fisheries scientists and other biological or social sciences. The guide is available at https://github.com/lugoga/fishstats/manual.\n\n\n\nScan the qrcode to access the interactive web app"
   },
   {
     "objectID": "intro.html",
@@ -14,25 +14,74 @@
     "text": "To raise awareness of countries in the Western Indian Ocean (WIO) in monitoring their progress toward the achievement of the Sustainable Development Goals (SDGs), the FAO has partnered with WIOMSA to support capacity-building activities in collection, monitoring, and assessment of fisheries data for the WIO region. In general, these activities aim to strengthen the workflow from fisheries data collection to support the monitoring and reporting of SDG 14.4.1.\nThe prime goal of this initiative align with the the United Nations Decade of Ocean Science for Sustainable Development (2021-2030, Ocean Decade for short), which focus to support a new cooperative framework to ensure that global ocean science provides greater benefits for ocean ecosystems and wider society.\nDecade provides a common framework to ensure that ocean science can fully support countries’ actions to sustainably manage the ocean and more particularly to achieve the 2030 Agenda for Sustainable Development – through the creation of a new foundation, across the science-policy interface, to strengthen the management of the ocean and coasts for the benefit of humanity.\nA vast majority of the ocean remains unmapped, unobserved and unexplored. Our understanding of the ocean and its contribution to sustainability largely depends on our capacity to conduct effective ocean science - through research and sustained observations, supported by adequate infrastructures and investments.\nThis decade of the ocean comes down with a slogan the science we want for the ocean we need! But we flip it a little bit and should read the information we want for the ocean we need, why. Because we are at the time of precedented generation of data than ever before. Data generated from sensors to satellite is enormous.\nIn the WIO, small-scale fisheries dominate and are crucial for the livelihoods of coastal communities in the region, contributing to the twin imperatives of poverty reduction and economic development. However, these fisheries are dispersed, open-access in nature, multispecies and multi-gear, making their monitoring and determination of stock status for individual species incredibly challenging as data are insufficient for conventional stock assessment routines.\nEfforts to determine stock status and provide evidence-based fisheries management advice are beset with problems, including insufficient or inadequate scientific data and expertise, which are compromised by economic and socio-political realities. For example, the regional state of the coast report for the western Indian Ocean (WIO) states that almost all countries in the region cannot adequately assess their marine resources and lack the financial capacity and technical expertise for effective management. Important impediments to fisheries management in the region relate to the following aspects:\nThese have been highlighted as some of the impediments to meeting the targets of SDG 14.\nAlthough the national fisheries institutes in the region do collect data on their fisheries, these data are often not detailed to an adequate granularity (e.g. regarding time, space, fleet or species levels), are not properly organized or linked, lack sufficient quality assurance and control, or are very difficult to retrieve for analysis. Additionally, there is often very limited technical capacity for managing, accessing and extracting data in a way that can be used for analysis.\nThus, even though data may exist, they often remain underutilized, strongly limiting the possibility of applying even data-limited approaches to stock monitoring. As such, analyses of stock status may be missing or be based on inappropriate metrics and methods, thereby hindering the formulation of relevant policies for the sector.\nIn its role as custodian agency of the SDG 14 indicators, FAO has a mandate to support countries to strengthen their capacities to collect, process, analyse and report data while ensuring that different national data sets are comparable and can be aggregated at sub-regional, regional and global levels to monitor the SDGs."
   },
   {
-    "objectID": "intro.html#r",
-    "href": "intro.html#r",
-    "title": "1  Installation",
-    "section": "1.1 R",
-    "text": "1.1 R\nTo install R, go to the R webpage and follow the link to your operating system of choice (Linux, Max OS X, Windows). Then, click on the most recent .pkg file to download it. Follow the instructions to complete the installation process."
+    "objectID": "intro.html#initiatives-conducted-in-the-wio",
+    "href": "intro.html#initiatives-conducted-in-the-wio",
+    "title": "1  Introduction",
+    "section": "Initiatives conducted in the WIO",
+    "text": "Initiatives conducted in the WIO\nTwo workshops have been undertaken in the WIO/East African region, first a project kick-off meeting of the Fishing Data East Africa (FIDEA) project (Dar es Salaam, Tanzania, 16-17 September 2019), focused on Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, at which FAO agreed to partner with FIDEA to support a capacity development workshop in the East Africa region. This led to a mission by FAO staff to investigate the data infrastructure in Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, as well as the SDG 14.4.1 reporting capacity development workshop in Zanzibar from 2-14 March 2020, which included 10 East African countries and WIO island nations.\nThe report of this second workshop recommended some key actions to support countries in improving the collection and use of data for monitoring the SDG 14.4 target. A common point in these recommendations is a greater need to provide long-term support for developing appropriate data management systems. This goes beyond collection to focus particularly on validation, organization, protection, retrieval and summary of the data, essential steps for allowing reliable estimation and reporting of the SDG14.4.1 indicator.\nIt has been stated many times that The collection of data is not an end in itself, but is essential for informed decision-making, and data can only be useful for supporting decision-making if they are properly stored, managed, and curated so that they have the quality necessary for providing meaningful and reliable advice. The report also recommended stronger collaboration between the SWIOFC regional process in monitoring the status of stocks and national processes in developing capacities for the monitoring of SDG14.4.1."
   },
   {
-    "objectID": "intro.html#rstudio",
-    "href": "intro.html#rstudio",
-    "title": "1  Installation",
-    "section": "1.2 RStudio",
-    "text": "1.2 RStudio\nAfter installing R, visit the RStudio Products site and click the DOWNLOAD RSTUDIO DESKTOP button located partway down the page.\n\nNext, scroll to the bottom and click on the link under Installers that again corresponds to your operating system of choice.\n\nSave the file on your desktop. Once it finishes downloading, open the file and follow the instructions to complete the installation process. You may then delete the file.\nCongratulations! You successfully completed the installation process and are one step closer to using R and RStudio for analysis!"
+    "objectID": "intro.html#objectives",
+    "href": "intro.html#objectives",
+    "title": "1  Introduction",
+    "section": "Objectives",
+    "text": "Objectives\nThe objective of this consultancy is to support development and refining of training tools related to fisheries data management workflow. This will involve working closely with the fisheries expert towards the development of training tools for enhancing stock monitoring status and national processes for SDG14.4.1 monitoring."
   },
   {
-    "objectID": "intro.html#helpful-resources",
-    "href": "intro.html#helpful-resources",
-    "title": "1  Installation",
-    "section": "1.3 Helpful Resources",
-    "text": "1.3 Helpful Resources\n\nInstalling R and RStudio by Jenny Bryan"
+    "objectID": "intro.html#scope-of-the-work",
+    "href": "intro.html#scope-of-the-work",
+    "title": "1  Introduction",
+    "section": "Scope of the work",
+    "text": "Scope of the work\nIn executing this consultancy, the Consultant will work closely with WIOMSA and FAO and the following tasks will be undertaken for guided data management, analysis and reporting for decision making and management of the fisheries resources in the region using Excel spreadsheet and R language tools. This will include development of the Excel and R tools that help to reproduce lecture material and tutorials."
+  },
+  {
+    "objectID": "rstudio.html",
+    "href": "rstudio.html",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "",
+    "text": "Though R/RStudio may seem intimidating, it is actually quite straight forward to set up and, after learning a few basics, you can start running analyses and writing your own in no time. The objective of this guide is to provide an introduction to R/RStudio basics so that interested resource managers without programming experience can start leveraging R for their management decisions.\nR and RStudio are separate programs and that need to be installed and updated individually. If you do not keep both relatively up-to-date you will likely run into problems."
+  },
+  {
+    "objectID": "rstudio.html#r",
+    "href": "rstudio.html#r",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.1 R",
+    "text": "2.1 R\nTo install R, go to the R webpage and follow the link to your operating system of choice (Linux, Max OS X, Windows). Then, click on the most recent .pkg file to download it. Follow the instructions to complete the installation process."
+  },
+  {
+    "objectID": "rstudio.html#rstudio",
+    "href": "rstudio.html#rstudio",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.2 RStudio",
+    "text": "2.2 RStudio\nAfter installing R, visit the RStudio Products site and click the DOWNLOAD RSTUDIO DESKTOP button located partway down the page.\n\nNext, scroll to the bottom and click on the link under Installers that again corresponds to your operating system of choice.\n\nSave the file on your desktop. Once it finishes downloading, open the file and follow the instructions to complete the installation process. You may then delete the file.\nCongratulations! You successfully completed the installation process and are one step closer to using R and RStudio for analysis!"
+  },
+  {
+    "objectID": "rstudio.html#helpful-resources",
+    "href": "rstudio.html#helpful-resources",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.3 Helpful Resources",
+    "text": "2.3 Helpful Resources\n\nInstalling R and RStudio by Jenny Bryan\n\nRstudio is what’s referred to as an Integrated Development Environment (IDE) for the R programming language. It provides a single interface for an R user to manage all aspects of an analysis (write code, manage and plot data. see outputs, get help, etc.)."
+  },
+  {
+    "objectID": "rstudio.html#rstudio-interface",
+    "href": "rstudio.html#rstudio-interface",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.4 RStudio Interface",
+    "text": "2.4 RStudio Interface\nThere are four main panels in RStudio (Figure 1).\n\n\nCode Editor - This is where you write the code for your analysis. Each tab represents a different R script file (e.g. snapper_analysis.R)\nConsole - This is where R prints the output of your code when it’s run. You can also write code directly in the console after the > symbol\nEnvironment/History - This panel generally has the following two tabs:\n\nEnvironment - Displays all your data, variables, and user-defined functions. These are created by the user either in the code editor or directly in the console.\nHistory - A list of your command history\n\nFiles/Packages/Help/Viewer - This panel contains numerous helpful panels:\n\nFiles - The list of all files contained in your current working directory. You can also navigate to different folders on your computer. This is where you can click on different R scripts to open them in the code editor.\nPlots - When you produce plots with your code they will be displayed here\nPackages - The list of packages (groups of functions) currently installed on your computer. You can install new packages or update existing packages from this tab by clicking Install or Update.\nHelp - Where you can search the R documentation to get help using the different R functions. This is a very useful feature of RStudio! You can also get help for a function by typing ? followed by the function name in the console (e.g. ?data.frame())."
+  },
+  {
+    "objectID": "rstudio.html#working-directory",
+    "href": "rstudio.html#working-directory",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.5 Working Directory",
+    "text": "2.5 Working Directory\nThe working directory is an important concept in R (and programming in general) and refers to the current directory (folder) that you are working in. Basically, R requires that you tell it where in your computer’s file system it should start looking for files from. This is important because the code used to load data and save results and plots will differ depending on your current working directory.\nAs an example, let’s imagine you are working on an analysis of coral reef fisheries and you have a folder on your Desktop called reef_fish. Inside this reef_fish directory is the file reef_fish_data.csv that you want to analyze. Open RStudio and click Set Working Directory... under the Session menu in the toolbar. This asks you to specify the folder on your computer that R should consider to be the working directory.\n\n2.5.1 Pathnames (Path)\nNow that the working directory is set, you can load your reef fish data into RStudio by specifying the appropriate pathname to the file. In this case, the pathname is simply reef_fish_data.csv since the file is in the working directory and the data could be loaded with read.csv(file = \"reef_fish_data.csv\"). If, however, reef_fish_data.csv was actually stored in a subfolder called data the previous read.csv() command will not work because reef_fish_data.csv is not in the working directory. In this case, you can either tell R where the file is using the absolute, complete path (e.g. /Users/You/Desktop/reef_fish/data/reef_fish_data.csv), or with the path relative to the working directory (e.g. data/reef_fish_data.csv)."
+  },
+  {
+    "objectID": "rstudio.html#section",
+    "href": "rstudio.html#section",
+    "title": "2  Getting Started with R and RStudio",
+    "section": "2.6 ",
+    "text": "2.6"
   },
   {
     "objectID": "Rlanguage.html",
@@ -77,34 +126,6 @@
     "text": "3.5 Helpful resources\n\nAn interactive tutorial on learning the basics of R programming\nMore information on data frames\nMore information on tibbles, the modern version of data frames\nFunctions\nGoogle's style guidelines"
   },
   {
-    "objectID": "rstudio.html",
-    "href": "rstudio.html",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "",
-    "text": "Though R/RStudio may seem intimidating, it is actually quite straight forward to set up and, after learning a few basics, you can start running analyses and writing your own in no time. The objective of this guide is to provide an introduction to R/RStudio basics so that interested resource managers without programming experience can start leveraging R for their management decisions.\nR and RStudio are separate programs and that need to be installed and updated individually. If you do not keep both relatively up-to-date you will likely run into problems."
-  },
-  {
-    "objectID": "rstudio.html#rstudio-interface",
-    "href": "rstudio.html#rstudio-interface",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.4 RStudio Interface",
-    "text": "2.4 RStudio Interface\nThere are four main panels in RStudio (Figure 1).\n\n\nCode Editor - This is where you write the code for your analysis. Each tab represents a different R script file (e.g. snapper_analysis.R)\nConsole - This is where R prints the output of your code when it’s run. You can also write code directly in the console after the > symbol\nEnvironment/History - This panel generally has the following two tabs:\n\nEnvironment - Displays all your data, variables, and user-defined functions. These are created by the user either in the code editor or directly in the console.\nHistory - A list of your command history\n\nFiles/Packages/Help/Viewer - This panel contains numerous helpful panels:\n\nFiles - The list of all files contained in your current working directory. You can also navigate to different folders on your computer. This is where you can click on different R scripts to open them in the code editor.\nPlots - When you produce plots with your code they will be displayed here\nPackages - The list of packages (groups of functions) currently installed on your computer. You can install new packages or update existing packages from this tab by clicking Install or Update.\nHelp - Where you can search the R documentation to get help using the different R functions. This is a very useful feature of RStudio! You can also get help for a function by typing ? followed by the function name in the console (e.g. ?data.frame())."
-  },
-  {
-    "objectID": "rstudio.html#working-directory",
-    "href": "rstudio.html#working-directory",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.5 Working Directory",
-    "text": "2.5 Working Directory\nThe working directory is an important concept in R (and programming in general) and refers to the current directory (folder) that you are working in. Basically, R requires that you tell it where in your computer’s file system it should start looking for files from. This is important because the code used to load data and save results and plots will differ depending on your current working directory.\nAs an example, let’s imagine you are working on an analysis of coral reef fisheries and you have a folder on your Desktop called reef_fish. Inside this reef_fish directory is the file reef_fish_data.csv that you want to analyze. Open RStudio and click Set Working Directory... under the Session menu in the toolbar. This asks you to specify the folder on your computer that R should consider to be the working directory.\n\n2.5.1 Pathnames (Path)\nNow that the working directory is set, you can load your reef fish data into RStudio by specifying the appropriate pathname to the file. In this case, the pathname is simply reef_fish_data.csv since the file is in the working directory and the data could be loaded with read.csv(file = \"reef_fish_data.csv\"). If, however, reef_fish_data.csv was actually stored in a subfolder called data the previous read.csv() command will not work because reef_fish_data.csv is not in the working directory. In this case, you can either tell R where the file is using the absolute, complete path (e.g. /Users/You/Desktop/reef_fish/data/reef_fish_data.csv), or with the path relative to the working directory (e.g. data/reef_fish_data.csv)."
-  },
-  {
-    "objectID": "rstudio.html#section",
-    "href": "rstudio.html#section",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.6 ",
-    "text": "2.6"
-  },
-  {
     "objectID": "packages.html",
     "href": "packages.html",
     "title": "4  Packages",
@@ -138,6 +159,13 @@
     "title": "4  Packages",
     "section": "4.4 Packages for Limnological Data",
     "text": "4.4 Packages for Limnological Data\n\nGLMr – the General Lake Model in R\nglmtools – Tools for interacting with the General Lake Model in R\nLakeMetabolizer – collection of lake metabolism functions\nrLakeAnalyzer – standardized methods for calculating common important derived physical features of lakes\nwaterData – Imports U.S. Geological Survey (USGS) daily hydrologic data from USGS web services, plots the data, addresses some common data problems, and calculates and plots anomalies"
+  },
+  {
+    "objectID": "packages.html#additional-resources",
+    "href": "packages.html#additional-resources",
+    "title": "4  Packages",
+    "section": "4.5 Additional Resources",
+    "text": "4.5 Additional Resources\nThroughout this guidebook we provided links to additional useful R resources. We now include all of these resources below for your convenience.\n\nR for Data Science\nCookbook for R\nRStudio Cheat Sheets\nJenny Bryan’s Stat 545 Course Syllabus\nSimple Guidelines for Effective Data Management\nResearch Data Management"
   },
   {
     "objectID": "packages.html#helpful-resources",
@@ -382,7 +410,7 @@
     "href": "simulate.html#normally-distributed-sequences",
     "title": "10  Simulate Data",
     "section": "10.4 Normally-Distributed Sequences",
-    "text": "10.4 Normally-Distributed Sequences\nA normally distributed sequence of numbers can be created using the qnorm() quantile function. The parameters:\n\nx: A linear sequence of probabilities in the range 0 to 1\nmean: The mean (μ)\nsd: The standard deviation (σ)\n\n\n10.4.1 qnorm\nThis function returns the value of the inverse cumulative density function (cdf) of the normal distribution given a certain random variable p, a population mean μ, and the population standard deviation σ\n\na = seq(0, 1, 0.02)\nb = qnorm(p = a, mean = 2, sd = 1)\nb\n\n [1]        -Inf -0.05374891  0.24931393  0.44522641  0.59492844  0.71844843\n [7]  0.82501321  0.91968066  1.00554212  1.08463491  1.15837877  1.22780679\n[13]  1.29369744  1.35665459  1.41715849  1.47559949  1.53230120  1.58753687\n[19]  1.64154121  1.69451921  1.74665290  1.79810652  1.84903078  1.89956628\n[25]  1.94984642  2.00000000  2.05015358  2.10043372  2.15096922  2.20189348\n[31]  2.25334710  2.30548079  2.35845879  2.41246313  2.46769880  2.52440051\n[37]  2.58284151  2.64334541  2.70630256  2.77219321  2.84162123  2.91536509\n[43]  2.99445788  3.08031934  3.17498679  3.28155157  3.40507156  3.55477359\n[49]  3.75068607  4.05374891         Inf\n\n\n\nat = tibble(a%>% as.numeric())  %>% rename(data = 1)\nbt = tibble(b) %>% rename(data = 1)\n\nbinded = bind_rows(at,bt) %>% \n  mutate(id = rep(1:length(a), times = 2), mode = rep(c(\"seq\", \"qnorm\"), each = length(a)))\n\n\n\nWarning: Removed 2 rows containing non-finite values (stat_bin).\n\n\n\n\n\nFigure 10.5: Plot of linear of sequence and its normalized sequence with qnorm\n\n\n\n\n\n\n10.4.2 rnorm\nWhen we want to generate a vector of normally distributed random variables, we use rnorm function and supply it with length n, a population mean μ and population standard deviation σ.\n\nExample: In this example, with the use of the rnorm() function we are generating a vector of 10 normally distributed random variables with mean temperature=25 and sd=2.\n\n\na = rnorm(n = 10, mean = 25, sd = 2)\na\n\n [1] 25.11446 27.24799 24.66387 26.26142 24.76491 21.62708 26.91647 27.38866\n [9] 24.23348 25.12748\n\n\n\n\n10.4.3 runif\nThe runif() function generates random deviates of the uniform distribution when the minimum and maximum values are provided. The function is simply written as runif(n, min = 0, max = 1) . We may easily generate n number of random samples within any interval, defined by the min and the max argument.\n\nExample: In this example, with the use of the runif()` function to generate a vector of 10 normally distributed random variables with minimum temperature of 23 and maximum temperature=28.\n\n\na = runif(10, min = 23, max = 28)\na\n\n [1] 25.09459 27.47837 27.65301 27.65820 25.79726 27.29496 24.75173 25.61296\n [9] 26.14250 26.46849"
+    "text": "10.4 Normally-Distributed Sequences\nA normally distributed sequence of numbers can be created using the qnorm() quantile function. The parameters:\n\nx: A linear sequence of probabilities in the range 0 to 1\nmean: The mean (μ)\nsd: The standard deviation (σ)\n\n\n10.4.1 qnorm\nThis function returns the value of the inverse cumulative density function (cdf) of the normal distribution given a certain random variable p, a population mean μ, and the population standard deviation σ\n\na = seq(0, 1, 0.02)\nb = qnorm(p = a, mean = 2, sd = 1)\nb\n\n [1]        -Inf -0.05374891  0.24931393  0.44522641  0.59492844  0.71844843\n [7]  0.82501321  0.91968066  1.00554212  1.08463491  1.15837877  1.22780679\n[13]  1.29369744  1.35665459  1.41715849  1.47559949  1.53230120  1.58753687\n[19]  1.64154121  1.69451921  1.74665290  1.79810652  1.84903078  1.89956628\n[25]  1.94984642  2.00000000  2.05015358  2.10043372  2.15096922  2.20189348\n[31]  2.25334710  2.30548079  2.35845879  2.41246313  2.46769880  2.52440051\n[37]  2.58284151  2.64334541  2.70630256  2.77219321  2.84162123  2.91536509\n[43]  2.99445788  3.08031934  3.17498679  3.28155157  3.40507156  3.55477359\n[49]  3.75068607  4.05374891         Inf\n\n\n\nat = tibble(a%>% as.numeric())  %>% rename(data = 1)\nbt = tibble(b) %>% rename(data = 1)\n\nbinded = bind_rows(at,bt) %>% \n  mutate(id = rep(1:length(a), times = 2), mode = rep(c(\"seq\", \"qnorm\"), each = length(a)))\n\n\n\nWarning: Removed 2 rows containing non-finite values (stat_bin).\n\n\n\n\n\nFigure 10.5: Plot of linear of sequence and its normalized sequence with qnorm\n\n\n\n\n\n\n10.4.2 rnorm\nWhen we want to generate a vector of normally distributed random variables, we use rnorm function and supply it with length n, a population mean μ and population standard deviation σ.\n\nExample: In this example, with the use of the rnorm() function we are generating a vector of 10 normally distributed random variables with mean temperature=25 and sd=2.\n\n\na = rnorm(n = 10, mean = 25, sd = 2)\na\n\n [1] 26.83946 24.63983 24.46281 25.08249 25.42845 29.02642 29.06418 27.07543\n [9] 26.32608 24.23981\n\n\n\n\n10.4.3 runif\nThe runif() function generates random deviates of the uniform distribution when the minimum and maximum values are provided. The function is simply written as runif(n, min = 0, max = 1) . We may easily generate n number of random samples within any interval, defined by the min and the max argument.\n\nExample: In this example, with the use of the runif()` function to generate a vector of 10 normally distributed random variables with minimum temperature of 23 and maximum temperature=28.\n\n\na = runif(10, min = 23, max = 28)\na\n\n [1] 24.95333 27.58876 26.47779 24.82032 27.86841 23.22590 25.55820 25.57930\n [9] 25.62108 26.91224"
   },
   {
     "objectID": "simulate.html#sequences-based-on-percentiles",
@@ -663,54 +691,5 @@
     "title": "Appendix F — Recruitment and logistic model",
     "section": "F.6 References",
     "text": "F.6 References\nGrolemund, G., and H. Wickham. 2011. Dates and times made easy with lubridate. Journal of Statistical Software 40(3):1–25.\nPope, K. L., S. E. Lochmann, and M. K. Young. 2010. Methods for assessing fish populations. Pages 325–351 in W. A. Hubert and M. C. Quist, editors. Inland fisheries management in north americaThird. American Fisheries Society, Bethesda, MD."
-  },
-  {
-    "objectID": "rstudio.html#r",
-    "href": "rstudio.html#r",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.1 R",
-    "text": "2.1 R\nTo install R, go to the R webpage and follow the link to your operating system of choice (Linux, Max OS X, Windows). Then, click on the most recent .pkg file to download it. Follow the instructions to complete the installation process."
-  },
-  {
-    "objectID": "rstudio.html#rstudio",
-    "href": "rstudio.html#rstudio",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.2 RStudio",
-    "text": "2.2 RStudio\nAfter installing R, visit the RStudio Products site and click the DOWNLOAD RSTUDIO DESKTOP button located partway down the page.\n\nNext, scroll to the bottom and click on the link under Installers that again corresponds to your operating system of choice.\n\nSave the file on your desktop. Once it finishes downloading, open the file and follow the instructions to complete the installation process. You may then delete the file.\nCongratulations! You successfully completed the installation process and are one step closer to using R and RStudio for analysis!"
-  },
-  {
-    "objectID": "rstudio.html#helpful-resources",
-    "href": "rstudio.html#helpful-resources",
-    "title": "2  Getting Started with R & RStudio",
-    "section": "2.3 Helpful Resources",
-    "text": "2.3 Helpful Resources\n\nInstalling R and RStudio by Jenny Bryan\n\nRstudio is what’s referred to as an Integrated Development Environment (IDE) for the R programming language. It provides a single interface for an R user to manage all aspects of an analysis (write code, manage and plot data. see outputs, get help, etc.)."
-  },
-  {
-    "objectID": "packages.html#additional-resources",
-    "href": "packages.html#additional-resources",
-    "title": "4  Packages",
-    "section": "4.5 Additional Resources",
-    "text": "4.5 Additional Resources\nThroughout this guidebook we provided links to additional useful R resources. We now include all of these resources below for your convenience.\n\nR for Data Science\nCookbook for R\nRStudio Cheat Sheets\nJenny Bryan’s Stat 545 Course Syllabus\nSimple Guidelines for Effective Data Management\nResearch Data Management"
-  },
-  {
-    "objectID": "intro.html#initiatives-conducted-in-the-wio",
-    "href": "intro.html#initiatives-conducted-in-the-wio",
-    "title": "1  Introduction",
-    "section": "Initiatives conducted in the WIO",
-    "text": "Initiatives conducted in the WIO\nTwo workshops have been undertaken in the WIO/East African region, first a project kick-off meeting of the Fishing Data East Africa (FIDEA) project (Dar es Salaam, Tanzania, 16-17 September 2019), focused on Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, at which FAO agreed to partner with FIDEA to support a capacity development workshop in the East Africa region. This led to a mission by FAO staff to investigate the data infrastructure in Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, as well as the SDG 14.4.1 reporting capacity development workshop in Zanzibar from 2-14 March 2020, which included 10 East African countries and WIO island nations.\nThe report of this second workshop recommended some key actions to support countries in improving the collection and use of data for monitoring the SDG 14.4 target. A common point in these recommendations is a greater need to provide long-term support for developing appropriate data management systems. This goes beyond collection to focus particularly on validation, organization, protection, retrieval and summary of the data, essential steps for allowing reliable estimation and reporting of the SDG14.4.1 indicator.\nIt has been stated many times that The collection of data is not an end in itself, but is essential for informed decision-making, and data can only be useful for supporting decision-making if they are properly stored, managed, and curated so that they have the quality necessary for providing meaningful and reliable advice. The report also recommended stronger collaboration between the SWIOFC regional process in monitoring the status of stocks and national processes in developing capacities for the monitoring of SDG14.4.1."
-  },
-  {
-    "objectID": "intro.html#objectives",
-    "href": "intro.html#objectives",
-    "title": "1  Introduction",
-    "section": "Objectives",
-    "text": "Objectives\nThe objective of this consultancy is to support development and refining of training tools related to fisheries data management workflow. This will involve working closely with the fisheries expert towards the development of training tools for enhancing stock monitoring status and national processes for SDG14.4.1 monitoring."
-  },
-  {
-    "objectID": "intro.html#scope-of-the-work",
-    "href": "intro.html#scope-of-the-work",
-    "title": "1  Introduction",
-    "section": "Scope of the work",
-    "text": "Scope of the work\nIn executing this consultancy, the Consultant will work closely with WIOMSA and FAO and the following tasks will be undertaken for guided data management, analysis and reporting for decision making and management of the fisheries resources in the region using Excel spreadsheet and R language tools. This will include development of the Excel and R tools that help to reproduce lecture material and tutorials."
   }
 ]
