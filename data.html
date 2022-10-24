@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WIO-fish - 5&nbsp; Data Entry and Management</title>
+<title>WIO-fish - 4&nbsp; Reading data into R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -15,6 +15,88 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -24,8 +106,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./loadingData.html" rel="next">
-<link href="./packages.html" rel="prev">
+<link href="./dataManipulation.html" rel="next">
+<link href="./dataTypes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -64,7 +146,7 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Entry and Management</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -105,99 +187,44 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started with R and RStudio</span></a>
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Entry and Management</span></a>
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./loadingData.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading Data and Data Cleaning</span></a>
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sample Data in R</span></a>
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basicFishStats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Basic Fisheries Statistics</span></a>
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basicFishPlotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Plotting Fisheries Data</span></a>
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./simulate.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Simulate Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Summary</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./installR.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">R language installation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./installRstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">What is RStudio?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./installPackages.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Install packages in R</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./lw.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Weight-Length Relationships</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./basicstats.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Basic Data Manipulations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./recruitment.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Recruitment and logistic model</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -207,7 +234,17 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#helpful-resources" id="toc-helpful-resources" class="nav-link active" data-scroll-target="#helpful-resources"> <span class="header-section-number">5.1</span> <strong>Helpful Resources</strong></a></li>
+  <li><a href="#getting-data-into-r" id="toc-getting-data-into-r" class="nav-link active" data-scroll-target="#getting-data-into-r"> <span class="header-section-number">4.1</span> Getting Data into R</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"> <span class="header-section-number">4.2</span> Dataset</a></li>
+  <li><a href="#comma-separated-.csv" id="toc-comma-separated-.csv" class="nav-link" data-scroll-target="#comma-separated-.csv"> <span class="header-section-number">4.3</span> Comma-Separated (.csv)</a></li>
+  <li><a href="#microsoft-excel.xlsx" id="toc-microsoft-excel.xlsx" class="nav-link" data-scroll-target="#microsoft-excel.xlsx"> <span class="header-section-number">4.4</span> Microsoft Excel(.xlsx)</a></li>
+  <li><a href="#writing-t-a-file" id="toc-writing-t-a-file" class="nav-link" data-scroll-target="#writing-t-a-file"> <span class="header-section-number">4.5</span> Writing t a File</a></li>
+  <li><a href="#basic-data-manipulation" id="toc-basic-data-manipulation" class="nav-link" data-scroll-target="#basic-data-manipulation"> <span class="header-section-number">4.6</span> Basic Data Manipulation</a>
+  <ul class="collapse">
+  <li><a href="#explore-the-data-frame" id="toc-explore-the-data-frame" class="nav-link" data-scroll-target="#explore-the-data-frame"> <span class="header-section-number">4.6.1</span> Explore the Data Frame</a></li>
+  <li><a href="#simple-summary-statistics" id="toc-simple-summary-statistics" class="nav-link" data-scroll-target="#simple-summary-statistics"> <span class="header-section-number">4.6.2</span> Simple summary statistics</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -216,7 +253,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data Entry and Management</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></h1>
 </div>
 
 
@@ -230,49 +267,261 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>The careful entry, documentation, and management of data is essential to any data-related project. Being strategic about this process will keep the project organized, protect against data loss, and facilitate analysis and data sharing. This section will be most helpful if you are the person responsible for first setting up data collection forms and organization. However, it may also be helpful even if you are working with data that someone else has collected and organized. If you are working with data that someone else has collected and organized, you will find the next section on data cleaning (QA/QC, or quality assurance / quality control) especially helpful.</p>
-<p><strong>Best Practices</strong></p>
-<ol type="1">
-<li><strong>Using "flat" files and an open data format</strong><br>
-Raw data should be entered as a "flat" table and saved using an open data format, such as .csv (comma separated values). "Flat" data files are tables where the first "header" row contains the variables in the data set and there is no internal hierarchy to the data. Nested columns and rows make analysis of the raw data outside of the original file very difficult.</li>
-</ol>
-<p><img src="https://sfg-ucsb.github.io/fishery-manageR/images/data_mgmt_1.png" class="img-fluid"></p>
-<ol start="2" type="1">
-<li><strong>Organize data in a tidy format with unique records in rows, not columns</strong><br>
-Data records should be stored in rows (long-format) instead of columns (wide format). This allows analysis within rows rather than across columns. This "tidy data" format means that each <strong>variable</strong> is saved in its own <strong>column</strong> and each <strong>observation</strong> is saved in its own <strong>row</strong>.</li>
-</ol>
-<p><img src="https://sfg-ucsb.github.io/fishery-manageR/images/data_mgmt_2.png" class="img-fluid"></p>
-<ol start="3" type="1">
-<li><strong>Describe data in a metadata file</strong><br>
-Your raw <strong>flat data files should only include data, no comments</strong>. Rather than using complicated spreadsheets, create a metadata document, often called "README", that includes (at a minimum) what data you are collecting, how and when the data were collected, where the data is stored, and who owns the data. This file should also include a "data dictionary" that describes each variable and associated unit in the data file (see example below). Be as specific as possible; for example, the description for fish length variables should include whether it is fork length, total length, or standard length.</li>
-</ol>
-<p><img src="https://sfg-ucsb.github.io/fishery-manageR/images/data_mgmt_3.png" class="img-fluid"></p>
-<ol start="4" type="1">
-<li><p><strong>Use clear and concise descriptive names for data files and variable names</strong><br>
-File names are the easiest way to explain the contents of a data file. Capturing the place, time, and content of the data, even in an abbreviated fashion, can be extremely useful. For example, consider naming a fish catch monitoring file "muni_fishcatch_month_year.csv", replacing "muni", "month", and "year" with the appropriate values. Similarly, each column in your data should contain a unique variable and be given a clear but concise name that uses letters, numbers, dashes, dots, or underscores. Lastly, always use plain ASCII text, as certain marks (e.g., accents) or characters (e.g., Chinese or Japanese) are not widely supported. File and variable names should NOT be overly long or contain spaces or special characters (e.g.&nbsp;*&amp;$%@/)</p>
+<p>You can lean R with the dataset it comes with when you install it in your machine. But sometimes you want to use the real data you or someone gathered already. One of critical steps for data processing is to import data with special format into R workspace.Data import refers to read data from the working directory into the workspace <span class="citation" data-cites="readr">(<a href="#ref-readr" role="doc-biblioref">Wickham, Hester, and Francois 2017</a>)</span>. In this chapter you will learn how to import common files into R. We will only focus on two common types of tabular data storage format—The comma-seprated <code>.csv</code> and excell spreadsheet (<code>.xlsx</code>). In later chapter we will explain how to read other types of data into R.</p>
+<p>Transferring data from one place to another is always fraught with danger. Expecting it to always be smooth is just setting yourself up for disappointment. But sometimes getting data into R does go smoothly.</p>
+<p>If you are trying to get rectangular data (something that looks like a matrix or a data frame) into R, then the <code>read.table</code> function or one of its relatives will be what you want to use. This function returns a data frame. Note: a data frame, not a matrix.</p>
+<p>The two common rectangular data are:</p>
 <ul>
-<li><p><strong>YES:</strong> filename: <em>muni_fishcatch_month_year.csv</em> | variables: <em>year; first_name; last.name; TotalLength</em></p></li>
-<li><p><strong>NO:</strong> filename: <em>November 2007.csv</em> | variables: <em>Start Year; First Name; Total weight (kg); $ Value</em></p></li>
-</ul></li>
-<li><p><strong>Always use consistent formats for data values and (if necessary) put units in a separate column</strong><br>
-When entering data, <strong>do not mix text and numeric responses</strong>, or include both text and numbers in the same response. Periods are okay to include for numeric responses but <strong>avoid commas</strong> (commas indicate a new value in a .csv file). For text values, such as a person's name or location, take care not to change capitalization, spelling, spacing, etc. (e.g.&nbsp;John, john, jon) as this will generate confusion. <strong>Consider using identification codes for variables with many possible categories (e.g., local species name, gear type)</strong>. Units should always be in their own column or absent entirely but explained in the metadata file. Also, <strong>do not use color coding</strong>, it cannot be interpreted by other software (data in red below are just to demonstrate improper data entries).</p></li>
-</ol>
-<p><img src="https://sfg-ucsb.github.io/fishery-manageR/images/data_mgmt_4.png" class="img-fluid"></p>
-<ol start="6" type="1">
-<li><p><strong>Use standardized formats for dates</strong> When reporting full dates, use standardized formats since date representations vary between the United States and the rest of the world. For example, 01-09-17 will likely be interpreted as January 9th, 2017 in the U.S. but September 1st, 2017 or September 17th, 2001 in other countries. Therefore, always record dates using the international standard of YYYY-MM-DD as prescribed by the International Organization of Standards (ISO) standard ISO 8601 (2004). It is also generally good to have separate columns for <strong>month</strong> and <strong>year</strong> to facilitate analyses that are only interested in certain months or years (e.g.&nbsp;what are the average landings in March?).</p></li>
-<li><p><strong>Always store an uncorrected original version of the data file and BACK UP YOUR DATA!!!</strong><br>
-When you make changes or corrections to the original data file you could easily make a mistake. To avoid compromising your original raw data, always store an unadjusted copy of the data file and <strong>do not make any changes or adjustments to this copy</strong> (make it "read-only" if possible). Make a duplicate file if corrections or adjustments are required and be sure to describe what changes were made in the metadata file. Lastly, <strong>ALWAYS BACK UP YOUR DATA</strong> by keeping at least <strong>three</strong> copies of the file in different locations (e.g., desktop, external hard drive, the cloud).</p></li>
-<li><p><strong>Be consistent with blank cells by using NA</strong> It is common for cells to be blank in a spreadsheet. However, there are many different ways to signify a blank cell, some of which are more difficult to work with. We recommend always using <code>NA</code> in any blank cell, rather than simply leaving the cell blank, putting in spaces, or other options like <code>NaN</code> or <code>-999</code>. This will allow R to quickly identify and deal with empty cells.</p></li>
-<li><p><strong>For storing data, always use CSV files instead of XLS or XLSX files</strong> There are also several different file formats for storing spreadsheet data. XLS and XLSX are two very commonly used formats, and are the standard Microsoft Excel spreadsheet format (XLSX is the newest version). However, many programming languages have difficulty ingesting Microsoft Excel files. These files also require people using them to have a copy of Microsoft Excel, which not everyone has and can be expensive. We therefore recommend using the CSV file format for storing data. CSV stands for "Comma-Separated Values" and describes how data are stored in the file. If you have a Microsoft Excel file, you can save it as a CSV by clicking <code>File -&gt; Save As</code> and selecting the CSV option. CSVs can be read directly into R, and used and manipulated by anyone with a computer.</p></li>
-</ol>
-<section id="helpful-resources" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="helpful-resources"><span class="header-section-number">5.1</span> <strong>Helpful Resources</strong></h2>
-<ul>
-<li><p><a href="https://www.nceas.ucsb.edu/files/news/ESAdatamng09.pdf" class="uri">https://www.nceas.ucsb.edu/files/news/ESAdatamng09.pdf</a></p></li>
-<li><p><a href="http://ucsd.libguides.com/c.php?g=90957&amp;p=585435" class="uri">http://ucsd.libguides.com/c.php?g=90957&amp;p=585435</a></p></li>
+<li>comma-separated file</li>
+<li>tab-separated file</li>
 </ul>
+<p>Both of the above assume that the data are of a rectangular form. In the unlikely event you have non-rectangular data to read in, that is possible as well but the best way to do that depends on the form of your data.</p>
+<section id="getting-data-into-r" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="getting-data-into-r"><span class="header-section-number">4.1</span> Getting Data into R</h2>
+<p>Much of the data we download or receive from researchers is in the form of delimited files. Whether that be a comma separated (csv) or a tab delimited file, there are multiple functions that can read these data into R. We will stick to loading these data from the <strong>tidyverse</strong> packages but be aware these are not the only methods for doing this. We will use the tidyverse functions just to maintain consistency with everything else we do.</p>
+<p>The first package in <strong>tidyverse</strong> we will use is called <strong>readr</strong> <span class="citation" data-cites="readr">(<a href="#ref-readr" role="doc-biblioref">Wickham, Hester, and Francois 2017</a>)</span>, which is a collection of functions to load the tabular data from working directory in our machine into R session. Some of its functions include:</p>
+<ul>
+<li><code>read_csv()</code>: comma separated (CSV) files</li>
+<li><code>read_tsv()</code>: tab separated files</li>
+<li><code>read_delim()</code>: general delimited files</li>
+<li><code>read_fwf()</code>: fixed width files</li>
+<li><code>read_table()</code>: tabular files where columns are separated by white-space.</li>
+<li><code>read_log()</code>: web log files</li>
+<li><strong>readxl</strong> reads in Excel files.</li>
+</ul>
+<p>Before we import the data, we need to load the packages that we will use their functions in this chapter</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dataset" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="dataset"><span class="header-section-number">4.2</span> Dataset</h2>
+<p>For us to demonstrate how to import data into R, we are going to use the penguin dataset <a href="#fig-penguins">Figure&nbsp;<span>4.1</span></a>. The penguin dataset is a collection of images of penguin colonies in Antarctica coming from the larger penguin watch project, which was setup with the purpose of monitoring their changes in population. The images are taken by fixed cameras in over 40 different locations, which have been capturing an image per hour for several years. In order to track the colony sizes, the number of penguins in each of the images in the dataset is required. So far, the penguin count has been done with the help of citizen scientists on the Penguin Watch site by Zooniverse, where interested users can place dots on top of the penguins. Here we release part of this data to the vision community in order to learn from the crowd-sourced dot-annotations to automatically annotate these images.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-penguins" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/penguin_screenshot.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 4.1: penguins data</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comma-separated-.csv" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="comma-separated-.csv"><span class="header-section-number">4.3</span> Comma-Separated (.csv)</h2>
+<p>The most commonly format that R like is the <code>comma-separated</code> files. Although Base R provides various functions like <code>read.table()</code>, <code>read.csv()</code>, <code>read.table()</code> and <code>read.csv2()</code> to import data from the local directories into R workspace, for this book we use an <code>read_csv()</code> function from <code>readr</code>. If you have a tabular data stored in your working directory as<code>.csv</code> format, You simply import it into R with the <code>read_csv()</code> and specify the path to the file in your working directory as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"assets/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To visualize the data we just imported, we simply type the name in console and click ENTER</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 x 8
+   species island    bill_length_mm bill_depth_mm flipper_~1 body_~2 sex    year
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7        181    3750 male   2007
+ 2 Adelie  Torgersen           39.5          17.4        186    3800 fema~  2007
+ 3 Adelie  Torgersen           40.3          18          195    3250 fema~  2007
+ 4 Adelie  Torgersen           NA            NA           NA      NA &lt;NA&gt;   2007
+ 5 Adelie  Torgersen           36.7          19.3        193    3450 fema~  2007
+ 6 Adelie  Torgersen           39.3          20.6        190    3650 male   2007
+ 7 Adelie  Torgersen           38.9          17.8        181    3625 fema~  2007
+ 8 Adelie  Torgersen           39.2          19.6        195    4675 male   2007
+ 9 Adelie  Torgersen           34.1          18.1        193    3475 &lt;NA&gt;   2007
+10 Adelie  Torgersen           42            20.2        190    4250 &lt;NA&gt;   2007
+# ... with 334 more rows, and abbreviated variable names 1: flipper_length_mm,
+#   2: body_mass_g</code></pre>
+</div>
+</div>
+<p>By simply print the loaded dataset, we a tabular shape data frame with eight variables (fields) and 344 rows (records).</p>
+</section>
+<section id="microsoft-excel.xlsx" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="microsoft-excel.xlsx"><span class="header-section-number">4.4</span> Microsoft Excel(.xlsx)</h2>
+<p>Commonly our data is stored as a MS Excel file. we can import the file with <code>read_xlsx()</code> function of <code>readxl</code> package. The <code>readxl</code> package provides a function read_exel() that allows us to specify which sheet within the Excel file to read and what character specifies missing data (it assumes a blank cell is missing data if you don’t specifying anything). The function automatically convert the worksheet into a <code>.csv</code> file and read it. Let’s us import the the data in first sheet of the <code>primary_productivity.xlsx</code>. The dataset contain primary productivity value. We will use this file to illustrate how to import the excel file into R workspace with <code>readxl</code> package <span class="citation" data-cites="readxl">(<a href="#ref-readxl" role="doc-biblioref">Wickham and Bryan 2018</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="ot">=</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"assets/penguins.xlsx"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 344 x 8
+   species island    bill_length_mm     bill_depth~1 flipp~2 body_~3 sex    year
+   &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;
+ 1 Adelie  Torgersen 39.1               18.7         181     3750    male   2007
+ 2 Adelie  Torgersen 39.5               17.39999999~ 186     3800    fema~  2007
+ 3 Adelie  Torgersen 40.299999999999997 18           195     3250    fema~  2007
+ 4 Adelie  Torgersen NA                 NA           NA      NA      NA     2007
+ 5 Adelie  Torgersen 36.700000000000003 19.3         193     3450    fema~  2007
+ 6 Adelie  Torgersen 39.299999999999997 20.6         190     3650    male   2007
+ 7 Adelie  Torgersen 38.9               17.8         181     3625    fema~  2007
+ 8 Adelie  Torgersen 39.200000000000003 19.60000000~ 195     4675    male   2007
+ 9 Adelie  Torgersen 34.1               18.10000000~ 193     3475    NA     2007
+10 Adelie  Torgersen 42                 20.2         190     4250    NA     2007
+# ... with 334 more rows, and abbreviated variable names 1: bill_depth_mm,
+#   2: flipper_length_mm, 3: body_mass_g</code></pre>
+</div>
+</div>
+<p>By printing the penguin dataset imported with <code>read_excel</code>, we notice that the that some of the variable in the dataset columns were imported as character while they are suppose to be numerical.</p>
+</section>
+<section id="writing-t-a-file" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="writing-t-a-file"><span class="header-section-number">4.5</span> Writing t a File</h2>
+<p>Sometimes you work in the document and you want to export to a file. <strong>readr</strong> has <code>write_csv()</code> and <code>write_tsv()</code> functions that allows to export data frames from workspace to working directory</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(<span class="at">x =</span> penguins, <span class="at">path =</span> <span class="st">"assets/penguins_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><span class="citation" data-cites="readxl">Wickham and Bryan (<a href="#ref-readxl" role="doc-biblioref">2018</a>)</span> recommend the use of <code>write_excel_csv()</code> function when you want to export a data frame to Excel. <strong>readr</strong> has other tools that export files to other software like SAS, SPSS and more …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(<span class="at">x =</span> penguins, <span class="at">path =</span> <span class="st">"assets/penguins_clean.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="basic-data-manipulation" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="basic-data-manipulation"><span class="header-section-number">4.6</span> Basic Data Manipulation</h2>
+<p>In this section, we briefly introduce some basic data handling and manipulation techniques, which are mostly associated with data frame. A data frame is a a tabular shaped contains columns and rows of equal length. In general a data frame structure with rows representing observations or measurements and with columns containing variables.</p>
+<section id="explore-the-data-frame" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="explore-the-data-frame"><span class="header-section-number">4.6.1</span> Explore the Data Frame</h3>
+<p>We can visualize the table by simply run the name of the data <code>flights</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"assets/octopus_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1079 Columns: 10
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+chr  (4): village, port, ground, sex
+dbl  (5): dml, tl, weight, lat, lon
+date (1): date
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>we can use <code>class()</code> to check if the data is data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "spec_tbl_df" "tbl_df"      "tbl"         "data.frame" </code></pre>
+</div>
+</div>
+<p>We can use <code>names()</code> to extract the variable names</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "date"    "village" "port"    "ground"  "sex"     "dml"     "tl"     
+ [8] "weight"  "lat"     "lon"    </code></pre>
+</div>
+</div>
+<p>We can explore the internal structure of <code>flights</code> object with a <code>dplyr()</code>’s function <code>glimpse()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,079
+Columns: 10
+$ date    &lt;date&gt; 2018-02-12, 2018-01-30, 2018-02-01, 2018-01-21, 2018-03-03, 2~
+$ village &lt;chr&gt; "Somanga", "Bwejuu", "Somanga", "Somanga", "Somanga", "Somanga~
+$ port    &lt;chr&gt; "Mbuyuni", "Kusini", "Mbuyuni", "Mbuyuni", "Mbuyuni", "Mbuyuni~
+$ ground  &lt;chr&gt; "CHAMBA CHA MACHANGE", "NYAMALILE", "BANIANI", "CHAMBA CHA SEL~
+$ sex     &lt;chr&gt; "F", "M", "M", "M", "M", "F", "M", "M", "M", "F", "F", "F", "M~
+$ dml     &lt;dbl&gt; 14.0, 14.5, 17.0, 20.0, 12.0, 16.0, 15.0, 17.0, 12.0, 12.0, 9.~
+$ tl      &lt;dbl&gt; 110.0, 115.0, 115.0, 130.0, 68.0, 90.0, 96.0, 110.0, 79.0, 84.~
+$ weight  &lt;dbl&gt; 1.385, 1.750, 1.000, 2.601, 0.670, 0.870, 1.020, 1.990, 0.730,~
+$ lat     &lt;dbl&gt; -8.397838, -7.915809, -8.392644, -8.391614, -8.391146, -8.3881~
+$ lon     &lt;dbl&gt; 39.28079, 39.65424, 39.28153, 39.28089, 39.28251, 39.28196, 39~</code></pre>
+</div>
+</div>
+<p>We can check how rows (observations/measurements) and columns (variables/fields) are in the data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1079   10</code></pre>
+</div>
+</div>
+<p>The number of rows (observation) can be obtained using <code>nrow()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1079</code></pre>
+</div>
+</div>
+<p>The number of columns (variables) can be obtained using <code>ncol()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">ncol</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>The length of the data frame is given by</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>Count the number of sample at each sex of octopus</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%$%</span> <span class="fu">table</span>(sex) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sex
+  F   M 
+581 498 </code></pre>
+</div>
+</div>
+<p>Count the number and compute the proportion of sample at each sex of octopus</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%$%</span> <span class="fu">table</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>sex
+   F    M 
+0.54 0.46 </code></pre>
+</div>
+</div>
+</section>
+<section id="simple-summary-statistics" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="simple-summary-statistics"><span class="header-section-number">4.6.2</span> Simple summary statistics</h3>
+<p>The most helpful function for for summarizing rows and columns is <code>summary()</code>, which gives a collection of basim cummary statistics. The first method is to calculate some basic summary statistics (minimum, 25th, 50th, 75th percentiles, maximum and mean) of each column. If a column is categorical, the summary function will return the number of observations in each category.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>octopus <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      date              village              port              ground         
+ Min.   :2017-12-18   Length:1079        Length:1079        Length:1079       
+ 1st Qu.:2018-01-14   Class :character   Class :character   Class :character  
+ Median :2018-01-20   Mode  :character   Mode  :character   Mode  :character  
+ Mean   :2018-01-26                                                           
+ 3rd Qu.:2018-02-15                                                           
+ Max.   :2018-03-12                                                           
+     sex                 dml             tl             weight     
+ Length:1079        Min.   : 6.0   Min.   : 11.00   Min.   :0.055  
+ Class :character   1st Qu.:10.0   1st Qu.: 68.00   1st Qu.:0.600  
+ Mode  :character   Median :12.0   Median : 82.00   Median :0.915  
+                    Mean   :12.8   Mean   : 86.01   Mean   :1.232  
+                    3rd Qu.:15.0   3rd Qu.:100.00   3rd Qu.:1.577  
+                    Max.   :24.0   Max.   :180.00   Max.   :5.210  
+      lat              lon       
+ Min.   :-8.904   Min.   : 0.00  
+ 1st Qu.:-8.523   1st Qu.:39.28  
+ Median :-8.392   Median :39.50  
+ Mean   :-8.069   Mean   :38.69  
+ 3rd Qu.:-7.973   3rd Qu.:39.67  
+ Max.   : 0.000   Max.   :39.75  </code></pre>
+</div>
+</div>
+<p>You noticed that the <code>summary()</code> function provide the common metric for <code>central tendency</code> and <code>measure of dispersion</code>. We will look at them later. Now we turn to our favorite package for data manipulation <strong>dplyr</strong> <span class="citation" data-cites="dplyr">(<a href="#ref-dplyr" role="doc-biblioref">Wickham et al. 2018</a>)</span>.</p>
+</section>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-readxl" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Jennifer Bryan. 2018. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-readr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Jim Hester, and Romain Francois. 2017. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -375,13 +624,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./packages.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Packages</span></span>
+      <a href="./dataTypes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./loadingData.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Loading Data and Data Cleaning</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dataManipulation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 3&nbsp; Understanding Data in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data.html" rel="next">
+<link href="./Rlanguage.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data-types" id="toc-data-types" class="nav-link active" data-scroll-target="#data-types"> <span class="header-section-number">3.1</span> Data Types</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"> <span class="header-section-number">3.2</span> Vectors</a>
+  <ul class="collapse">
+  <li><a href="#numeric-vector" id="toc-numeric-vector" class="nav-link" data-scroll-target="#numeric-vector"> <span class="header-section-number">3.2.1</span> Numeric Vector</a></li>
+  <li><a href="#integer-vector" id="toc-integer-vector" class="nav-link" data-scroll-target="#integer-vector"> <span class="header-section-number">3.2.2</span> Integer vector</a></li>
+  <li><a href="#character-vector" id="toc-character-vector" class="nav-link" data-scroll-target="#character-vector"> <span class="header-section-number">3.2.3</span> Character vector</a></li>
+  <li><a href="#factor-vector" id="toc-factor-vector" class="nav-link" data-scroll-target="#factor-vector"> <span class="header-section-number">3.2.4</span> Factor vector</a></li>
+  <li><a href="#logical-vector" id="toc-logical-vector" class="nav-link" data-scroll-target="#logical-vector"> <span class="header-section-number">3.2.5</span> Logical Vector</a></li>
+  <li><a href="#date-and-time" id="toc-date-and-time" class="nav-link" data-scroll-target="#date-and-time"> <span class="header-section-number">3.2.6</span> Date and Time</a></li>
+  <li><a href="#indexing-the-element" id="toc-indexing-the-element" class="nav-link" data-scroll-target="#indexing-the-element"> <span class="header-section-number">3.2.7</span> Indexing the element</a></li>
+  <li><a href="#adding-and-replacing-an-element-in-a-vector" id="toc-adding-and-replacing-an-element-in-a-vector" class="nav-link" data-scroll-target="#adding-and-replacing-an-element-in-a-vector"> <span class="header-section-number">3.2.8</span> Adding and Replacing an element in a vector</a></li>
+  <li><a href="#number-of-elements-in-a-vector" id="toc-number-of-elements-in-a-vector" class="nav-link" data-scroll-target="#number-of-elements-in-a-vector"> <span class="header-section-number">3.2.9</span> Number of elements in a vector</a></li>
+  <li><a href="#generating-sequence-of-vectors-numbers" id="toc-generating-sequence-of-vectors-numbers" class="nav-link" data-scroll-target="#generating-sequence-of-vectors-numbers"> <span class="header-section-number">3.2.10</span> Generating sequence of vectors Numbers</a></li>
+  <li><a href="#generating-vector-of-normal-distribution" id="toc-generating-vector-of-normal-distribution" class="nav-link" data-scroll-target="#generating-vector-of-normal-distribution"> <span class="header-section-number">3.2.11</span> Generating vector of normal distribution</a></li>
+  <li><a href="#rounding-off-numbers" id="toc-rounding-off-numbers" class="nav-link" data-scroll-target="#rounding-off-numbers"> <span class="header-section-number">3.2.12</span> Rounding off numbers</a></li>
+  </ul></li>
+  <li><a href="#data-frame" id="toc-data-frame" class="nav-link" data-scroll-target="#data-frame"> <span class="header-section-number">3.3</span> Data Frame</a></li>
+  <li><a href="#matrix" id="toc-matrix" class="nav-link" data-scroll-target="#matrix"> <span class="header-section-number">3.4</span> Matrix</a>
+  <ul class="collapse">
+  <li><a href="#creating-matrices" id="toc-creating-matrices" class="nav-link" data-scroll-target="#creating-matrices"> <span class="header-section-number">3.4.1</span> Creating Matrices</a></li>
+  <li><a href="#adding-attributes-to-matrices" id="toc-adding-attributes-to-matrices" class="nav-link" data-scroll-target="#adding-attributes-to-matrices"> <span class="header-section-number">3.4.2</span> Adding attributes to Matrices</a></li>
+  </ul></li>
+  <li><a href="#arrays" id="toc-arrays" class="nav-link" data-scroll-target="#arrays"> <span class="header-section-number">3.5</span> Arrays</a></li>
+  <li><a href="#dealing-with-misiing-values" id="toc-dealing-with-misiing-values" class="nav-link" data-scroll-target="#dealing-with-misiing-values"> <span class="header-section-number">3.6</span> Dealing with Misiing Values</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="dataTypes" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>In tutorial @ref(intro), we got a glimpse of GIS and the software used in this field. In this tutorial we focus on lower level data types that R handles. This includes understanding how to manage the numeric type (integer vs.&nbsp;double) and strings. The series of data called vectors and tabular format of data storage called data frames. But before we move further, let’s us clean our working environment by clicking a combination of <code>Ctrl+L</code>. Clearing the workspace is always recommended before working on a new R project to avoid name conflicts with provious projects. We can also clear all figures using <code>graphics.off()</code> function. It is a good code practice that a new R project start with the code in the chunk below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">graphics.off</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="data-types" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data-types"><span class="header-section-number">3.1</span> Data Types</h2>
+<p><strong>R</strong> language is a flexible language that allows people to work with different kind of data format <span class="citation" data-cites="R-base">(<a href="#ref-R-base" role="doc-biblioref"><strong>R-base?</strong></a>)</span>. This include <code>integer</code>, <code>numeric</code>, <code>character</code>, <code>complex</code>, <code>dates</code> and <code>logical</code>. The default data type or class in <strong>R</strong> is double precision—numeric. In a nutshell, R treats all kind of data into five categories but we deal with only four in this book. Before proceeding, we need to clear the workspace by typing <code>rm(list = ls())</code> after the prompt in the in a console.</p>
+</section>
+<section id="vectors" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="vectors"><span class="header-section-number">3.2</span> Vectors</h2>
+<p>Ofen times we want to store a set of numbers in once place. One way to do this is using the vectors in R. Vector is the most basic data structure in R. It is a sequence of elements of the same data type. if the elements are of different data types, they be coerced to a commontype that can accommodate all the elelements. Vector are generally created using the <code>c()</code> function widely called <code>concatenate</code>, though depending on the type vector being created, other method. Vectors store several numbers– a set of numbers in one container. let us look on the example below</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>people <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">158</span>,<span class="dv">659</span>,<span class="dv">782</span>,<span class="dv">659</span>,<span class="dv">759</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>street <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Dege"</span>, <span class="st">"Mchikichini"</span>, <span class="st">"Mwembe Mdogo"</span>, <span class="st">"Mwongozo"</span>,  <span class="st">"Cheka"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Notice that the <code>c()</code> function, which is short for concatenate wraps the list of numbers. The <code>c()</code> function combines all numbers together into one container. Notice also that all the individual numbers are separated with a comma. The comma is referred to an an item-delimiter. It allows R to hold each of the numbers separately. This is vital as without the item-delimiter, R will treat a vector as one big, unseperated number.</p>
+<section id="numeric-vector" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="numeric-vector"><span class="header-section-number">3.2.1</span> Numeric Vector</h3>
+<p>The numeric class holds the set of real numbers — decimal place numbers. The numeric class is more general than the integer class, and inclused the integer numbers. We create a numeric vector using a <code>c()</code> function but you can use any function that creates a sequence of numbers. These could be any number (whole or decimal number). You can check if the data is integer with <code>is.integer()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">25.4</span>, <span class="dv">26</span>, <span class="dv">28</span>, <span class="fl">27.8</span>, <span class="dv">29</span>, <span class="fl">24.8</span>, <span class="fl">22.3</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(sst)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="integer-vector" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="integer-vector"><span class="header-section-number">3.2.2</span> Integer vector</h3>
+<p>Unlike <code>numeric</code>, <code>integer</code> values do not have decimal places. They are commonly used for counting or indexing. Creating an integer vector is similar to numeric vector except that we need to instruct R to treat the data as integer and not numeric or double. To command R creating integer, we specify a suffix <code>L</code> to an element</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>depth <span class="ot">=</span> <span class="fu">c</span>(5L, 10L, 15L, 20L, 25L,30L)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(depth);<span class="fu">class</span>(depth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>aa <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">68</span>,<span class="dv">78</span>,<span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can check if the data is integer with <code>is.integer()</code> and can convert numeric value to an integer with <code>as.integer()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(aa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p>You can query the class of the object with the <code>class()</code> to know the class of the object</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(aa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<p>Although the object bb is integer as confirmed with <code>as.integer()</code> function, the <code>class()</code> ouput the answer as numeric. This is because the defaul type of number in r is numeric. However, you can use the function <code>as.integer()</code> to convert numeric value to integer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">as.integer</span>(aa))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+</div>
+</section>
+<section id="character-vector" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="character-vector"><span class="header-section-number">3.2.3</span> Character vector</h3>
+<p>In programming terms, we usually call text as <em>string</em>. This often are <code>text</code> data like names. A character vector may contain a single character , a word or a group of words. The elements must be enclosed with a single or double quotations mark.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sites <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Pemba Channel"</span>, <span class="st">"Zanzibar Channnel"</span>, <span class="st">"Pemba Channel"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(sites); <span class="fu">class</span>(sites)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<p>We can be sure whether the object is a string with <code>is.character()</code> or check the class of the object with <code>class()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Kenya"</span>, <span class="st">"Uganda"</span>, <span class="st">"Rwanda"</span>, <span class="st">"Tanzania"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(countries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="factor-vector" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="factor-vector"><span class="header-section-number">3.2.4</span> Factor vector</h3>
+<p>These are strings from finite set of values. For example, we might wish to store a variable that records gender of people. You can check if the data is factor with <code>is.factor()</code> and use <code>as.factor()</code> to convert <code>string</code> to <code>factor</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Male"</span>, <span class="st">"Female"</span>, <span class="st">"Male"</span>, <span class="st">"Male"</span>, <span class="st">"Female"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">=</span> <span class="fu">as.factor</span>(sex)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+<p>Often times we need to know the possible groups that are in the factor data. This can be achieved with the <code>levels()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Female" "Male"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(countries)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+<p>Often we wish to take a continuous numerical vector and transform it into a factor. The function <code>cut()</code> takes a vector of numerical data and creates a factor based on your give cut-points. Let us make a fictional income of 508 people with <code>rnorm()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>income <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">508</span>, <span class="at">mean =</span> <span class="dv">500</span>, <span class="at">sd =</span> <span class="dv">80</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(income, <span class="at">col =</span> <span class="st">"green"</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">xlab =</span> <span class="st">"Individual Income"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataTypes_files/figure-html/hist-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Income distribution</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mosaic::plotDist(dist = "norm", mean = 500, sd = 80)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can now breaks the distribution into groups and make a simple plot as shown in figure @ref(fig:fig21), where those with income less than 400 were about 50, followed with a group with income range between 400 and 500 of about 200 and 250 people receive income above 500</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>group <span class="ot">=</span> <span class="fu">cut</span>(income, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">300</span>,<span class="dv">400</span>,<span class="dv">500</span>,<span class="dv">800</span>),</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Below 400"</span>, <span class="st">"400-500"</span>, <span class="st">"Above 500"</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Below 400" "400-500"   "Above 500"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(group), <span class="at">las =</span> <span class="dv">1</span>, <span class="at">horiz =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span>), <span class="at">ylab =</span> <span class="st">"Frequency"</span>, <span class="at">xlab =</span> <span class="st">"Group of Income"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dataTypes_files/figure-html/fig21-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Barplot of grouped income</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">data.frame</span>(group, income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logical-vector" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="logical-vector"><span class="header-section-number">3.2.5</span> Logical Vector</h3>
+<p>A vector of logical values will either contain TRUE or FALSE or both. This is a special case of a factor that can only take on the values <code>TRUE</code> and <code>FALSE</code>. R is case-sensitive, therefore you must always capitalize <code>TRUE</code> and <code>FALSE</code> in function in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>presence <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(presence);<span class="fu">class</span>(presence)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "logical"</code></pre>
+</div>
+</div>
+</section>
+<section id="date-and-time" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="date-and-time"><span class="header-section-number">3.2.6</span> Date and Time</h3>
+<p>Date and time are also treated as vector in R</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>date.time <span class="ot">=</span> <span class="fu">seq</span>(lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="dv">010121</span>), </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="dv">250121</span>), </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">length.out =</span> <span class="dv">5</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>date.time</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2021-01-01" "2021-01-07" "2021-01-13" "2021-01-19" "2021-01-25"</code></pre>
+</div>
+</div>
+</section>
+<section id="indexing-the-element" class="level3" data-number="3.2.7">
+<h3 data-number="3.2.7" class="anchored" data-anchor-id="indexing-the-element"><span class="header-section-number">3.2.7</span> Indexing the element</h3>
+<p>One advantage of vector is that you can extract individual element in the vector object by indexing, which is accomplished using the square bracket as illustrated below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>id[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>people[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 759</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>street[<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Cheka"</code></pre>
+</div>
+</div>
+<p>Apart from extracting single element, indexing allows to extract a range of element in a vector. This is extremely important because it allows to subset a portion of data in a vector. A colon operator is used to extract a range of data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>street[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Mchikichini"  "Mwembe Mdogo" "Mwongozo"    </code></pre>
+</div>
+</div>
+</section>
+<section id="adding-and-replacing-an-element-in-a-vector" class="level3" data-number="3.2.8">
+<h3 data-number="3.2.8" class="anchored" data-anchor-id="adding-and-replacing-an-element-in-a-vector"><span class="header-section-number">3.2.8</span> Adding and Replacing an element in a vector</h3>
+<p>It is possible to add element of an axisting vecor. Here ia an example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>id[<span class="dv">6</span>] <span class="ot">=</span> <span class="dv">6</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>people[<span class="dv">6</span>] <span class="ot">=</span> <span class="dv">578</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>street[<span class="dv">6</span>] <span class="ot">=</span> <span class="st">"Mwongozo"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sometimes you may need to replace an element from a vector, this can be achieved with indexing</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>people[<span class="dv">1</span>] <span class="ot">=</span> <span class="dv">750</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="number-of-elements-in-a-vector" class="level3" data-number="3.2.9">
+<h3 data-number="3.2.9" class="anchored" data-anchor-id="number-of-elements-in-a-vector"><span class="header-section-number">3.2.9</span> Number of elements in a vector</h3>
+<p>Sometimes you may have a long vector and want to know the numbers of elements in the object. R has <code>length()</code> function that allows you to query the vector and print the answer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(people)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+</div>
+</section>
+<section id="generating-sequence-of-vectors-numbers" class="level3" data-number="3.2.10">
+<h3 data-number="3.2.10" class="anchored" data-anchor-id="generating-sequence-of-vectors-numbers"><span class="header-section-number">3.2.10</span> Generating sequence of vectors Numbers</h3>
+<p>There are few R operators that are designed for creating vecor of non-random numbers. These functions provide multiple ways for generating sequences of numbers</p>
+<p>The colon <code>:</code> operator, explicitly generate regular sequence of numbers between the lower and upper boundary numbers specified. For example, generating number beween 0 and 10, we simply write;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>vector.seq <span class="ot">=</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>vector.seq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  0  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>However, if you want to generate a vector of sequence number with specified interval, let say we want to generate number between 0 and 10 with interval of 2, then the <code>seq()</code> function is used</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>regular.vector <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>,<span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>regular.vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0  2  4  6  8 10</code></pre>
+</div>
+</div>
+<p>unlike the <code>seq()</code> function and <code>:</code> operator that works with numbers, the <code>rep()</code> function generate sequence of repeated numbers or strings to create a vector</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="fu">rep</span>(<span class="at">x =</span> <span class="dv">3</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>station <span class="ot">=</span> <span class="fu">rep</span>(<span class="at">x =</span> <span class="st">"Station1"</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>id;station</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 3 3 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Station1" "Station1" "Station1" "Station1"</code></pre>
+</div>
+</div>
+<p>The <code>rep()</code> function allows to parse <code>each</code> and <code>times</code> arguments. The <code>each</code> argument allows creation of vector that that repeat each element in a vector according to specified number.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sampled.months <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"January"</span>, <span class="st">"March"</span>, <span class="st">"May"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> sampled.months, <span class="at">each =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "January" "January" "January" "March"   "March"   "March"   "May"    
+[8] "May"     "May"    </code></pre>
+</div>
+</div>
+<p>But the <code>times</code> argument repeat the whole vector to specfied times</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rep</span>(<span class="at">x =</span> sampled.months, <span class="at">times =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "January" "March"   "May"     "January" "March"   "May"     "January"
+[8] "March"   "May"    </code></pre>
+</div>
+</div>
+</section>
+<section id="generating-vector-of-normal-distribution" class="level3" data-number="3.2.11">
+<h3 data-number="3.2.11" class="anchored" data-anchor-id="generating-vector-of-normal-distribution"><span class="header-section-number">3.2.11</span> Generating vector of normal distribution</h3>
+<p>The central limit theorem that ensure the data is normal distributed is well known to statistician. R has a <code>rnorm()</code> function which makes vector of normal distributed values. For example to generate a vector of 40 sea surface temperature values from a normal distribution with a <code>mean</code> of 25, and <code>standard deviation</code> of 1.58, we simply type this expression in console;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">40</span>, <span class="at">mean =</span> <span class="dv">25</span>,<span class="at">sd =</span> <span class="fl">1.58</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>sst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 26.21110 25.67502 25.89921 26.71775 26.74563 24.43163 26.36921 22.85633
+ [9] 25.72942 27.23735 25.41624 26.00035 25.68146 24.34351 23.65122 24.55130
+[17] 25.49577 21.43839 25.05154 24.32014 24.77623 25.27196 24.95411 22.60759
+[25] 27.33788 25.22028 26.56987 24.02304 24.01213 21.20578 22.99257 21.60608
+[33] 23.63081 22.34868 27.51112 21.69982 26.06324 24.42032 24.78187 23.59410</code></pre>
+</div>
+</div>
+</section>
+<section id="rounding-off-numbers" class="level3" data-number="3.2.12">
+<h3 data-number="3.2.12" class="anchored" data-anchor-id="rounding-off-numbers"><span class="header-section-number">3.2.12</span> Rounding off numbers</h3>
+<p>There are many ways of rounding off numerical number to the nearest integers or specify the number of decimal places. the code block below illustrate the common way to round off:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(magrittr)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>chl <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">20</span>, <span class="at">mean =</span> .<span class="dv">55</span>, <span class="at">sd =</span> .<span class="dv">2</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>chl <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 0.54 0.91 0.64 0.56 0.59 0.46 0.47 0.82 0.37 0.55 0.36 0.59 0.56 0.31 0.46
+[16] 0.27 0.20 0.26 0.45 0.61</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="data-frame" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="data-frame"><span class="header-section-number">3.3</span> Data Frame</h2>
+<p><code>data.frame</code> is very much like a simple Excel spreadsheet where each column represents a variable type and each row represent observations. A data frame is the most common way of storing data in R and, generally, is the data structure most often used for data analyses. A data frame is a list of equal–length vectors with rows as records and columns as variables. This makes data frames unique in data storing as it can store different classes of objects in each column (i.e.&nbsp;numeric, character, factor, logic, etc). In this section, we will create data frames and add attributes to data frames.</p>
+<p>Perhaps the easiest way to create a data frame is to parse vectors in a <code>data.frame()</code> function. For instance, in this case we create a simple data frame <code>dt</code> and assess its internal structure</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create vectors</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Name  <span class="ot">=</span> <span class="fu">c</span>(<span class="st">'Bob'</span>,<span class="st">'Jeff'</span>,<span class="st">'Mary'</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>Score <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">75</span>, <span class="dv">92</span>)</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>Grade <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a><span class="do">## use the vectors to make a data frame</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">=</span> <span class="fu">data.frame</span>(Name, Score, Grade)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="do">## assess the internal structure</span></span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  3 variables:
+ $ Name : chr  "Bob" "Jeff" "Mary"
+ $ Score: num  90 75 92
+ $ Grade: chr  "A" "B" "A"</code></pre>
+</div>
+</div>
+<p>Note how Variable <code>Name</code> in dt was converted to a column of factors . This is because there is a default setting in <code>data.frame()</code> that converts character columns to factors . We can turn this off by setting the <code>stringsAsFactors = FALSE</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="do">## use the vectors to make a data frame</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(Name, Score, Grade, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">str</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   3 obs. of  3 variables:
+ $ Name : chr  "Bob" "Jeff" "Mary"
+ $ Score: num  90 75 92
+ $ Grade: chr  "A" "B" "A"</code></pre>
+</div>
+</div>
+<p>Now the variable <code>Name</code> is of character class in the data frame. The inherited problem of data frame to convert character columns into a factor is resolved by introduction f advanced data frames called <em>tibble</em> <span class="citation" data-cites="tibble">(<a href="#ref-tibble" role="doc-biblioref">Müller and Wickham 2018</a>)</span>, which provides sticker checking and better formating than the traditional data.frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="do">## use the vectors to make a tibble</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">=</span> <span class="fu">tibble</span>(Name, Score, Grade) </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="do">## check the internal structure of the tibble</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 3
+Columns: 3
+$ Name  &lt;chr&gt; "Bob", "Jeff", "Mary"
+$ Score &lt;dbl&gt; 90, 75, 92
+$ Grade &lt;chr&gt; "A", "B", "A"</code></pre>
+</div>
+</div>
+<p>Table @ref(tab:tab301) show the the data frame created by fusing the two vectors together.</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>Variables in the data frame</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Name </th>
+   <th style="text-align:center;"> Score </th>
+   <th style="text-align:center;"> Grade </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 4cm; "> Bob </td>
+   <td style="text-align:center;width: 4cm; "> 90 </td>
+   <td style="text-align:center;"> A </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 4cm; "> Jeff </td>
+   <td style="text-align:center;width: 4cm; "> 75 </td>
+   <td style="text-align:center;"> B </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 4cm; "> Mary </td>
+   <td style="text-align:center;width: 4cm; "> 92 </td>
+   <td style="text-align:center;"> A </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Because the columns have meaning and we have given them column names, it is desirable to want to access an element by the name of the column as opposed to the column number.In large Excel spreadsheets I often get annoyed trying to remember which column something was. The <code>$</code>sign and <code>[]</code>are used in R to select variable from the data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>Name</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Bob"  "Jeff" "Mary"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>dt[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Bob"  "Jeff" "Mary"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>dt<span class="sc">$</span>Score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 90 75 92</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>dt[,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 90 75 92</code></pre>
+</div>
+</div>
+<p>R has build in dataset that we can use for illustration. For example, <span class="citation" data-cites="longley">(<a href="#ref-longley" role="doc-biblioref"><strong>longley?</strong></a>)</span> created a <code>longley</code> dataset, which is data frame with 7 economic variables observed every year from 1947 ti 1962 (Table @ref(tab:tab22)). We can add the data in the workspace with <code>data()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(longley)</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>longley <span class="sc">%&gt;%</span> </span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Longleys' Economic dataset"</span>, </span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">align =</span> <span class="st">"c"</span>, <span class="at">row.names =</span> F) <span class="sc">%&gt;%</span></span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, <span class="at">width =</span> <span class="st">"3cm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table>
+<caption>Longleys' Economic dataset</caption>
+ <thead>
+  <tr>
+   <th style="text-align:center;"> GNP.deflator </th>
+   <th style="text-align:center;"> GNP </th>
+   <th style="text-align:center;"> Unemployed </th>
+   <th style="text-align:center;"> Armed.Forces </th>
+   <th style="text-align:center;"> Population </th>
+   <th style="text-align:center;"> Year </th>
+   <th style="text-align:center;"> Employed </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 83.0 </td>
+   <td style="text-align:center;width: 3cm; "> 234.289 </td>
+   <td style="text-align:center;width: 3cm; "> 235.6 </td>
+   <td style="text-align:center;width: 3cm; "> 159.0 </td>
+   <td style="text-align:center;width: 3cm; "> 107.608 </td>
+   <td style="text-align:center;width: 3cm; "> 1947 </td>
+   <td style="text-align:center;width: 3cm; "> 60.323 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 88.5 </td>
+   <td style="text-align:center;width: 3cm; "> 259.426 </td>
+   <td style="text-align:center;width: 3cm; "> 232.5 </td>
+   <td style="text-align:center;width: 3cm; "> 145.6 </td>
+   <td style="text-align:center;width: 3cm; "> 108.632 </td>
+   <td style="text-align:center;width: 3cm; "> 1948 </td>
+   <td style="text-align:center;width: 3cm; "> 61.122 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 88.2 </td>
+   <td style="text-align:center;width: 3cm; "> 258.054 </td>
+   <td style="text-align:center;width: 3cm; "> 368.2 </td>
+   <td style="text-align:center;width: 3cm; "> 161.6 </td>
+   <td style="text-align:center;width: 3cm; "> 109.773 </td>
+   <td style="text-align:center;width: 3cm; "> 1949 </td>
+   <td style="text-align:center;width: 3cm; "> 60.171 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 89.5 </td>
+   <td style="text-align:center;width: 3cm; "> 284.599 </td>
+   <td style="text-align:center;width: 3cm; "> 335.1 </td>
+   <td style="text-align:center;width: 3cm; "> 165.0 </td>
+   <td style="text-align:center;width: 3cm; "> 110.929 </td>
+   <td style="text-align:center;width: 3cm; "> 1950 </td>
+   <td style="text-align:center;width: 3cm; "> 61.187 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 96.2 </td>
+   <td style="text-align:center;width: 3cm; "> 328.975 </td>
+   <td style="text-align:center;width: 3cm; "> 209.9 </td>
+   <td style="text-align:center;width: 3cm; "> 309.9 </td>
+   <td style="text-align:center;width: 3cm; "> 112.075 </td>
+   <td style="text-align:center;width: 3cm; "> 1951 </td>
+   <td style="text-align:center;width: 3cm; "> 63.221 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 98.1 </td>
+   <td style="text-align:center;width: 3cm; "> 346.999 </td>
+   <td style="text-align:center;width: 3cm; "> 193.2 </td>
+   <td style="text-align:center;width: 3cm; "> 359.4 </td>
+   <td style="text-align:center;width: 3cm; "> 113.270 </td>
+   <td style="text-align:center;width: 3cm; "> 1952 </td>
+   <td style="text-align:center;width: 3cm; "> 63.639 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 99.0 </td>
+   <td style="text-align:center;width: 3cm; "> 365.385 </td>
+   <td style="text-align:center;width: 3cm; "> 187.0 </td>
+   <td style="text-align:center;width: 3cm; "> 354.7 </td>
+   <td style="text-align:center;width: 3cm; "> 115.094 </td>
+   <td style="text-align:center;width: 3cm; "> 1953 </td>
+   <td style="text-align:center;width: 3cm; "> 64.989 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 100.0 </td>
+   <td style="text-align:center;width: 3cm; "> 363.112 </td>
+   <td style="text-align:center;width: 3cm; "> 357.8 </td>
+   <td style="text-align:center;width: 3cm; "> 335.0 </td>
+   <td style="text-align:center;width: 3cm; "> 116.219 </td>
+   <td style="text-align:center;width: 3cm; "> 1954 </td>
+   <td style="text-align:center;width: 3cm; "> 63.761 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 101.2 </td>
+   <td style="text-align:center;width: 3cm; "> 397.469 </td>
+   <td style="text-align:center;width: 3cm; "> 290.4 </td>
+   <td style="text-align:center;width: 3cm; "> 304.8 </td>
+   <td style="text-align:center;width: 3cm; "> 117.388 </td>
+   <td style="text-align:center;width: 3cm; "> 1955 </td>
+   <td style="text-align:center;width: 3cm; "> 66.019 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 104.6 </td>
+   <td style="text-align:center;width: 3cm; "> 419.180 </td>
+   <td style="text-align:center;width: 3cm; "> 282.2 </td>
+   <td style="text-align:center;width: 3cm; "> 285.7 </td>
+   <td style="text-align:center;width: 3cm; "> 118.734 </td>
+   <td style="text-align:center;width: 3cm; "> 1956 </td>
+   <td style="text-align:center;width: 3cm; "> 67.857 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 108.4 </td>
+   <td style="text-align:center;width: 3cm; "> 442.769 </td>
+   <td style="text-align:center;width: 3cm; "> 293.6 </td>
+   <td style="text-align:center;width: 3cm; "> 279.8 </td>
+   <td style="text-align:center;width: 3cm; "> 120.445 </td>
+   <td style="text-align:center;width: 3cm; "> 1957 </td>
+   <td style="text-align:center;width: 3cm; "> 68.169 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 110.8 </td>
+   <td style="text-align:center;width: 3cm; "> 444.546 </td>
+   <td style="text-align:center;width: 3cm; "> 468.1 </td>
+   <td style="text-align:center;width: 3cm; "> 263.7 </td>
+   <td style="text-align:center;width: 3cm; "> 121.950 </td>
+   <td style="text-align:center;width: 3cm; "> 1958 </td>
+   <td style="text-align:center;width: 3cm; "> 66.513 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 112.6 </td>
+   <td style="text-align:center;width: 3cm; "> 482.704 </td>
+   <td style="text-align:center;width: 3cm; "> 381.3 </td>
+   <td style="text-align:center;width: 3cm; "> 255.2 </td>
+   <td style="text-align:center;width: 3cm; "> 123.366 </td>
+   <td style="text-align:center;width: 3cm; "> 1959 </td>
+   <td style="text-align:center;width: 3cm; "> 68.655 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 114.2 </td>
+   <td style="text-align:center;width: 3cm; "> 502.601 </td>
+   <td style="text-align:center;width: 3cm; "> 393.1 </td>
+   <td style="text-align:center;width: 3cm; "> 251.4 </td>
+   <td style="text-align:center;width: 3cm; "> 125.368 </td>
+   <td style="text-align:center;width: 3cm; "> 1960 </td>
+   <td style="text-align:center;width: 3cm; "> 69.564 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 115.7 </td>
+   <td style="text-align:center;width: 3cm; "> 518.173 </td>
+   <td style="text-align:center;width: 3cm; "> 480.6 </td>
+   <td style="text-align:center;width: 3cm; "> 257.2 </td>
+   <td style="text-align:center;width: 3cm; "> 127.852 </td>
+   <td style="text-align:center;width: 3cm; "> 1961 </td>
+   <td style="text-align:center;width: 3cm; "> 69.331 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;width: 3cm; "> 116.9 </td>
+   <td style="text-align:center;width: 3cm; "> 554.894 </td>
+   <td style="text-align:center;width: 3cm; "> 400.7 </td>
+   <td style="text-align:center;width: 3cm; "> 282.7 </td>
+   <td style="text-align:center;width: 3cm; "> 130.081 </td>
+   <td style="text-align:center;width: 3cm; "> 1962 </td>
+   <td style="text-align:center;width: 3cm; "> 70.551 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Sometimes you may need to create set of values and store them in vectors, then combine the vectors into a data frame. Let us see how this can be done. First create three vectors. One contains id for ten individuals, the second vector hold the time each individual signed in the attendane book and the third vector is the distance of each individual from office. We can concatenate the set of values to make vectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>id  <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>)</span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>time <span class="ot">=</span> lubridate<span class="sc">::</span><span class="fu">ymd_hms</span>(<span class="fu">c</span>(<span class="st">"2018-11-20 06:35:25 EAT"</span>, <span class="st">"2018-11-20 06:52:05 EAT"</span>, </span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"2018-11-20 07:08:45 EAT"</span>, <span class="st">"2018-11-20 07:25:25 EAT"</span>, </span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"2018-11-20 07:42:05 EAT"</span>, <span class="st">"2018-11-20 07:58:45 EAT"</span>, </span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"2018-11-20 08:15:25 EAT"</span>, <span class="st">"2018-11-20 08:32:05 EAT"</span>, </span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>                 <span class="st">"2018-11-20 08:48:45 EAT"</span>, <span class="st">"2018-11-20 09:05:25 EAT"</span>), <span class="at">tz =</span> <span class="st">""</span>)</span>
+<span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-9"><a href="#cb81-9" aria-hidden="true" tabindex="-1"></a>distance <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">85</span>, <span class="dv">45</span>, <span class="dv">69</span>, <span class="dv">42</span>,  <span class="dv">52</span>, <span class="dv">6</span>, <span class="dv">45</span>, <span class="dv">36</span>, <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the vectors that have the same length dimension, we can use the function <code>data.frame()</code> to combine the the three vectors into one data frame shown in table @ref(tab:tab23)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>arrival <span class="ot">=</span> <span class="fu">data.frame</span>(id, time, distance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+<caption>The time employees enter into the office with the distance from their residential areas to the office</caption>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> IDs </th>
+   <th style="text-align:left;"> Time </th>
+   <th style="text-align:right;"> Distance </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 1 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 06:35:25 </td>
+   <td style="text-align:right;width: 4cm; "> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 2 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 06:52:05 </td>
+   <td style="text-align:right;width: 4cm; "> 85 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 3 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 07:08:45 </td>
+   <td style="text-align:right;width: 4cm; "> 45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 4 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 07:25:25 </td>
+   <td style="text-align:right;width: 4cm; "> 69 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 5 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 07:42:05 </td>
+   <td style="text-align:right;width: 4cm; "> 42 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 6 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 07:58:45 </td>
+   <td style="text-align:right;width: 4cm; "> 52 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 7 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 08:15:25 </td>
+   <td style="text-align:right;width: 4cm; "> 6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 8 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 08:32:05 </td>
+   <td style="text-align:right;width: 4cm; "> 45 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 9 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 08:48:45 </td>
+   <td style="text-align:right;width: 4cm; "> 36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;width: 4cm; "> 10 </td>
+   <td style="text-align:left;width: 4cm; "> 2018-11-20 09:05:25 </td>
+   <td style="text-align:right;width: 4cm; "> 7 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+<section id="matrix" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="matrix"><span class="header-section-number">3.4</span> Matrix</h2>
+<p>A matrix is defined as a collection of data elements arranged in a two–dimensional rectangular layout. R is very strictly when you make up a matrix as it must be with equal dimension—all columns in a matrix must be of the same length. Unlike data frame and list that can store numeric or character.etc in columns, matrix columns must be numeric or characters in a matrix file.</p>
+<section id="creating-matrices" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="creating-matrices"><span class="header-section-number">3.4.1</span> Creating Matrices</h3>
+<p>The base R has a <code>matrix()</code> function that construct matrices column–wise. In other language, element in matrix are entered starting from the <code>upper left</code> corner and running down the columns. Therefore, one should take serious note of specifying the value to fill in a matrix and the number of rows and columns when using the <code>matrix()</code> function.For example in the code block below, we create an imaginary month sst value for five years and obtain an atomic vector of 60 observation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>sst <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">60</span>, <span class="at">mean =</span> <span class="dv">25</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the atomic vector of sst value, we can convert it to matrix with the <code>matrix()</code> function. We put the observation as rows—months and the columns as years. Therefore, we have 12 rows and 5 years and the product of number of months and years we get 60—equivalent to our sst atomic vector we just created above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>sst.matrix <span class="ot">=</span> <span class="fu">matrix</span>(<span class="at">data =</span> sst, <span class="at">nrow =</span> <span class="dv">12</span>, <span class="at">ncol =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We then check whether we got the matrix with <code>is.matrix()</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.matrix</span>(sst);<span class="fu">is.matrix</span>(sst.matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>sst</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 28.82872 26.78172 27.80504 25.47608 28.67766 25.38229 28.25001 24.31878
+ [9] 24.90837 25.38768 19.47475 23.00008 31.66327 21.45813 25.27089 22.17760
+[17] 24.56211 24.44773 23.50963 21.48565 29.46540 20.27727 25.94891 24.77219
+[25] 27.07925 25.01276 25.72521 19.50245 22.42675 28.61962 25.32111 25.09477
+[33] 24.41171 29.64493 28.43283 27.73797 22.77303 24.69497 24.86942 25.46890
+[41] 26.14124 23.22980 23.70522 22.31969 21.34177 23.44300 18.90685 27.29107
+[49] 26.05681 24.97376 27.47287 25.72672 25.47556 27.52945 25.66604 24.54226
+[57] 26.06462 27.21253 26.40662 25.75130</code></pre>
+</div>
+</div>
+<p>We can check whether the dimension we just defined while creating this matrix is correct. This is done with the <code>dim()</code> function from base R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sst.matrix)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12  5</code></pre>
+</div>
+</div>
+<p>If you have large vector and you you want the <code>matrix()</code> function to figure out the number of columns, you simply define the nrow and tell the function that you do not want those element arranged by rows —i.e you want them in column-wise. That is done by parsing the argument <code>byrow = FALSE</code> inside the <code>matrixt()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>sst.matrixby <span class="ot">=</span> sst <span class="sc">%&gt;%</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> <span class="dv">12</span>, <span class="at">byrow =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="adding-attributes-to-matrices" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="adding-attributes-to-matrices"><span class="header-section-number">3.4.2</span> Adding attributes to Matrices</h3>
+<p>Often times you may need to add additional attributes to the maxtrix—observation names, variable names and comments in the matrix.</p>
+<p>We can add columns, which are years from 2014 to 2018</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>years <span class="ot">=</span> <span class="dv">2014</span><span class="sc">:</span><span class="dv">2018</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sst.matrix) <span class="ot">=</span> years</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>sst.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          2014     2015     2016     2017     2018
+ [1,] 28.82872 31.66327 27.07925 22.77303 26.05681
+ [2,] 26.78172 21.45813 25.01276 24.69497 24.97376
+ [3,] 27.80504 25.27089 25.72521 24.86942 27.47287
+ [4,] 25.47608 22.17760 19.50245 25.46890 25.72672
+ [5,] 28.67766 24.56211 22.42675 26.14124 25.47556
+ [6,] 25.38229 24.44773 28.61962 23.22980 27.52945
+ [7,] 28.25001 23.50963 25.32111 23.70522 25.66604
+ [8,] 24.31878 21.48565 25.09477 22.31969 24.54226
+ [9,] 24.90837 29.46540 24.41171 21.34177 26.06462
+[10,] 25.38768 20.27727 29.64493 23.44300 27.21253
+[11,] 19.47475 25.94891 28.43283 18.90685 26.40662
+[12,] 23.00008 24.77219 27.73797 27.29107 25.75130</code></pre>
+</div>
+</div>
+<p>and add the month for rows, which is January to December. Now the matrix has names for the rows—records and for columns—variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>months <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from =</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="dv">010115</span>), <span class="at">to =</span> lubridate<span class="sc">::</span><span class="fu">dmy</span>(<span class="dv">311215</span>), </span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="st">"month"</span>) <span class="sc">%&gt;%</span> lubridate<span class="sc">::</span><span class="fu">month</span>(<span class="at">abbr =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">label =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(sst.matrix) <span class="ot">=</span> months</span>
+<span id="cb95-5"><a href="#cb95-5" aria-hidden="true" tabindex="-1"></a>sst.matrix</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        2014     2015     2016     2017     2018
+Jan 28.82872 31.66327 27.07925 22.77303 26.05681
+Feb 26.78172 21.45813 25.01276 24.69497 24.97376
+Mar 27.80504 25.27089 25.72521 24.86942 27.47287
+Apr 25.47608 22.17760 19.50245 25.46890 25.72672
+May 28.67766 24.56211 22.42675 26.14124 25.47556
+Jun 25.38229 24.44773 28.61962 23.22980 27.52945
+Jul 28.25001 23.50963 25.32111 23.70522 25.66604
+Aug 24.31878 21.48565 25.09477 22.31969 24.54226
+Sep 24.90837 29.46540 24.41171 21.34177 26.06462
+Oct 25.38768 20.27727 29.64493 23.44300 27.21253
+Nov 19.47475 25.94891 28.43283 18.90685 26.40662
+Dec 23.00008 24.77219 27.73797 27.29107 25.75130</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="arrays" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="arrays"><span class="header-section-number">3.5</span> Arrays</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">array</span>(<span class="at">data =</span> sst, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+         [,1]     [,2]     [,3]     [,4]     [,5]
+[1,] 28.82872 25.47608 28.25001 25.38768 31.66327
+[2,] 26.78172 28.67766 24.31878 19.47475 21.45813
+[3,] 27.80504 25.38229 24.90837 23.00008 25.27089
+
+, , 2
+
+         [,1]     [,2]     [,3]     [,4]     [,5]
+[1,] 22.17760 23.50963 20.27727 27.07925 19.50245
+[2,] 24.56211 21.48565 25.94891 25.01276 22.42675
+[3,] 24.44773 29.46540 24.77219 25.72521 28.61962
+
+, , 3
+
+         [,1]     [,2]     [,3]     [,4]     [,5]
+[1,] 25.32111 29.64493 22.77303 25.46890 23.70522
+[2,] 25.09477 28.43283 24.69497 26.14124 22.31969
+[3,] 24.41171 27.73797 24.86942 23.22980 21.34177
+
+, , 4
+
+         [,1]     [,2]     [,3]     [,4]     [,5]
+[1,] 23.44300 26.05681 25.72672 25.66604 27.21253
+[2,] 18.90685 24.97376 25.47556 24.54226 26.40662
+[3,] 27.29107 27.47287 27.52945 26.06462 25.75130</code></pre>
+</div>
+</div>
+<p>This can be done with the indexing. For example, in the <code>sst.matrix</code> we just create, it has twelve rows representing monthly average and five columns representing years. We then obtain data for the six year and we want to add it into the matrix. Simply done with indexing</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>sst.matrix[<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>,<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Jan      Feb      Mar      Apr      May      Jun      Jul      Aug 
+26.05681 24.97376 27.47287 25.72672 25.47556 27.52945 25.66604 24.54226 
+     Sep      Oct      Nov      Dec 
+26.06462 27.21253 26.40662 25.75130 </code></pre>
+</div>
+</div>
+</section>
+<section id="dealing-with-misiing-values" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="dealing-with-misiing-values"><span class="header-section-number">3.6</span> Dealing with Misiing Values</h2>
+<p>Just as we can assign numbers, strings, list to a variable, we can also assign nothing to an object, or an empty value to a variable. IN R, an empty object is defined with <code>NULL</code>. Assigning a value oof NULL to an object is one way to reset it to its original, empty state. You might do this when you wanto to pre–allocate an object without any value, especially when you iterate the process and you want the outputs to be stored in the empty object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>sst.container <span class="ot">=</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can check whether the object is an empty with the <code>is.null()</code> function, which return a logical ouputs indicating whther is <code>TRUE</code> or <code>FALSE</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.null</span>(sst.container)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>You can also check for <code>NULL</code> in an <code>if</code> satement as well, as highlighted in the following example;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(sst.container)){</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"The object is empty and hence you can use to store looped outputs!!!"</span>)</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "The object is empty and hence you can use to store looped outputs!!!"</code></pre>
+</div>
+</div>
+<p>And empty element (value) in object is represented with <code>NA</code> in R, and it is the absence of value in an object or variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>sst.sample <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">26.78</span>, <span class="fl">25.98</span>,<span class="cn">NA</span>, <span class="fl">24.58</span>, <span class="cn">NA</span>)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>sst.sample</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26.78 25.98    NA 24.58    NA</code></pre>
+</div>
+</div>
+<p>To identify missing values in a vector in R, use the <code>is.na()</code> function, which returns a logical vector with <code>TRUE</code> of the corresponding element(s) with missing value</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(sst.sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE  TRUE</code></pre>
+</div>
+</div>
+<p>and computing statistics of the variable with NA always will give out the NA ouputs</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sst.sample); <span class="fu">sd</span>(sst.sample);<span class="fu">range</span>(sst.sample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA NA</code></pre>
+</div>
+</div>
+<p>However, we can exclude missing value in these mathematical operations by parsing <code>, na.rm = TRUE</code> argument</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sst.sample, <span class="at">na.rm =</span> <span class="cn">TRUE</span>);<span class="fu">sd</span>(sst.sample, <span class="at">na.rm =</span> <span class="cn">TRUE</span>);<span class="fu">range</span>(sst.sample, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25.78</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.113553</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 24.58 26.78</code></pre>
+</div>
+</div>
+<p>you can also exclude the element with NA value using the `na.omit()</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>sst.sample <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26.78 25.98 24.58
+attr(,"na.action")
+[1] 3 5
+attr(,"class")
+[1] "omit"</code></pre>
+</div>
+</div>
+<p>Finally is a <code>NaN</code>, which is closely related to <code>NA</code>, which is used to assign non-floating numbers. For example when we have the anomaly of sea surface temperature and we are interested to use <code>sqrt()</code> function to reduce the variability of the dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>sst.anomaly <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.3</span>,<span class="fl">1.25</span>,.<span class="dv">8</span>,.<span class="dv">31</span>,<span class="dv">0</span>,<span class="sc">-</span>.<span class="dv">21</span>)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(sst.anomaly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in sqrt(sst.anomaly): NaNs produced</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5165751 1.1180340 0.8944272 0.5567764 0.0000000       NaN</code></pre>
+</div>
+</div>
+<p>We notice that the sqrt of -0.21 gives us a <code>NaN</code> elements.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-tibble" class="csl-entry" role="doc-biblioentry">
+Müller, Kirill, and Hadley Wickham. 2018. <em>Tibble: Simple Data Frames</em>. <a href="https://CRAN.R-project.org/package=tibble">https://CRAN.R-project.org/package=tibble</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Rlanguage.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

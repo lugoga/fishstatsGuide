@@ -1,0 +1,2240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 7&nbsp; Exploratory-Data-Analysis-EDA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./maps.html" rel="next">
+<link href="./plotting.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-eda" id="toc-what-is-eda" class="nav-link active" data-scroll-target="#what-is-eda"> <span class="header-section-number">7.1</span> What is EDA?</a></li>
+  <li><a href="#data-preparation-and-cleaning" id="toc-data-preparation-and-cleaning" class="nav-link" data-scroll-target="#data-preparation-and-cleaning"> <span class="header-section-number">7.2</span> Data Preparation and Cleaning</a></li>
+  <li><a href="#data-tidying" id="toc-data-tidying" class="nav-link" data-scroll-target="#data-tidying"> <span class="header-section-number">7.3</span> Data tidying</a></li>
+  <li><a href="#summary-of-the-dataset" id="toc-summary-of-the-dataset" class="nav-link" data-scroll-target="#summary-of-the-dataset"> <span class="header-section-number">7.4</span> Summary of the Dataset</a>
+  <ul class="collapse">
+  <li><a href="#skimming-data-frames" id="toc-skimming-data-frames" class="nav-link" data-scroll-target="#skimming-data-frames"> <span class="header-section-number">7.4.1</span> Skimming Data frames</a></li>
+  <li><a href="#frequencies" id="toc-frequencies" class="nav-link" data-scroll-target="#frequencies"> <span class="header-section-number">7.4.2</span> Frequencies</a></li>
+  <li><a href="#village-records" id="toc-village-records" class="nav-link" data-scroll-target="#village-records"> <span class="header-section-number">7.4.3</span> Village records</a></li>
+  <li><a href="#priority-fish" id="toc-priority-fish" class="nav-link" data-scroll-target="#priority-fish"> <span class="header-section-number">7.4.4</span> Priority fish</a></li>
+  <li><a href="#gear" id="toc-gear" class="nav-link" data-scroll-target="#gear"> <span class="header-section-number">7.4.5</span> Gear</a></li>
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data"> <span class="header-section-number">7.4.6</span> Missing Data</a></li>
+  <li><a href="#cross-tabulations" id="toc-cross-tabulations" class="nav-link" data-scroll-target="#cross-tabulations"> <span class="header-section-number">7.4.7</span> Cross-Tabulations:</a></li>
+  <li><a href="#chi-square-𝛘2-odds-ratio-and-risk-ratio" id="toc-chi-square-𝛘2-odds-ratio-and-risk-ratio" class="nav-link" data-scroll-target="#chi-square-𝛘2-odds-ratio-and-risk-ratio"> <span class="header-section-number">7.4.8</span> Chi-Square (𝛘2), Odds Ratio and Risk Ratio</a></li>
+  </ul></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"> <span class="header-section-number">7.5</span> Visualization</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-eda" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="what-is-eda"><span class="header-section-number">7.1</span> What is EDA?</h2>
+<p>Exploratory Data Analysis (EDA) is a method for data analysis that employs visual methods. Using statistical summaries and graphical representations, it is used to identify trends, and patterns, or to test hypotheses.</p>
+<p>Understanding the data first and attempting to glean as many insights from it as possible is a smart strategy. Before going hands-on with the data, EDA is all about making sense of it. The first step in using data is to EXPLORE it! This entails creating simple metrics and charts to determine what your data is telling you.</p>
+<p>The data set used for this analysis was taken from Kaggle. The packages for exploratory data analysis used in this chapter are the packages <strong>dplyr</strong> <span class="citation" data-cites="dplyr">(<a href="#ref-dplyr" role="doc-biblioref">Wickham et al. 2018</a>)</span> and <strong>tidyr</strong> <span class="citation" data-cites="tidyr">(<a href="#ref-tidyr" role="doc-biblioref">Wickham and Henry 2018</a>)</span>, and to visualize and explore the data: <strong>ggplot2</strong> <span class="citation" data-cites="ggplot">(<a href="#ref-ggplot" role="doc-biblioref">Wickham 2016</a>)</span> and <strong>metR</strong> <span class="citation" data-cites="metr">(<a href="#ref-metr" role="doc-biblioref">Campitelli 2019</a>)</span>.</p>
+<p>The objective of this chapter is to analyze and identify trends and patterns of priority fisheries in Mafia Island, Tanzania and identify which priority fishery is performing well and which one are doing worse. To start with, we need to import the necessary libraries first and then loaded the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(magrittr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">11</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s load the CSV file using the <code>read_csv</code> function. We’ll use the name hotel_raw_df for the data frame to indicate this is unprocessed data that we might clean, filter, and modify to prepare a data frame ready for analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mimp <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"assets/mimp_cfma_priority.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 41404 Columns: 13
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+chr  (6): district, village, landing, gear_type, order, priority
+dbl  (4): fishermen, weight, fish_number, fish_price
+dttm (3): date, going_time, return_time
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mimp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 41,404 x 13
+   district village    landing  date                going_time         
+   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;    &lt;dttm&gt;              &lt;dttm&gt;             
+ 1 Mafia    Chunguruma Tumbuju  2009-09-14 00:00:00 1899-12-31 09:00:00
+ 2 Mafia    Chunguruma Tumbuju  2009-09-14 00:00:00 1899-12-31 09:00:00
+ 3 Mafia    Kiegeani   Utende   2010-01-15 00:00:00 1899-12-31 08:30:00
+ 4 Mafia    Miburani   Kitoni   2010-01-29 00:00:00 1899-12-31 10:00:00
+ 5 Mafia    Dongo      Magemani 2009-06-17 00:00:00 1899-12-31 10:00:00
+ 6 Mafia    Chunguruma Tumbuju  2009-09-19 00:00:00 1899-12-31 12:00:00
+ 7 Mafia    Chunguruma Tumbuju  2009-09-19 00:00:00 1899-12-31 12:00:00
+ 8 Mafia    Bwejuu     Bwejuu   2009-12-13 00:00:00 1899-12-31 00:00:00
+ 9 Mafia    Bwejuu     Bwejuu   2009-12-13 00:00:00 1899-12-31 00:00:00
+10 Mafia    Bwejuu     Bwejuu   2009-12-13 00:00:00 1899-12-31 00:00:00
+# ... with 41,394 more rows, and 8 more variables: return_time &lt;dttm&gt;,
+#   fishermen &lt;dbl&gt;, gear_type &lt;chr&gt;, order &lt;chr&gt;, priority &lt;chr&gt;,
+#   weight &lt;dbl&gt;, fish_number &lt;dbl&gt;, fish_price &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Let’s view some basic information about the data frame. We can achieve that with a <code>glimpse</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mimp <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 41,404
+Columns: 13
+$ district    &lt;chr&gt; "Mafia", "Mafia", "Mafia", "Mafia", "Mafia", "Mafia", "Maf~
+$ village     &lt;chr&gt; "Chunguruma", "Chunguruma", "Kiegeani", "Miburani", "Dongo~
+$ landing     &lt;chr&gt; "Tumbuju", "Tumbuju", "Utende", "Kitoni", "Magemani", "Tum~
+$ date        &lt;dttm&gt; 2009-09-14, 2009-09-14, 2010-01-15, 2010-01-29, 2009-06-1~
+$ going_time  &lt;dttm&gt; 1899-12-31 09:00:00, 1899-12-31 09:00:00, 1899-12-31 08:3~
+$ return_time &lt;dttm&gt; 1899-12-31 15:00:00, 1899-12-31 15:00:00, 1899-12-31 13:0~
+$ fishermen   &lt;dbl&gt; 15, 15, 1, 1, 1, 18, 18, 1, 1, 1, 1, 1, 17, 17, 5, 6, 15, ~
+$ gear_type   &lt;chr&gt; "BEACH SEINE NETS", "BEACH SEINE NETS", "STICK/SPEAR", "ST~
+$ order       &lt;chr&gt; "DASYATIDAE", "LETHRINIDAE", "Octopus", "BELONIDAE", "SPHY~
+$ priority    &lt;chr&gt; "Elasmobranch", "Reef fish", "Octopus", "Small pelagic", "~
+$ weight      &lt;dbl&gt; 30.0, 20.0, 10.0, 7.0, 4.5, 30.0, 10.0, 9.0, 4.0, 6.0, 5.0~
+$ fish_number &lt;dbl&gt; 10, 100, 12, 4, 4, 90, 20, 39, 18, 19, 3, 32, 60, 30, 6, 3~
+$ fish_price  &lt;dbl&gt; 10000, 30000, 15000, 8400, 10500, 13500, 10000, 10800, 480~</code></pre>
+</div>
+</div>
+<p>The dataset contains 41404 rows and 13 columns. Among the character variables are district, village, landing sites, <code>gear_type</code>, <code>order</code>, and <code>priority</code>. The date and time structures variables includes <code>date</code>, <code>going_time</code>, <code>return_time</code> whereas as <code>weight</code>, <code>fish_number</code>, and <code>fish_price</code> are numerical variables.</p>
+</section>
+<section id="data-preparation-and-cleaning" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data-preparation-and-cleaning"><span class="header-section-number">7.2</span> Data Preparation and Cleaning</h2>
+<p>Data preparation is the process of preparing the data by cleaning and transforming raw data befoe analysis. It is an important step before processing and often involves reformatting data, making corrections to data, and combining data sets to enrich data.</p>
+<p>Data preparation involves fixing or removing incorrect, corrupted, incorrectly formatted, duplicate, or incomplete data within a dataset. When combining multiple data sources, there are many opportunities for data to be duplicated or mislabeled. If data is incorrect, outcomes and algorithms are unreliable, even though they may look correct.</p>
+</section>
+<section id="data-tidying" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="data-tidying"><span class="header-section-number">7.3</span> Data tidying</h2>
+<p>It is often said that 80% of data analysis is spent on the cleaning and preparing data. And it’s not just a first step, but it must be repeated many times over the course of analysis as new problems come to light or new data is collected. To get a handle on the problem, this paper focuses on a small, but important, aspect of data cleaning that I call data tidying: structuring datasets to facilitate analysis.</p>
+<p>The principles of tidy data provide a standard way to organise data values within a dataset. A standard makes initial data cleaning easier because you don’t need to start from scratch and reinvent the wheel every time. The tidy data standard has been designed to facilitate initial exploration and analysis of the data, and to simplify the development of data analysis tools that work well together. Current tools often require translation. You have to spend time munging the output from one tool so you can input it into another. Tidy datasets and tidy tools work hand in hand to make data analysis easier, allowing you to focus on the interesting domain problem, not on the uninteresting logistics of data.</p>
+<p>For us being able to compare, we need to standardize the data. First we standardize the landed catches and fetching price by number of fishers and fishing time. Unfortunately, our dataset miss information of the fishing time, but it provide the departure and return time for a particular fishing event. The code below does that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mimp.clean <span class="ot">=</span> mimp <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select(going_time, return_time) %&gt;% </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(going_time, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"day"</span>, <span class="st">"time_leave"</span>), <span class="at">sep =</span> <span class="st">" "</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(return_time, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"day"</span>, <span class="st">"time_return"</span>), <span class="at">sep =</span> <span class="st">" "</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time_leave =</span> lubridate<span class="sc">::</span><span class="fu">hms</span>(time_leave),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">time_return =</span> lubridate<span class="sc">::</span><span class="fu">hms</span>(time_return),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">fishing_time =</span> time_return<span class="sc">-</span>time_leave,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">fishing_time_sec =</span> <span class="fu">as.numeric</span>(fishing_time),</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">fishing_time_hour =</span> (fishing_time_sec<span class="sc">/</span><span class="dv">3600</span>) <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(time_leave, day, fishing_time, fishing_time_sec, time_return)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(fishing_time_hour,<span class="at">.after =</span> date)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>mimp.clean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 41,404 x 12
+   district village    landing date                fishi~1 fishe~2 gear_~3 order
+   &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;dttm&gt;                &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;
+ 1 Mafia    Chunguruma Tumbuju 2009-09-14 00:00:00     6        15 BEACH ~ DASY~
+ 2 Mafia    Chunguruma Tumbuju 2009-09-14 00:00:00     6        15 BEACH ~ LETH~
+ 3 Mafia    Kiegeani   Utende  2010-01-15 00:00:00     4.5       1 STICK/~ Octo~
+ 4 Mafia    Miburani   Kitoni  2010-01-29 00:00:00     3         1 STICK/~ BELO~
+ 5 Mafia    Dongo      Magema~ 2009-06-17 00:00:00     3         1 STICK/~ SPHY~
+ 6 Mafia    Chunguruma Tumbuju 2009-09-19 00:00:00     7        18 STICK/~ CHIR~
+ 7 Mafia    Chunguruma Tumbuju 2009-09-19 00:00:00     7        18 STICK/~ GERR~
+ 8 Mafia    Bwejuu     Bwejuu  2009-12-13 00:00:00    23         1 DEMA T~ LETH~
+ 9 Mafia    Bwejuu     Bwejuu  2009-12-13 00:00:00    23         1 DEMA T~ LETH~
+10 Mafia    Bwejuu     Bwejuu  2009-12-13 00:00:00    23         1 DEMA T~ SCAR~
+# ... with 41,394 more rows, 4 more variables: priority &lt;chr&gt;, weight &lt;dbl&gt;,
+#   fish_number &lt;dbl&gt;, fish_price &lt;dbl&gt;, and abbreviated variable names
+#   1: fishing_time_hour, 2: fishermen, 3: gear_type</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income <span class="ot">=</span> mimp.clean <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cpue_fisher =</span> weight<span class="sc">/</span>fishermen, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">cpue_time =</span> weight<span class="sc">/</span>fishing_time_hour, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">income_fisher =</span> fish_price<span class="sc">/</span>fishermen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The fishing pattern in Mafia like other areas in the Western Indian Ocean is influenced with seasonal changes in trade winds that form the two distinct northeast (NE) and southeast (SE) monsoon seasons. We can derive the seasonality from the date variable into two steps. First derive the month variable as numeric and then all records that fall between May and September are denoted as SE monsoon season and the remaining months as NE monsoon season as code below illustrates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="ot">=</span> mimp.cpue.income <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(date),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">season =</span> <span class="fu">if_else</span>(month <span class="sc">&gt;=</span><span class="dv">5</span> <span class="sc">&amp;</span> month <span class="sc">&lt;</span><span class="dv">10</span>, <span class="st">"SE"</span>, <span class="st">"NE"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(season,<span class="at">.after =</span> date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="summary-of-the-dataset" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="summary-of-the-dataset"><span class="header-section-number">7.4</span> Summary of the Dataset</h2>
+<p>The box plot is a standardized way of displaying the distribution of numeric data based on the five-number summary:</p>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in mask$eval_all_mutate(quo): NAs introduced by coercion</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-boxplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-boxplot-1.png" class="img-fluid figure-img" width="432"></p>
+<p></p><figcaption class="figure-caption">Figure 7.1: illustration of five summary number presented in boxplot</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In base R, the most functions for summarizing vector and data frames is <code>summary()</code> and fivenum() for numeric vectors:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(income_fisher) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+       0     3000     6300    12069    13333 11000000 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(cpue_fisher) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+   0.000    2.000    4.000    6.373    7.500 1430.000 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(cpue_time) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+  -1.1429    0.4286    0.8696    3.1535    2.0000 2000.0000 </code></pre>
+</div>
+</div>
+<section id="skimming-data-frames" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="skimming-data-frames"><span class="header-section-number">7.4.1</span> Skimming Data frames</h3>
+<p>But, the <strong>skimr</strong> is designed to provide summary statistics about variables in data frames, tibbles, data tables and vectors. It is opinionated in its defaults, but easy to modify.The core function of skimr is skim(), which is designed to work with (grouped) data frames, and will try coerce other objects to data frames if possible. Like summary(), skim()’s method for data frames presents results for every column; the statistics it provides depend on the class of the variable.Results of skim() are printed horizontally, with one section per variable type and one row per variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  skimr<span class="sc">::</span><span class="fu">skim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">Piped data</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">41404</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">character</td>
+<td style="text-align: left;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">POSIXct</td>
+<td style="text-align: left;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: character</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 13%">
+<col style="width: 19%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 12%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">min</th>
+<th style="text-align: right;">max</th>
+<th style="text-align: right;">empty</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: right;">whitespace</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">district</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">village</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">landing</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">season</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gear_type</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">order</td>
+<td style="text-align: right;">4399</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">priority</td>
+<td style="text-align: right;">5296</td>
+<td style="text-align: right;">0.87</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">fishing_time_hour</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10.48</td>
+<td style="text-align: right;">7.10</td>
+<td style="text-align: right;">-7.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">7.5e+00</td>
+<td style="text-align: right;">11.00</td>
+<td style="text-align: right;">2.35e+01</td>
+<td style="text-align: left;">▁▃▇▁▃</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fishermen</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.28</td>
+<td style="text-align: right;">13.90</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2.0e+00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">1.40e+03</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weight</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">22.63</td>
+<td style="text-align: right;">144.77</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">4.00</td>
+<td style="text-align: right;">7.0e+00</td>
+<td style="text-align: right;">15.00</td>
+<td style="text-align: right;">1.20e+04</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fish_number</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">63.08</td>
+<td style="text-align: right;">541.28</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6.00</td>
+<td style="text-align: right;">1.6e+01</td>
+<td style="text-align: right;">35.00</td>
+<td style="text-align: right;">3.00e+04</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fish_price</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">34899.47</td>
+<td style="text-align: right;">221781.68</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">6000.00</td>
+<td style="text-align: right;">1.2e+04</td>
+<td style="text-align: right;">26400.00</td>
+<td style="text-align: right;">3.30e+07</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cpue_fisher</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6.37</td>
+<td style="text-align: right;">16.18</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">4.0e+00</td>
+<td style="text-align: right;">7.50</td>
+<td style="text-align: right;">1.43e+03</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cpue_time</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3.15</td>
+<td style="text-align: right;">22.58</td>
+<td style="text-align: right;">-1.14</td>
+<td style="text-align: right;">0.43</td>
+<td style="text-align: right;">8.7e-01</td>
+<td style="text-align: right;">2.00</td>
+<td style="text-align: right;">2.00e+03</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">income_fisher</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">12068.85</td>
+<td style="text-align: right;">59879.33</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">3000.00</td>
+<td style="text-align: right;">6.3e+03</td>
+<td style="text-align: right;">13333.33</td>
+<td style="text-align: right;">1.10e+07</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">month</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6.58</td>
+<td style="text-align: right;">3.45</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">6.0e+00</td>
+<td style="text-align: right;">10.00</td>
+<td style="text-align: right;">1.20e+01</td>
+<td style="text-align: left;">▇▅▅▅▇</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: POSIXct</strong></p>
+<table class="table table-sm table-striped">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">min</th>
+<th style="text-align: left;">max</th>
+<th style="text-align: left;">median</th>
+<th style="text-align: right;">n_unique</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">date</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2009-03-12</td>
+<td style="text-align: left;">2018-11-15</td>
+<td style="text-align: left;">2011-09-11</td>
+<td style="text-align: right;">2667</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A <strong>summaryTool</strong> package has a nifty <code>dfSummary</code> function, which creates a summary table with statistics, frequencies and graphs for all variables in a data frame. The information displayed is type-specific (character, factor, numeric, date) and also varies according to the number of distinct values. To see the results in RStudio’s Viewer (or in the default Web browser if working in another IDE or from a terminal window), use stview():</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">plain.ascii  =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">style        =</span> <span class="st">"grid"</span>, </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">graph.magnif =</span> <span class="fl">0.75</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">valid.col    =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">tmp.img.dir  =</span> <span class="st">"/tmp"</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">stview</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A <strong>summaryTool</strong> package has also nifty <code>descr</code> function that compute and present summary statistics i.e common central tendency statistics and measure of dispersion. It accept a single vector or data frame</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is.numeric) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">descr</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Predicate functions must be wrapped in `where()`.
+
+  # Bad
+  data %&gt;% select(is.numeric)
+
+  # Good
+  data %&gt;% select(where(is.numeric))
+
+i Please update your code.
+This message is displayed once per session.</code></pre>
+</div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Descriptive Statistics</h3>
+<h4 class="anchored">mimp.cpue.income.season</h4>
+<strong>N</strong>: 41404
+<br>
+<table class="table table-bordered table-striped st-table st-table-bordered st-table-striped st-descr-table ">
+  <thead>
+    <tr>
+      <th></th>
+      <th align="center" class="st-protect-top-border">cpue_fisher</th>
+      <th align="center" class="st-protect-top-border">cpue_time</th>
+      <th align="center" class="st-protect-top-border">fish_number</th>
+      <th align="center" class="st-protect-top-border">fish_price</th>
+      <th align="center" class="st-protect-top-border">fishermen</th>
+      <th align="center" class="st-protect-top-border">fishing_<br>time_hour</th>
+      <th align="center" class="st-protect-top-border">income_<br>fisher</th>
+      <th align="center" class="st-protect-top-border">month</th>
+      <th align="center" class="st-protect-top-border">weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>Mean</strong></td>
+      <td><span>6.37</span></td>
+      <td><span>3.15</span></td>
+      <td><span>63.08</span></td>
+      <td><span>34899.47</span></td>
+      <td><span>3.28</span></td>
+      <td><span>10.48</span></td>
+      <td><span>12068.85</span></td>
+      <td><span>6.58</span></td>
+      <td><span>22.63</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Std.Dev</strong></td>
+      <td><span>16.18</span></td>
+      <td><span>22.58</span></td>
+      <td><span>541.28</span></td>
+      <td><span>221781.68</span></td>
+      <td><span>13.90</span></td>
+      <td><span>7.10</span></td>
+      <td><span>59879.33</span></td>
+      <td><span>3.45</span></td>
+      <td><span>144.77</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Min</strong></td>
+      <td><span>0.00</span></td>
+      <td><span>-1.14</span></td>
+      <td><span>0.00</span></td>
+      <td><span>0.00</span></td>
+      <td><span>1.00</span></td>
+      <td><span>-7.00</span></td>
+      <td><span>0.00</span></td>
+      <td><span>1.00</span></td>
+      <td><span>0.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Q1</strong></td>
+      <td><span>2.00</span></td>
+      <td><span>0.43</span></td>
+      <td><span>6.00</span></td>
+      <td><span>6000.00</span></td>
+      <td><span>1.00</span></td>
+      <td><span>6.00</span></td>
+      <td><span>3000.00</span></td>
+      <td><span>3.00</span></td>
+      <td><span>4.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Median</strong></td>
+      <td><span>4.00</span></td>
+      <td><span>0.87</span></td>
+      <td><span>16.00</span></td>
+      <td><span>12000.00</span></td>
+      <td><span>2.00</span></td>
+      <td><span>7.50</span></td>
+      <td><span>6300.00</span></td>
+      <td><span>6.00</span></td>
+      <td><span>7.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Q3</strong></td>
+      <td><span>7.50</span></td>
+      <td><span>2.00</span></td>
+      <td><span>35.00</span></td>
+      <td><span>26400.00</span></td>
+      <td><span>4.00</span></td>
+      <td><span>11.00</span></td>
+      <td><span>13333.33</span></td>
+      <td><span>10.00</span></td>
+      <td><span>15.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Max</strong></td>
+      <td><span>1430.00</span></td>
+      <td><span>2000.00</span></td>
+      <td><span>30000.00</span></td>
+      <td><span>33000000.00</span></td>
+      <td><span>1400.00</span></td>
+      <td><span>23.50</span></td>
+      <td><span>11000000.00</span></td>
+      <td><span>12.00</span></td>
+      <td><span>12000.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>MAD</strong></td>
+      <td><span>3.46</span></td>
+      <td><span>0.89</span></td>
+      <td><span>19.27</span></td>
+      <td><span>11860.80</span></td>
+      <td><span>1.48</span></td>
+      <td><span>2.97</span></td>
+      <td><span>6375.18</span></td>
+      <td><span>4.45</span></td>
+      <td><span>5.93</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>IQR</strong></td>
+      <td><span>5.50</span></td>
+      <td><span>1.57</span></td>
+      <td><span>29.00</span></td>
+      <td><span>20400.00</span></td>
+      <td><span>3.00</span></td>
+      <td><span>5.00</span></td>
+      <td><span>10333.33</span></td>
+      <td><span>7.00</span></td>
+      <td><span>11.00</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>CV</strong></td>
+      <td><span>2.54</span></td>
+      <td><span>7.16</span></td>
+      <td><span>8.58</span></td>
+      <td><span>6.35</span></td>
+      <td><span>4.24</span></td>
+      <td><span>0.68</span></td>
+      <td><span>4.96</span></td>
+      <td><span>0.52</span></td>
+      <td><span>6.40</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Skewness</strong></td>
+      <td><span>47.06</span></td>
+      <td><span>41.54</span></td>
+      <td><span>28.06</span></td>
+      <td><span>90.19</span></td>
+      <td><span>63.87</span></td>
+      <td><span>1.06</span></td>
+      <td><span>153.94</span></td>
+      <td><span>-0.03</span></td>
+      <td><span>38.43</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>SE.Skewness</strong></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+      <td><span>0.01</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Kurtosis</strong></td>
+      <td><span>3300.81</span></td>
+      <td><span>2592.00</span></td>
+      <td><span>1013.58</span></td>
+      <td><span>12210.52</span></td>
+      <td><span>4800.50</span></td>
+      <td><span>-0.59</span></td>
+      <td><span>27623.67</span></td>
+      <td><span>-1.29</span></td>
+      <td><span>2312.57</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>N.Valid</strong></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+      <td><span>41404</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Pct.Valid</strong></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+      <td><span>100.00</span></td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+<p>A <code>descr</code> function allows to transpose results by parsing <code>transpose = TRUE</code> argument, and statistics can be selected using the stats argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(is.numeric) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">descr</span>(<span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"mean"</span>, <span class="st">"sd"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>, <span class="at">headings =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-bordered table-striped st-table st-table-bordered st-table-striped st-descr-table ">
+  <thead>
+    <tr>
+      <th></th>
+      <th align="center" class="st-protect-top-border">Mean</th>
+      <th align="center" class="st-protect-top-border">Std.Dev</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <strong>cpue_fisher</strong></td>
+      <td><span>6.37</span></td>
+      <td><span>16.18</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>cpue_time</strong></td>
+      <td><span>3.15</span></td>
+      <td><span>22.58</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>fish_number</strong></td>
+      <td><span>63.08</span></td>
+      <td><span>541.28</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>fish_price</strong></td>
+      <td><span>34899.47</span></td>
+      <td><span>221781.68</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>fishermen</strong></td>
+      <td><span>3.28</span></td>
+      <td><span>13.90</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>fishing_time_hour</strong></td>
+      <td><span>10.48</span></td>
+      <td><span>7.10</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>income_fisher</strong></td>
+      <td><span>12068.85</span></td>
+      <td><span>59879.33</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>month</strong></td>
+      <td><span>6.58</span></td>
+      <td><span>3.45</span></td>
+    </tr>
+    <tr>
+      <td>
+        <strong>weight</strong></td>
+      <td><span>22.63</span></td>
+      <td><span>144.77</span></td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+<section id="frequencies" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="frequencies"><span class="header-section-number">7.4.2</span> Frequencies</h3>
+<p><strong>summarytools</strong> package has <code>freq</code> fuction, which generates frequency tablew with counts, proportions and missing data information.</p>
+</section>
+<section id="village-records" class="level3" data-number="7.4.3">
+<h3 data-number="7.4.3" class="anchored" data-anchor-id="village-records"><span class="header-section-number">7.4.3</span> Village records</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">freq</span>(<span class="at">x =</span> village, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">"rmarkdown"</span>, <span class="at">headings =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-freq-table ">
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th colspan="2" align="center" class="st-protect-top-border">Valid</th>
+      <th colspan="2" align="center" class="st-protect-top-border">Total</th>
+    </tr>
+    <tr>
+      <th align="center">village</th>
+      <th align="center">Freq</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th align="center" class="st-protect-top-border">Banja</th>
+      <td align="center">1</td>
+      <td align="center">0.0024</td>
+      <td align="center">0.0024</td>
+      <td align="center">0.0024</td>
+      <td align="center">0.0024</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Bwejuu</th>
+      <td align="center">12703</td>
+      <td align="center">30.68</td>
+      <td align="center">30.68</td>
+      <td align="center">30.68</td>
+      <td align="center">30.68</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Bweni</th>
+      <td align="center">2</td>
+      <td align="center">0.0048</td>
+      <td align="center">30.69</td>
+      <td align="center">0.0048</td>
+      <td align="center">30.69</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Chole</th>
+      <td align="center">1</td>
+      <td align="center">0.0024</td>
+      <td align="center">30.69</td>
+      <td align="center">0.0024</td>
+      <td align="center">30.69</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Chunguruma</th>
+      <td align="center">1461</td>
+      <td align="center">3.53</td>
+      <td align="center">34.22</td>
+      <td align="center">3.53</td>
+      <td align="center">34.22</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Dongo</th>
+      <td align="center">4366</td>
+      <td align="center">10.54</td>
+      <td align="center">44.76</td>
+      <td align="center">10.54</td>
+      <td align="center">44.76</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Juani</th>
+      <td align="center">6601</td>
+      <td align="center">15.94</td>
+      <td align="center">60.71</td>
+      <td align="center">15.94</td>
+      <td align="center">60.71</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Kanga</th>
+      <td align="center">1087</td>
+      <td align="center">2.63</td>
+      <td align="center">63.33</td>
+      <td align="center">2.63</td>
+      <td align="center">63.33</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Kiegeani</th>
+      <td align="center">6824</td>
+      <td align="center">16.48</td>
+      <td align="center">79.81</td>
+      <td align="center">16.48</td>
+      <td align="center">79.81</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Kifinge</th>
+      <td align="center">1</td>
+      <td align="center">0.0024</td>
+      <td align="center">79.82</td>
+      <td align="center">0.0024</td>
+      <td align="center">79.82</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Kilindoni</th>
+      <td align="center">2205</td>
+      <td align="center">5.33</td>
+      <td align="center">85.14</td>
+      <td align="center">5.33</td>
+      <td align="center">85.14</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Malimbani</th>
+      <td align="center">1</td>
+      <td align="center">0.0024</td>
+      <td align="center">85.14</td>
+      <td align="center">0.0024</td>
+      <td align="center">85.14</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Mbarakuni</th>
+      <td align="center">10</td>
+      <td align="center">0.024</td>
+      <td align="center">85.17</td>
+      <td align="center">0.024</td>
+      <td align="center">85.17</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Miburani</th>
+      <td align="center">5186</td>
+      <td align="center">12.53</td>
+      <td align="center">97.69</td>
+      <td align="center">12.53</td>
+      <td align="center">97.69</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Utende</th>
+      <td align="center">955</td>
+      <td align="center">2.31</td>
+      <td align="center">100.00</td>
+      <td align="center">2.31</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">&lt;NA&gt;</th>
+      <td align="center">0</td>
+      <td align="center"></td>
+      <td align="center"></td>
+      <td align="center">0.00</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Total</th>
+      <td align="center">41404</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+<section id="priority-fish" class="level3" data-number="7.4.4">
+<h3 data-number="7.4.4" class="anchored" data-anchor-id="priority-fish"><span class="header-section-number">7.4.4</span> Priority fish</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">freq</span>(<span class="at">x =</span> priority, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">"rmarkdown"</span>, <span class="at">headings =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-freq-table ">
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th colspan="2" align="center" class="st-protect-top-border">Valid</th>
+      <th colspan="2" align="center" class="st-protect-top-border">Total</th>
+    </tr>
+    <tr>
+      <th align="center">priority</th>
+      <th align="center">Freq</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th align="center" class="st-protect-top-border">Elasmobranch</th>
+      <td align="center">1680</td>
+      <td align="center">4.65</td>
+      <td align="center">4.65</td>
+      <td align="center">4.06</td>
+      <td align="center">4.06</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Octopus</th>
+      <td align="center">6200</td>
+      <td align="center">17.17</td>
+      <td align="center">21.82</td>
+      <td align="center">14.97</td>
+      <td align="center">19.03</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Others</th>
+      <td align="center">245</td>
+      <td align="center">0.68</td>
+      <td align="center">22.50</td>
+      <td align="center">0.59</td>
+      <td align="center">19.62</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Reef fish</th>
+      <td align="center">23463</td>
+      <td align="center">64.98</td>
+      <td align="center">87.48</td>
+      <td align="center">56.67</td>
+      <td align="center">76.29</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Small pelagic</th>
+      <td align="center">2376</td>
+      <td align="center">6.58</td>
+      <td align="center">94.06</td>
+      <td align="center">5.74</td>
+      <td align="center">82.03</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Tuna</th>
+      <td align="center">2144</td>
+      <td align="center">5.94</td>
+      <td align="center">100.00</td>
+      <td align="center">5.18</td>
+      <td align="center">87.21</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">&lt;NA&gt;</th>
+      <td align="center">5296</td>
+      <td align="center"></td>
+      <td align="center"></td>
+      <td align="center">12.79</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Total</th>
+      <td align="center">41404</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+<section id="gear" class="level3" data-number="7.4.5">
+<h3 data-number="7.4.5" class="anchored" data-anchor-id="gear"><span class="header-section-number">7.4.5</span> Gear</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">freq</span>(<span class="at">x =</span> gear_type, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">"rmarkdown"</span>, <span class="at">headings =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-freq-table ">
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th colspan="2" align="center" class="st-protect-top-border">Valid</th>
+      <th colspan="2" align="center" class="st-protect-top-border">Total</th>
+    </tr>
+    <tr>
+      <th align="center">gear_type</th>
+      <th align="center">Freq</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+      <th align="center">%</th>
+      <th align="center">% Cum.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th align="center" class="st-protect-top-border">BEACH SEINE NETS</th>
+      <td align="center">337</td>
+      <td align="center">0.81</td>
+      <td align="center">0.81</td>
+      <td align="center">0.81</td>
+      <td align="center">0.81</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">CAST NET</th>
+      <td align="center">329</td>
+      <td align="center">0.79</td>
+      <td align="center">1.61</td>
+      <td align="center">0.79</td>
+      <td align="center">1.61</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">DEMA TRAPS</th>
+      <td align="center">10570</td>
+      <td align="center">25.53</td>
+      <td align="center">27.14</td>
+      <td align="center">25.53</td>
+      <td align="center">27.14</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">FENCED TRAP</th>
+      <td align="center">61</td>
+      <td align="center">0.15</td>
+      <td align="center">27.28</td>
+      <td align="center">0.15</td>
+      <td align="center">27.28</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 2 PLY 2</th>
+      <td align="center">1068</td>
+      <td align="center">2.58</td>
+      <td align="center">29.86</td>
+      <td align="center">2.58</td>
+      <td align="center">29.86</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 2.5 PLY 9</th>
+      <td align="center">6332</td>
+      <td align="center">15.29</td>
+      <td align="center">45.16</td>
+      <td align="center">15.29</td>
+      <td align="center">45.16</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 3 PLY 3</th>
+      <td align="center">324</td>
+      <td align="center">0.78</td>
+      <td align="center">45.94</td>
+      <td align="center">0.78</td>
+      <td align="center">45.94</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 3.5 PLY 3.5</th>
+      <td align="center">43</td>
+      <td align="center">0.10</td>
+      <td align="center">46.04</td>
+      <td align="center">0.10</td>
+      <td align="center">46.04</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 4 PLY 4</th>
+      <td align="center">218</td>
+      <td align="center">0.53</td>
+      <td align="center">46.57</td>
+      <td align="center">0.53</td>
+      <td align="center">46.57</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">HAND HELD NETS</th>
+      <td align="center">82</td>
+      <td align="center">0.20</td>
+      <td align="center">46.77</td>
+      <td align="center">0.20</td>
+      <td align="center">46.77</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">HAND LINE</th>
+      <td align="center">10774</td>
+      <td align="center">26.02</td>
+      <td align="center">72.79</td>
+      <td align="center">26.02</td>
+      <td align="center">72.79</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">LONG LINE</th>
+      <td align="center">1486</td>
+      <td align="center">3.59</td>
+      <td align="center">76.38</td>
+      <td align="center">3.59</td>
+      <td align="center">76.38</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">RING NET</th>
+      <td align="center">846</td>
+      <td align="center">2.04</td>
+      <td align="center">78.42</td>
+      <td align="center">2.04</td>
+      <td align="center">78.42</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">SHARK NETS</th>
+      <td align="center">2139</td>
+      <td align="center">5.17</td>
+      <td align="center">83.59</td>
+      <td align="center">5.17</td>
+      <td align="center">83.59</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">SHARK NETS DRIFTING</th>
+      <td align="center">17</td>
+      <td align="center">0.041</td>
+      <td align="center">83.63</td>
+      <td align="center">0.041</td>
+      <td align="center">83.63</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">STICK/SPEAR</th>
+      <td align="center">6699</td>
+      <td align="center">16.18</td>
+      <td align="center"> 99.81</td>
+      <td align="center">16.18</td>
+      <td align="center"> 99.81</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">TRAWL</th>
+      <td align="center">79</td>
+      <td align="center">0.19</td>
+      <td align="center">100.00</td>
+      <td align="center">0.19</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">&lt;NA&gt;</th>
+      <td align="center">0</td>
+      <td align="center"></td>
+      <td align="center"></td>
+      <td align="center">0.00</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Total</th>
+      <td align="center">41404</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+<section id="missing-data" class="level3" data-number="7.4.6">
+<h3 data-number="7.4.6" class="anchored" data-anchor-id="missing-data"><span class="header-section-number">7.4.6</span> Missing Data</h3>
+<p>One of <strong>summarytools</strong>’ main purposes is to help cleaning and preparing data for further analysis. But in some circumstances, we don’t need (or already have) information about missing data. Using report.nas = FALSE makes the output table smaller by one row and two columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">freq</span>(<span class="at">x =</span> gear_type, <span class="at">plain.ascii =</span> <span class="cn">FALSE</span>, <span class="at">report.nas =</span> <span class="cn">FALSE</span>, <span class="at">style =</span> <span class="st">"rmarkdown"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<h3 class="anchored">Frequencies</h3>
+<h4 class="anchored">mimp.cpue.income.season$gear_type</h4>
+<strong>Type</strong>: Character
+<br>
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-freq-table-nomiss ">
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border">gear_type</th>
+      <th align="center" class="st-protect-top-border">Freq</th>
+      <th align="center" class="st-protect-top-border">%</th>
+      <th align="center" class="st-protect-top-border">% Cum.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th align="center" class="st-protect-top-border">BEACH SEINE NETS</th>
+      <td align="center">337</td>
+      <td align="center">0.81</td>
+      <td align="center">0.81</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">CAST NET</th>
+      <td align="center">329</td>
+      <td align="center">0.79</td>
+      <td align="center">1.61</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">DEMA TRAPS</th>
+      <td align="center">10570</td>
+      <td align="center">25.53</td>
+      <td align="center">27.14</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">FENCED TRAP</th>
+      <td align="center">61</td>
+      <td align="center">0.15</td>
+      <td align="center">27.28</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 2 PLY 2</th>
+      <td align="center">1068</td>
+      <td align="center">2.58</td>
+      <td align="center">29.86</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 2.5 PLY 9</th>
+      <td align="center">6332</td>
+      <td align="center">15.29</td>
+      <td align="center">45.16</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 3 PLY 3</th>
+      <td align="center">324</td>
+      <td align="center">0.78</td>
+      <td align="center">45.94</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 3.5 PLY 3.5</th>
+      <td align="center">43</td>
+      <td align="center">0.10</td>
+      <td align="center">46.04</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">GILL NET 4 PLY 4</th>
+      <td align="center">218</td>
+      <td align="center">0.53</td>
+      <td align="center">46.57</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">HAND HELD NETS</th>
+      <td align="center">82</td>
+      <td align="center">0.20</td>
+      <td align="center">46.77</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">HAND LINE</th>
+      <td align="center">10774</td>
+      <td align="center">26.02</td>
+      <td align="center">72.79</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">LONG LINE</th>
+      <td align="center">1486</td>
+      <td align="center">3.59</td>
+      <td align="center">76.38</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">RING NET</th>
+      <td align="center">846</td>
+      <td align="center">2.04</td>
+      <td align="center">78.42</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">SHARK NETS</th>
+      <td align="center">2139</td>
+      <td align="center">5.17</td>
+      <td align="center">83.59</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">SHARK NETS DRIFTING</th>
+      <td align="center">17</td>
+      <td align="center">0.041</td>
+      <td align="center">83.63</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">STICK/SPEAR</th>
+      <td align="center">6699</td>
+      <td align="center">16.18</td>
+      <td align="center"> 99.81</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">TRAWL</th>
+      <td align="center">79</td>
+      <td align="center">0.19</td>
+      <td align="center">100.00</td>
+    </tr>
+    <tr>
+      <th align="center" class="st-protect-top-border">Total</th>
+      <td align="center">41404</td>
+      <td align="center">100.00</td>
+      <td align="center">100.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The headings = FALSE parameter suppresses the heading section.</p>
+</div>
+</div>
+</section>
+<section id="cross-tabulations" class="level3" data-number="7.4.7">
+<h3 data-number="7.4.7" class="anchored" data-anchor-id="cross-tabulations"><span class="header-section-number">7.4.7</span> Cross-Tabulations:</h3>
+<p><code>ctable()</code> generates cross-tabulations (joint frequencies) for pairs of categorical variables. Using the tobacco simulated data frame, we’ll cross-tabulate the two categorical variables smoker and diseased.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">ctable</span>(<span class="at">x =</span> priority, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> season, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prop =</span> <span class="st">"c"</span>, </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">totals =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">headings =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-bordered st-table st-table-bordered st-cross-table ">
+<thead>
+<tr>
+<th></th>
+<th colspan="8" align="center" class="st-protect-top-border">season</th>
+</tr>
+<tr>
+<td align="center">
+<strong>priority</strong>
+</td>
+<th colspan="4" align="center">NE</th>
+<th colspan="4" align="center">SE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong align="center">Elasmobranch</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">1035</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">4.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">645</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">3.9%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Octopus</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">3795</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">15.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">2405</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">14.6%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Others</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">150</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">0.6%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">95</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">0.6%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Reef fish</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">14120</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">56.7%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">9343</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">56.6%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Small pelagic</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">1523</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">6.1%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">853</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">5.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Tuna</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">1241</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">5.0%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">903</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">5.5%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">&lt;NA&gt;</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">3041</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">12.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">2255</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">13.7%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+</tbody>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+<section id="chi-square-𝛘2-odds-ratio-and-risk-ratio" class="level3" data-number="7.4.8">
+<h3 data-number="7.4.8" class="anchored" data-anchor-id="chi-square-𝛘2-odds-ratio-and-risk-ratio"><span class="header-section-number">7.4.8</span> Chi-Square (𝛘2), Odds Ratio and Risk Ratio</h3>
+<p>To display the chi-square statistic, set <code>chisq = TRUE</code>. For 2 x 2 tables, use OR and RR to show odds ratio and risk ratio (also called relative risk), respectively. Those can be set to TRUE, in which case 95% confidence intervals are shown; to use different confidence levels, use for example OR = .90.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(priority <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Reef fish"</span>, <span class="st">"Octopus"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%$%</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  summarytools<span class="sc">::</span><span class="fu">ctable</span>(<span class="at">x =</span> priority, </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> season, </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">prop =</span> <span class="st">"r"</span>, </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">chisq =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">OR =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">RR =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">totals =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">headings =</span> <span class="cn">FALSE</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">method =</span> <span class="st">"render"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div class="container st-container">
+<table class="table table-bordered st-table st-table-bordered st-cross-table ">
+<thead>
+<tr>
+<th></th>
+<th colspan="8" align="center" class="st-protect-top-border">season</th>
+</tr>
+<tr>
+<td align="center">
+<strong>priority</strong>
+</td>
+<th colspan="4" align="center">NE</th>
+<th colspan="4" align="center">SE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong align="center">Octopus</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">3795</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">61.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">2405</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">38.8%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+<tr>
+<td>
+<strong align="center">Reef fish</strong>
+</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">14120</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">60.2%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+<td align="right" style="padding:0 0 0 15px;border-right:0;text-align:right">9343</td>
+<td align="left" style="padding:0 1px 0 4px;border-left:0;border-right:0;text-align:left">(</td>
+<td align="left" style="padding:0;border-left:0;border-right:0;text-align:right">39.8%</td>
+<td align="left" style="padding:0 15px 0 1px;border-left:0;text-align:right">)</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td colspan="100"><em><strong>&nbsp;Χ<sup>2</sup></strong> = 2.1315&nbsp;&nbsp;&nbsp;<strong>df</strong> = 1&nbsp;&nbsp;&nbsp;<strong>p</strong> = .1443</em><br><em><strong>O.R. </strong>(95% C.I.) = <strong>1.04</strong>&nbsp;&nbsp;(0.99 - 1.11)</em><br>
+        <em><strong>R.R. </strong>(95% C.I.) = <strong>1.02</strong>&nbsp;&nbsp;(0.99 - 1.04)</em></td>
+</tr>
+</tfoot>
+</table>
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.1.3)<br>2022-10-24</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualization" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="visualization"><span class="header-section-number">7.5</span> Visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(village) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(village, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-village1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-village1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 7.2: Bar plot indicate that Bwejuu village has the highest records in the dataset</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(village, season) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(village, n), <span class="at">y =</span> n, <span class="at">fill =</span> season)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> .<span class="dv">9</span>))<span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-village2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-village2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 7.3: Bar plot indicate that Bwejuu village has the highest records in the dataset and the northeast monsoon season dominate across all villages</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(priority) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(priority, n), <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> .<span class="dv">9</span>))<span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-priority1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-priority1-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 7.4: Bar plot indicate that there are five prirority fishes and Reef fish has the highest records in the dataset</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(priority, season) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(priority, n), <span class="at">y =</span> n, <span class="at">fill =</span> season)) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> .<span class="dv">9</span>))<span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-priority2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="eda_files/figure-html/fig-priority2-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 7.5: Bar plot indicate that there are five prirority fishes and Reef fish has the highest records in the dataset and the northeast monsoon season dominate across all villages</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(priority) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  tidystats<span class="sc">::</span><span class="fu">describe_data</span>(<span class="at">column =</span> cpue_fisher, <span class="at">short =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 x 14
+  var   prior~1 missing     N     M    SD     SE    min   max range median  mode
+  &lt;chr&gt; &lt;chr&gt;     &lt;int&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 cpue~ Small ~       0  2376 12.4  16.9  0.346  0.0217  600   600.  10       14
+2 cpue~ Elasmo~       0  1680 10.7  12.8  0.313  0.111   206.  206.   7       20
+3 cpue~ Octopus       0  6200  6.75 16.1  0.204  0       900   900    5        2
+4 cpue~ Tuna          0  2144 11.8  25.3  0.546  0.1     667.  667.   5        5
+5 cpue~ Reef f~       0 23463  5.20 16.3  0.107  0      1430  1430    3.33     2
+6 cpue~ &lt;NA&gt;          0  5296  4.83  7.11 0.0978 0.05    125   125.   3        2
+7 cpue~ Others        0   245  7.24 27.2  1.74   0.167   300   300.   2.8      3
+# ... with 2 more variables: skew &lt;dbl&gt;, kurtosis &lt;dbl&gt;, and abbreviated
+#   variable name 1: priority</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>mimp.cpue.income.season <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(gear_type) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  tidystats<span class="sc">::</span><span class="fu">describe_data</span>(<span class="at">column =</span> fish_price, <span class="at">short =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>median)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 x 14
+   var     gear_~1 missing     N      M     SD     SE   min    max  range median
+   &lt;chr&gt;   &lt;chr&gt;     &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+ 1 fish_p~ RING N~       0   846 4.69e5 8.98e5 30880.   500 1.2 e7 1.20e7 200000
+ 2 fish_p~ GILL N~       0   218 6.29e4 4.87e4  3301.  2000 5   e5 4.98e5  52000
+ 3 fish_p~ HAND H~       0    82 7.26e4 1.11e5 12216.  2000 8.4 e5 8.38e5  36000
+ 4 fish_p~ GILL N~       0   324 4.52e4 4.99e4  2772.  2000 5   e5 4.98e5  30000
+ 5 fish_p~ SHARK ~       0    17 3.71e4 2.79e4  6760.  3000 9.6 e4 9.3 e4  28000
+ 6 fish_p~ LONG L~       0  1486 3.24e4 4.28e4  1111.  1000 1.2 e6 1.20e6  24000
+ 7 fish_p~ BEACH ~       0   337 5.04e4 7.28e4  3968.    90 7.56e5 7.56e5  22500
+ 8 fish_p~ GILL N~       0    43 4.30e4 3.74e4  5700.  2500 1.36e5 1.34e5  21000
+ 9 fish_p~ GILL N~       0  1068 3.55e4 4.62e4  1413.     6 8   e5 8.00e5  20000
+10 fish_p~ SHARK ~       0  2139 3.06e4 4.90e4  1059.   300 9.95e5 9.95e5  18000
+11 fish_p~ STICK/~       0  6699 4.56e4 7.82e4   956.     0 2.03e6 2.03e6  18000
+12 fish_p~ CAST N~       0   329 3.07e4 3.45e4  1900.    44 2.43e5 2.43e5  17500
+13 fish_p~ FENCED~       0    61 5.38e4 1.03e5 13168.  1800 7   e5 6.98e5  16000
+14 fish_p~ TRAWL         0    79 2.86e4 4.32e4  4857.   200 1.76e5 1.76e5  12000
+15 fish_p~ HAND L~       0 10774 2.36e4 3.21e5  3094.     1 3.3 e7 3.30e7  11400
+16 fish_p~ GILL N~       0  6332 1.97e4 4.00e4   503.     6 1.64e6 1.64e6  11000
+17 fish_p~ DEMA T~       0 10570 1.35e4 2.94e4   286.     0 1.35e6 1.35e6   7000
+# ... with 3 more variables: mode &lt;dbl&gt;, skew &lt;dbl&gt;, kurtosis &lt;dbl&gt;, and
+#   abbreviated variable name 1: gear_type</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mimp.fit <span class="ot">=</span> mimp.cpue.income.season <span class="sc">%$%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lm</span>(fish_price <span class="sc">~</span> priority)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>mimp.fit <span class="sc">%&gt;%</span> </span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = fish_price ~ priority)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+ -145553   -19935   -13135    -1135 32978865 
+
+Coefficients:
+                      Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)              37001       5554   6.662 2.74e-11 ***
+priorityOctopus          10068       6262   1.608  0.10786    
+priorityOthers           70120      15569   4.504 6.69e-06 ***
+priorityReef fish       -15865       5750  -2.759  0.00579 ** 
+prioritySmall pelagic    20486       7257   2.823  0.00476 ** 
+priorityTuna            108852       7418  14.675  &lt; 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 227700 on 36102 degrees of freedom
+  (5296 observations deleted due to missingness)
+Multiple R-squared:  0.01792,   Adjusted R-squared:  0.01778 
+F-statistic: 131.7 on 5 and 36102 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mimp.fit<span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  report<span class="sc">::</span><span class="fu">report</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>We fitted a linear model (estimated using OLS) to predict fish_price with
+priority (formula: fish_price ~ priority). The model explains a statistically
+significant and very weak proportion of variance (R2 = 0.02, F(5, 36102) =
+131.74, p &lt; .001, adj. R2 = 0.02). The model's intercept, corresponding to
+priority = Elasmobranch, is at 37000.79 (95% CI [26114.48, 47887.10], t(36102)
+= 6.66, p &lt; .001). Within this model:
+
+  - The effect of priority [Octopus] is statistically non-significant and
+positive (beta = 10068.16, 95% CI [-2204.76, 22341.09], t(36102) = 1.61, p =
+0.108; Std. beta = 0.04, 95% CI [-9.60e-03, 0.10])
+  - The effect of priority [Others] is statistically significant and positive
+(beta = 70119.62, 95% CI [39604.65, 1.01e+05], t(36102) = 4.50, p &lt; .001; Std.
+beta = 0.31, 95% CI [0.17, 0.44])
+  - The effect of priority [Reef fish] is statistically significant and negative
+(beta = -15865.40, 95% CI [-27134.72, -4596.09], t(36102) = -2.76, p = 0.006;
+Std. beta = -0.07, 95% CI [-0.12, -0.02])
+  - The effect of priority [Small pelagic] is statistically significant and
+positive (beta = 20485.69, 95% CI [6262.19, 34709.19], t(36102) = 2.82, p =
+0.005; Std. beta = 0.09, 95% CI [0.03, 0.15])
+  - The effect of priority [Tuna] is statistically significant and positive (beta
+= 1.09e+05, 95% CI [94313.55, 1.23e+05], t(36102) = 14.67, p &lt; .001; Std. beta
+= 0.47, 95% CI [0.41, 0.54])
+
+Standardized parameters were obtained by fitting the model on a standardized
+version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+computed using a Wald t-distribution approximation.</code></pre>
+</div>
+</div>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-metr" class="csl-entry" role="doc-biblioentry">
+Campitelli, Elio. 2019. <em>metR: Tools for Easier Analysis of Meteorological Fields</em>. <a href="https://CRAN.R-project.org/package=metR">https://CRAN.R-project.org/package=metR</a>.
+</div>
+<div id="ref-ggplot" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="http://ggplot2.org">http://ggplot2.org</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2018. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./plotting.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./maps.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -2,78 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lugoga.github.io/ecasData/index.html</loc>
-    <lastmod>2022-10-21T15:36:22.399Z</lastmod>
+    <lastmod>2022-10-24T08:01:33.305Z</lastmod>
   </url>
   <url>
     <loc>https://lugoga.github.io/ecasData/intro.html</loc>
-    <lastmod>2022-10-21T15:36:22.400Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/rstudio.html</loc>
-    <lastmod>2022-10-21T15:36:22.401Z</lastmod>
+    <lastmod>2022-10-24T07:56:16.423Z</lastmod>
   </url>
   <url>
     <loc>https://lugoga.github.io/ecasData/Rlanguage.html</loc>
-    <lastmod>2022-10-21T15:36:22.402Z</lastmod>
+    <lastmod>2022-10-24T07:55:26.413Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/packages.html</loc>
-    <lastmod>2022-10-21T15:36:22.404Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/dataTypes.html</loc>
+    <lastmod>2022-10-24T07:55:26.419Z</lastmod>
   </url>
   <url>
     <loc>https://lugoga.github.io/ecasData/data.html</loc>
-    <lastmod>2022-10-21T15:36:22.405Z</lastmod>
+    <lastmod>2022-10-24T07:55:26.420Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/loadingData.html</loc>
-    <lastmod>2022-10-21T15:36:22.406Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/dataManipulation.html</loc>
+    <lastmod>2022-10-24T07:55:26.422Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/sample.html</loc>
-    <lastmod>2022-10-21T15:36:22.411Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/plotting.html</loc>
+    <lastmod>2022-10-24T07:55:26.452Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/basicFishStats.html</loc>
-    <lastmod>2022-10-21T15:36:22.413Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/eda.html</loc>
+    <lastmod>2022-10-24T07:55:26.458Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/basicFishPlotting.html</loc>
-    <lastmod>2022-10-21T15:36:22.415Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/maps.html</loc>
+    <lastmod>2022-10-24T07:55:26.467Z</lastmod>
   </url>
   <url>
-    <loc>https://lugoga.github.io/ecasData/simulate.html</loc>
-    <lastmod>2022-10-21T15:36:22.427Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/summary.html</loc>
-    <lastmod>2022-10-21T15:36:22.428Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/references.html</loc>
-    <lastmod>2022-10-21T15:36:22.429Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/installR.html</loc>
-    <lastmod>2022-10-21T15:36:22.430Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/installRstudio.html</loc>
-    <lastmod>2022-10-21T15:36:22.432Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/installPackages.html</loc>
-    <lastmod>2022-10-21T15:36:22.437Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/lw.html</loc>
-    <lastmod>2022-10-21T15:36:22.441Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/basicstats.html</loc>
-    <lastmod>2022-10-21T15:36:22.447Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/recruitment.html</loc>
-    <lastmod>2022-10-21T15:36:22.450Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/mapsDynamic.html</loc>
+    <lastmod>2022-10-24T07:55:26.477Z</lastmod>
   </url>
 </urlset>

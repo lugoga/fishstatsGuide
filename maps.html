@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 8&nbsp; Static Maps</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./mapsDynamic.html" rel="next">
+<link href="./eda.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#geographical-data-in-a-tidy-format" id="toc-geographical-data-in-a-tidy-format" class="nav-link active" data-scroll-target="#geographical-data-in-a-tidy-format"> <span class="header-section-number">8.1</span> Geographical data in a tidy format</a>
+  <ul class="collapse">
+  <li><a href="#create-simple-feature-from-data.frame" id="toc-create-simple-feature-from-data.frame" class="nav-link" data-scroll-target="#create-simple-feature-from-data.frame"> <span class="header-section-number">8.1.1</span> Create simple feature from data.frame</a></li>
+  <li><a href="#importing-shapefile" id="toc-importing-shapefile" class="nav-link" data-scroll-target="#importing-shapefile"> <span class="header-section-number">8.1.2</span> Importing shapefile</a></li>
+  <li><a href="#reading-other-format" id="toc-reading-other-format" class="nav-link" data-scroll-target="#reading-other-format"> <span class="header-section-number">8.1.3</span> Reading other format</a></li>
+  </ul></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"> <span class="header-section-number">8.2</span> Introduction</a></li>
+  <li><a href="#static-maps" id="toc-static-maps" class="nav-link" data-scroll-target="#static-maps"> <span class="header-section-number">8.3</span> Static Maps</a>
+  <ul class="collapse">
+  <li><a href="#the-bathmetry-data" id="toc-the-bathmetry-data" class="nav-link" data-scroll-target="#the-bathmetry-data"> <span class="header-section-number">8.3.1</span> The bathmetry data</a></li>
+  </ul></li>
+  <li><a href="#basemap" id="toc-basemap" class="nav-link" data-scroll-target="#basemap"> <span class="header-section-number">8.4</span> Basemap</a></li>
+  <li><a href="#creating-contour-map" id="toc-creating-contour-map" class="nav-link" data-scroll-target="#creating-contour-map"> <span class="header-section-number">8.5</span> Creating contour map</a></li>
+  <li><a href="#inset-maps" id="toc-inset-maps" class="nav-link" data-scroll-target="#inset-maps"> <span class="header-section-number">8.6</span> Inset maps</a>
+  <ul class="collapse">
+  <li><a href="#choropleth-maps" id="toc-choropleth-maps" class="nav-link" data-scroll-target="#choropleth-maps"> <span class="header-section-number">8.6.1</span> Choropleth maps</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="maps" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Along with all the geographical data making its way into the public domain, a variety of tools to map that data have also been developed. For a long time R base provides tools to map geographical data—data with latitude and longitude coordinates attached to it. However, mapping in the early days of R was not easy, it was not elegant either. Recently, several packages have been developed for mapping geographical data that align with the <strong>ggplot</strong> framework. So they allow us to map spatial data in similar ways as other plots with a <em>grammar of graphic</em> principle. For example Edzer Pebesma <span class="citation" data-cites="sf">(<a href="#ref-sf" role="doc-biblioref">2018</a>)</span> developed an awesome <strong>sf</strong> package for mapping vector data in R. The power of this function lies in the fact that it structure the spatial data in tidy format, allowing for easy manipulation with the tidyverse function and also for plotting with the <strong>ggplot2</strong> flavor. The <strong>sf</strong> package allows you to read in and work with geographical data in a tidy format.</p>
+<section id="geographical-data-in-a-tidy-format" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="geographical-data-in-a-tidy-format"><span class="header-section-number">8.1</span> Geographical data in a tidy format</h2>
+<p>The <strong>sf</strong> package allows you to create a <code>simple feature</code>—a data frame with additional columns that hold spatial component called the <code>geometry</code>. This column contains the geometrical nature of the data needed to draw the data. Often the <code>sf</code> object has two classes—the <code>simple feature</code> and the <code>data.fram</code>e classes. The <code>data.frame</code> holds attribute information of the dataset and the <code>geometry</code> contains the geographical coordinates. For example, the simple feature displayed below is a dataset of sampling stations, where each row gives the data for each station. The data.frame here holds the first four columns— the <code>id</code>, <code>type</code>, <code>depth</code> and <code>sst</code>, whereas the <code>geometry</code> column include the <code>geometry</code> type, for this case the <code>point</code> and the embedded <code>latitude</code> and <code>longitude</code> geographical coordinates. There different ways to create simple feature in R using the <strong>sf</strong> package. We will create a few of them later that we will use for mapping examples.</p>
+<p>We need to load the packages we are going to use in this chapter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>FALSE Simple feature collection with 11 features and 4 fields
+FALSE Geometry type: POINT
+FALSE Dimension:     XY
+FALSE Bounding box:  xmin: 39.50958 ymin: -8.425115 xmax: 42.00623 ymax: -6.414011
+FALSE Geodetic CRS:  WGS 84
+FALSE First 10 features:
+FALSE     id   type depth      sst                   geometry
+FALSE 1  294 marker    29 27.87999 POINT (39.50958 -6.438159)
+FALSE 2  300 marker  -604 27.97999  POINT (39.6318 -6.621774)
+FALSE 3  306 marker  -569 27.97999 POINT (39.65447 -6.746649)
+FALSE 4  312 marker  -485 28.03999 POINT (39.62563 -6.805321)
+FALSE 5  318 marker  -325 28.03999 POINT (39.58374 -6.833973)
+FALSE 6  326 marker  -461 28.03999 POINT (39.66476 -6.837384)
+FALSE 7  414 marker  -505 28.02999 POINT (39.95728 -7.843535)
+FALSE 8  428 marker  -132 28.23999 POINT (39.67712 -8.136846)
+FALSE 9  434 marker  -976 28.16999 POINT (39.74853 -8.425115)
+FALSE 10 456 marker -3311 28.33999 POINT (42.00623 -7.025368)</code></pre>
+</div>
+</div>
+<section id="create-simple-feature-from-data.frame" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="create-simple-feature-from-data.frame"><span class="header-section-number">8.1.1</span> Create simple feature from data.frame</h3>
+<div class="cell">
+
+</div>
+<p>If you have a regular dataframe, you can convert it into a <code>simple feature</code> object with tools in the <strong>sf</strong> package. For instance, in the working directory we have a dataset of eleven stations named <code>points.csv</code>. We can simply import this dataset into R session with the <code>read_csv()</code> function. If we print the file, it give about the variables and rows presented in the datasete. There six variables—id, type, depth and sst along with the latitude and longitude coordinates. These stations contains measured variable of sea surface temperature and their maximum depth.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stations <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"assets/shp//points.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>stations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 x 6
+     lon   lat    id type   depth   sst
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1  39.5 -6.44   294 marker    29  27.9
+ 2  39.6 -6.62   300 marker  -604  28.0
+ 3  39.7 -6.75   306 marker  -569  28.0
+ 4  39.6 -6.81   312 marker  -485  28.0
+ 5  39.6 -6.83   318 marker  -325  28.0
+ 6  39.7 -6.84   326 marker  -461  28.0
+ 7  40.0 -7.84   414 marker  -505  28.0
+ 8  39.7 -8.14   428 marker  -132  28.2
+ 9  39.7 -8.43   434 marker  -976  28.2
+10  42.0 -7.03   456 marker -3311  28.3
+11  41.8 -6.41   462 marker -3248  28.6</code></pre>
+</div>
+</div>
+<p>Athough this dataset contains geographical coordinates in it (latitude and longitude), it’s just a regular data frame. We can use the geographical coordinates in the dataframe to convert it to simple feature with the <code>st_as_sf()</code> function, and specify the columns with the geographical information using the <code>coords</code> parameter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simple_feature <span class="ot">=</span> stations <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once we have the simple feature object, we can set the geographica coordinate system to <code>World Geodetic System</code> of 1984 (WGS84). I prefer using its code, which is easy to punch in instead of the whole text. If we print out the simple feature we just created, it gives the extra information at the top of the print-out, which include the number of features and columls(fields), the geometry type as <code>point</code>, the geographical extent (the bounding box) of and the projection both in <code>epsg</code> code and <code>string</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>simple_feature <span class="ot">=</span> simple_feature <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_set_crs</span>(<span class="dv">4326</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> simple_feature, <span class="fu">aes</span>(<span class="at">col =</span> sst, <span class="at">size =</span> wior<span class="sc">::</span><span class="fu">inverse_hyperbolic</span>((sst))))<span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_gradientn</span>(<span class="at">colors =</span> oce<span class="sc">::</span><span class="fu">oce.colors9A</span>(<span class="dv">120</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="importing-shapefile" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="importing-shapefile"><span class="header-section-number">8.1.2</span> Importing shapefile</h3>
+<p>When you create maps, you will often want to import shapefile—a widely used format for storing geographical data in GIS. <strong>sf</strong> package offers tools to read and load shapefiles into R. Let’s import africa’s country boundary shapefile from the working directory. We use the st_read() function from <strong>sf</strong> package to read the shapefile boundary layer. Like the simple features we created, the shapefile also display extra information at the top confirming that it’s no longer a shapefile but rather a simple feature.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>africa <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">"assets/shp/africa.shp"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>africa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 59 features and 7 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -25.35875 ymin: -34.83983 xmax: 57.80085 ymax: 37.34962
+Geodetic CRS:  WGS 84
+First 10 features:
+   COUNT               CNTRY_NAME FIPS_CNTRY LAND_AREA_ REGIONA EMPTY EMPTY2
+1     34                   Angola         AO     124670    &lt;NA&gt;     0      0
+2    114                  Burundi         BY       2783    &lt;NA&gt;     0      0
+3     77                    Benin         BN      11262    &lt;NA&gt;     0      0
+4    301             Burkina Faso         UV      27400    &lt;NA&gt;     0      0
+5     25                 Botswana         BC      58173    &lt;NA&gt;     0      0
+6     51 Central African Republic         CT      62298    &lt;NA&gt;     0      0
+7     51                 Cameroon         CM      47544    &lt;NA&gt;     0      0
+8    186              Ivory Coast         IV      32246    &lt;NA&gt;     0      0
+9     46                    Congo         CF      34200    &lt;NA&gt;     0      0
+10    15               Cape Verde         CV        403    &lt;NA&gt;     0      0
+                         geometry
+1  MULTIPOLYGON (((12.84118 -6...
+2  MULTIPOLYGON (((29.05021 -2...
+3  MULTIPOLYGON (((3.849006 10...
+4  MULTIPOLYGON (((-5.272945 1...
+5  MULTIPOLYGON (((23.14635 -1...
+6  MULTIPOLYGON (((22.03557 4....
+7  MULTIPOLYGON (((9.640797 3....
+8  MULTIPOLYGON (((-6.091862 4...
+9  MULTIPOLYGON (((16.45276 2....
+10 MULTIPOLYGON (((-24.64849 1...</code></pre>
+</div>
+</div>
+<p>Since the layer is for the whole Africa, to reduce the processing time, we must reduce the geographical extent to the area of interest. We use the <code>st_crop()</code> function to chop the area that we want to map and discard the rest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>kimbiji <span class="ot">=</span> africa <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_crop</span>(<span class="at">xmin =</span> <span class="fl">38.0</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">xmax =</span> <span class="fl">40.5</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">8</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">5.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-other-format" class="level3" data-number="8.1.3">
+<h3 data-number="8.1.3" class="anchored" data-anchor-id="reading-other-format"><span class="header-section-number">8.1.3</span> Reading other format</h3>
+<p>Sometimes you have geographical data that are neither in tabular form or shapefile. In that situation, you ought to use the <code>st_layers()</code> function to identify, first the driver used to create the file and, second, the layer name you want to extract. Once you have identified the layer of interest, you can use the <code>st_read()</code> function to import the layer from the file. For example, we have the track file that was recorded with a GPS device. Let’s explore the layer it contains with the `st_layers() function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tracks <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_layers</span>(<span class="st">"assets//tracks/Track-181204-075451.gpx"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tracks</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Driver: GPX 
+Available layers:
+    layer_name     geometry_type features fields
+1    waypoints             Point        1     19
+2       routes       Line String        0     12
+3       tracks Multi Line String        1     12
+4 route_points             Point        0     21
+5 track_points             Point     1467     24</code></pre>
+</div>
+</div>
+<p>Once we print, it shows that i’s a GPX format with five layer’s name. We are only interested with the <code>tracks</code> and <code>track_points</code> layers. We can extract them with the <code>st_read()</code> function, by specifying the <code>dsn</code> and the <code>layer</code>. This can be written as;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## obtain track points</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>track.points <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span><span class="st">"assets//tracks/Track-181204-075451.gpx"</span> ,<span class="at">layer =</span> <span class="st">"track_points"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="do">## drop other variable that are not needed</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>track.points <span class="ot">=</span> track.points <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">elevation =</span> ele, time, speed)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="do">## display</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>track.points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1467 features and 3 fields
+Geometry type: POINT
+Dimension:     XY
+Bounding box:  xmin: 39.68927 ymin: -8.033337 xmax: 39.75059 ymax: -7.977127
+Geodetic CRS:  WGS 84
+First 10 features:
+   elevation                time    speed                   geometry
+1       -3.7 2018-12-04 07:54:55 1.471591 POINT (39.75051 -7.977127)
+2       -5.0 2018-12-04 07:54:58 1.479312 POINT (39.75052 -7.977157)
+3       -5.6 2018-12-04 07:55:00 1.358867 POINT (39.75052 -7.977185)
+4       -5.8 2018-12-04 07:55:02 1.530269 POINT (39.75052 -7.977215)
+5       -5.9 2018-12-04 07:55:04 1.424751 POINT (39.75052 -7.977243)
+6       -6.1 2018-12-04 07:55:05 1.381000 POINT (39.75052 -7.977262)
+7       -6.2 2018-12-04 07:55:07 1.437619  POINT (39.75052 -7.97729)
+8       -6.3 2018-12-04 07:55:09 0.994958  POINT (39.75051 -7.97731)
+9       -6.3 2018-12-04 07:55:11 1.032018  POINT (39.75051 -7.97733)
+10      -6.4 2018-12-04 07:55:13 1.369676  POINT (39.7505 -7.977353)</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>track <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span><span class="st">"assets//tracks/Track-181204-075451.gpx"</span> ,<span class="at">layer =</span> <span class="st">"tracks"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>track</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 1 feature and 12 fields
+Geometry type: MULTILINESTRING
+Dimension:     XY
+Bounding box:  xmin: 39.68927 ymin: -8.033337 xmax: 39.75059 ymax: -7.977127
+Geodetic CRS:  WGS 84
+                               name  cmt
+1 Tracking android:60fd0ef637a6eb1b &lt;NA&gt;
+                                     desc  src link1_href link1_text link1_type
+1 Tracking recently started 12/4/18 07:54 &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+  link2_href link2_text link2_type number type                       geometry
+1       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;  10193 &lt;NA&gt; MULTILINESTRING ((39.75051 ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="introduction" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.2</span> Introduction</h2>
+<p>A satisfying and important aspect of geographic research is communicating the results in spatial context. With recent advance in technology from satellite, internet and mobile location services, the amount of geographical data has increased significantly. Plenty of data are generated daily with latitude and longitude coordinates attached to it both from satellite observation and social media. To be able to build up a good mental model of the spatial data, you need to invest considerable effort in making your maps as self-explanatory as possible. In this chapter, you’ll learn some of the tools that <strong>ggplot2</strong> provides to make elegant maps and graphics <span class="citation" data-cites="ggplot">(<a href="#ref-ggplot" role="doc-biblioref">Wickham 2016</a>)</span>.</p>
+<p>Maps are great way to understand patterns from data over space. They are scaled down versions of the physical world, and they’re everywhere. R has several systems for making graphs, but <strong>ggplot2</strong> is one of the most elegant and most versatile. <strong>ggplot2</strong> implements the <em>grammar of graphics</em>, a coherent system for describing and building graphs. The chapter also introduce you to some extended functionalities from <strong>sf</strong> <span class="citation" data-cites="sf">(<a href="#ref-sf" role="doc-biblioref">Pebesma 2018</a>)</span>, <strong>cowplot</strong> <span class="citation" data-cites="cowplot">(<a href="#ref-cowplot" role="doc-biblioref">Wilke 2018</a>)</span>, <strong>ggsn</strong> <span class="citation" data-cites="ggsn">(<a href="#ref-ggsn" role="doc-biblioref"><strong>ggsn?</strong></a>)</span>, <strong>ggsci</strong> <span class="citation" data-cites="ggsci">(<a href="#ref-ggsci" role="doc-biblioref"><strong>ggsci?</strong></a>)</span>, <strong>metR</strong> <span class="citation" data-cites="metr">(<a href="#ref-metr" role="doc-biblioref">Campitelli 2019</a>)</span>, <strong>ggrepel</strong> <span class="citation" data-cites="ggrepel">(<a href="#ref-ggrepel" role="doc-biblioref"><strong>ggrepel?</strong></a>)</span>, <strong>gganimate</strong> <span class="citation" data-cites="gganimate">(<a href="#ref-gganimate" role="doc-biblioref">Pedersen and Robinson 2017</a>)</span> and <strong>egg</strong> <span class="citation" data-cites="egg">(<a href="#ref-egg" role="doc-biblioref">Auguie 2018</a>)</span> packages. Therefore, this chapter focuses on the tools you need to create good graphics. Rather than loading those extensions here, we’ll refer to their functions explicitly, using the <code>::</code> notation. This will help make it clear which functions are built into <strong>ggplot2</strong>, and which come from other packages. Ensure you have these packages in your machine, otherwise install them with <code>install.packages()</code> if you don’t already have them.</p>
+</section>
+<section id="static-maps" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="static-maps"><span class="header-section-number">8.3</span> Static Maps</h2>
+<p>Static maps are the most common type of visual output from spatial objects. Fixed images for printed outputs, common formats for static maps include .<code>png</code> and <code>.pd</code>f, for raster and vector outputs, respectively. Initially static maps were the only type of map that R could produce. Things have advanced greatly since <code>sp</code> was released (see <span class="citation" data-cites="sp">(<a href="#ref-sp" role="doc-biblioref"><strong>sp?</strong></a>)</span>). Many new techniques for map making have been developed since then. However, a decade later static plotting was still the emphasis of geographic data visualisation in R (Cheshire and Lovelace 2015).</p>
+<p>Despite the innovation of interactive mapping in R, static maps are still the foundation of mapping in R. The base <code>plot()</code> function is often the fastest way to create static maps from vector and raster spatial objects. Sometimes simplicity and speed are priorities, especially during the development phase of a project, and this is where <code>plot()</code> excels. The base R approach is also extensible, with <code>plot()</code> offering dozens of arguments. Another low-level approach is the <strong>grid</strong> package, which provides functions for low-level control of graphical outputs. This section, however, focus on how to make static maps with <strong>ggplot2</strong>, emphasizing the important aesthetic and layout options.</p>
+<section id="the-bathmetry-data" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="the-bathmetry-data"><span class="header-section-number">8.3.1</span> The bathmetry data</h3>
+<p><strong>ggplot2</strong> works with data that are tidy—data frame arranged in such way that observations are in rows and variables are in columns and each value must have its own cell. But, the bathmetry data is from ETOPO1 and came in <code>.asc</code> format. First read the file with the <code>raster::raster()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">## read the ascii file</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tz.bath <span class="ot">=</span> raster<span class="sc">::</span><span class="fu">raster</span>(<span class="st">"assets/raster/wioregio-7753.asc"</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>tz.bath <span class="sc">%&gt;%</span> <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "RasterLayer"
+attr(,"package")
+[1] "raster"</code></pre>
+</div>
+</div>
+<p>We notice that the file is raster and ggplot2 requires data.frame. To continue, we need to convert the data and tidy in format that is **plot2–readable. Specifically, we need to convert raster file into data frame with <code>raster::as.data.frame(xy = TRUE)</code> and specify the <code>xy = TRUE</code> argument. We then rename the x to lon, y to lat and convert bathmetry values from the double presion to integer and select values within the geographical extend of interest and depth between 0 and 1200 meter deep.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">## convert raster to data frame</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tz.bath.df <span class="ot">=</span> tz.bath <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  raster<span class="sc">::</span><span class="fu">as.data.frame</span>(<span class="at">xy =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="do">## rename the variable</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>tz.bath.df <span class="ot">=</span> tz.bath.df <span class="sc">%&gt;%</span> </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">lon =</span> x, <span class="at">lat =</span> y, <span class="at">depth =</span> <span class="dv">3</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">depth =</span> <span class="fu">as.integer</span>(depth))</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="do">## chop the area of interest </span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>off.kimbiji <span class="ot">=</span> tz.bath.df <span class="sc">%&gt;%</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(lon <span class="sc">&gt;</span> <span class="fl">38.5</span> <span class="sc">&amp;</span> lon <span class="sc">&lt;</span> <span class="dv">40</span> <span class="sc">&amp;</span> </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>           lat <span class="sc">&gt;</span> <span class="sc">-</span><span class="fl">7.2</span> <span class="sc">&amp;</span> lat <span class="sc">&lt;</span> <span class="sc">-</span> <span class="dv">6</span> <span class="sc">&amp;</span> </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>           depth <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">1200</span><span class="sc">&amp;</span> depth <span class="sc">&lt;</span> <span class="dv">0</span>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The bathmetry file now contain three variables, the <code>lon</code>, <code>lat</code> and <code>depth</code> as seen in table @ref(tab:tab91)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>off.kimbiji <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">sample_n</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Longitude"</span>, <span class="st">"Latitude"</span>, <span class="st">"Depth (meters)"</span>), <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">caption =</span> <span class="st">"Ten randomly selected points of bathmetry values off Kimbiji, Tanzania"</span>, <span class="at">align =</span> <span class="st">"c"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">column_spec</span>(<span class="at">column =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">width =</span> <span class="st">"3cm"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Coordinate (Degree)"</span> <span class="ot">=</span> <span class="dv">2</span>,<span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table>
+<caption>Ten randomly selected points of bathmetry values off Kimbiji, Tanzania</caption>
+ <thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Coordinate (Degree)</div></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+</tr>
+  <tr>
+   <th style="text-align:center;"> Longitude </th>
+   <th style="text-align:center;"> Latitude </th>
+   <th style="text-align:center;"> Depth (meters) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 39.067 </td>
+   <td style="text-align:center;width: 3cm; "> -6.033 </td>
+   <td style="text-align:center;width: 3cm; "> -6 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.850 </td>
+   <td style="text-align:center;width: 3cm; "> -6.683 </td>
+   <td style="text-align:center;width: 3cm; "> -548 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.517 </td>
+   <td style="text-align:center;width: 3cm; "> -6.600 </td>
+   <td style="text-align:center;width: 3cm; "> -407 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.967 </td>
+   <td style="text-align:center;width: 3cm; "> -6.833 </td>
+   <td style="text-align:center;width: 3cm; "> -149 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.500 </td>
+   <td style="text-align:center;width: 3cm; "> -6.867 </td>
+   <td style="text-align:center;width: 3cm; "> -25 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.717 </td>
+   <td style="text-align:center;width: 3cm; "> -6.267 </td>
+   <td style="text-align:center;width: 3cm; "> -669 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.567 </td>
+   <td style="text-align:center;width: 3cm; "> -7.050 </td>
+   <td style="text-align:center;width: 3cm; "> -46 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.300 </td>
+   <td style="text-align:center;width: 3cm; "> -6.750 </td>
+   <td style="text-align:center;width: 3cm; "> -15 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.017 </td>
+   <td style="text-align:center;width: 3cm; "> -6.400 </td>
+   <td style="text-align:center;width: 3cm; "> -1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 39.700 </td>
+   <td style="text-align:center;width: 3cm; "> -6.700 </td>
+   <td style="text-align:center;width: 3cm; "> -616 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</section>
+</section>
+<section id="basemap" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="basemap"><span class="header-section-number">8.4</span> Basemap</h2>
+<p>We also need basemap—country boundary layer. We use the st_read() function from <strong>sf</strong> package to read the shapefile boundary layer. Since the layer is for the whole Africa, to reduce the processing time for ploting the map of africa, we use the <code>st_crop()</code> function to chop the area of interest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>kimbiji <span class="ot">=</span> africa <span class="sc">%&gt;%</span> sf<span class="sc">::</span><span class="fu">st_crop</span>(<span class="at">xmin =</span> <span class="fl">38.0</span>, <span class="at">xmax =</span> <span class="fl">40.5</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="dv">8</span>, <span class="at">ymax =</span> <span class="sc">-</span><span class="fl">5.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="creating-contour-map" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="creating-contour-map"><span class="header-section-number">8.5</span> Creating contour map</h2>
+<p>Once we have the data ready, we can tools in <strong>ggplot2</strong> and add-on packages to create the bathmetry map off–Kimbiji located between longitude 38.5°E and 40.1°E and latitude 7.2°S and `r metR::LatLabel(-6.0). The code block below was used to create <span class="citation" data-cites="fig901">(<a href="#ref-fig901" role="doc-biblioref"><strong>fig901?</strong></a>)</span>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig901-1.png" class="img-fluid figure-img" width="384"></p>
+<p></p><figcaption class="figure-caption">Map of Off-Kimbiji showing contour lines. The grey lines are contour at 50 m interval and the black line are contoured at 200 m intervals</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are fourteen lined of codes in the chunk to make figure @ref(fig:fig901). That’s a lot! Don’t get intimidated, I will explain in detail how each line of code work together to make this figure. As before, you start plotting <strong>ggplot2</strong> with the <code>ggplot()</code> function as the first line. Surprisingly, the <code>ggplot()</code> is empty without any argument specified. When mapping with <code>geom_sf()</code> function in <strong>ggplot2</strong> package, you are advised to leave the <code>ggplot()</code> function empty. This will allow the geom_sf() to label the axes with the appropriate geographical labelling for longitude and latitude. The second line of gode add a simple feature with a <code>geom_sf()</code> function from <strong>sf</strong> package. Note however, I specified the <code>geom_sf()</code> to fill the boundary layer with grey of 90 shade and the stroke with black colour.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> kimbiji, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>map </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>note that <strong>ggplot2</strong> plot the map with default aesthetic settings. The plot background is filled with gray color and without stroke but the grids are white colored. The third line add the contour lines spaced at 50 meter intervals. Instead of using <code>geom_contour()</code> from ggplot2, the <code>geom_contour2()</code> from <strong>metR</strong> package was used. They both serve the same task.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> kimbiji, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>)<span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour2</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">binwidth =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"grey"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Like the third line, the fourth line add contour lines, but instead of spacing them into meters, these are spaced at 200 meters interval and are black in color.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour2</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">binwidth =</span> <span class="dv">200</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The fifth line add the label on contour spaced at 200 meter interval with <code>geom_text_contour()</code> function from <strong>metR</strong> package. Here is where you will find the useful of package like <strong>metR</strong> that extends the <strong>ggplot2</strong>, for which the current version (2.3.1.1) is unable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour2</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth, <span class="at">label =</span> ..level..), <span class="at">binwidth =</span> <span class="dv">200</span>, <span class="at">skip =</span> <span class="dv">0</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The sixth line zoom the map to only the geographical extent we are interested with using the <code>coord_sf()</code> function from <strong>sf</strong> package. We could also use the <code>coord_cartesin()</code> to limit the area.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="fl">6.3</span>))</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We got a glimpse of the map now, let us use theme to make some changes. The background was set to white with <code>panel.background = element_rect(fill = "white")</code>, and removed grids with <code>panel.grid = element_line(colour = NA)</code> and change the font size of the axis label to 11 points with <code>axis.text = element_text(size = 11)</code>. The <code>theme_bw()</code> just set the border of the plot to black with solid line.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The good thing to start making maps is with an understanding of the map elements. A static map can be composed of many different map elements. These include <code>main map body</code>, <code>legend</code>, <code>title</code>, <code>scale indicator</code>, <code>orientation indicator</code>, <code>inset map</code> and <code>source</code> or <code>ancillary</code> information. By increasing the font size of axis textual label to 11, the axes are cluttered. adding the scale can improve the labelling. <code>scale_x_continuous(breaks = seq(39.2, 39.8, .2))</code> in line 9 force ggplot2 to label the x–axis four letter that are spaced with 0.2 latitude and <code>scale_y_continuous(breaks = seq(-6.95, -6.35, length.out = 4))</code> in line 10 label four digits of longitude.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map<span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>, .<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.95</span>, <span class="sc">-</span><span class="fl">6.35</span>, <span class="at">length.out =</span> <span class="dv">4</span>))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Because the axes are abbreviated with longitude and latitude symbol, line 11 in the code remove the axes title label. Line 12 to 14 add textual label on the map with the <code>annotate()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> map <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.28</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.48</span>, <span class="at">label =</span> <span class="st">"Zanzibar </span><span class="sc">\n</span><span class="st">Channel"</span>)<span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.37</span>, <span class="at">label =</span> <span class="st">"Unguja </span><span class="sc">\n</span><span class="st">Island"</span>)<span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.3</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.91</span>, <span class="at">label =</span> <span class="st">"Dar es Salaam"</span>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Close look of figure @ref(fig:fig901), the north arrrow and the scale bar are missing. The last two lines of our code inset the scalebar and north arrow on map using the <code>annotation_scale()</code> and <code>ggspatial::annotation_north_arrow()</code> functions from <strong>ggspatial</strong> package.</p>
+<p>In a nutshell, making this map using <strong>ggplot2</strong> and ancillary extensions used fiften line codes and hundred of arguments. This are very common task of making maps with the combination of tools from different packages.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">height =</span> <span class="fu">unit</span>(.<span class="dv">35</span>, <span class="st">"cm"</span>), <span class="at">pad_x =</span> <span class="fu">unit</span>(.<span class="dv">5</span>, <span class="st">"cm"</span>),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">tick_height =</span> <span class="fu">unit</span>(<span class="dv">3</span>, <span class="st">"cm"</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(.<span class="dv">5</span>, <span class="st">"cm"</span>), <span class="at">text_cex =</span> .<span class="dv">85</span>)<span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>, <span class="at">width =</span> <span class="fu">unit</span>(.<span class="dv">75</span>, <span class="st">"cm"</span>), <span class="at">height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>metR</strong> package has <code>geom_contour_fill()</code> function that draw filled contour lines and <code>geom_contour_tanaka()</code>, which illunate contours with varying brithtness to create an illusion of relief. The code chunk to create highlighted filled contour using <strong>metR</strong> function can be written as;</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour_fill</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">na.fill =</span> <span class="cn">TRUE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour_tanaka</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth))<span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_text_contour</span>(<span class="at">data =</span> off.kimbiji, <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">rotate =</span> <span class="cn">TRUE</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="fl">3.0</span>)<span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> kimbiji, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>)<span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="fl">6.3</span>))<span class="sc">+</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>, .<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.95</span>, <span class="sc">-</span><span class="fl">6.35</span>, <span class="at">length.out =</span> <span class="dv">4</span>))<span class="sc">+</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> oce<span class="sc">::</span><span class="fu">oce.colorsGebco</span>(<span class="dv">120</span>))<span class="sc">+</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.28</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.48</span>, <span class="at">label =</span> <span class="st">"Zanzibar </span><span class="sc">\n</span><span class="st">Channel"</span>)<span class="sc">+</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.37</span>, <span class="at">label =</span> <span class="st">"Unguja </span><span class="sc">\n</span><span class="st">Island"</span>)<span class="sc">+</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.3</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.91</span>, <span class="at">label =</span> <span class="st">"Dar es Salaam"</span>)<span class="sc">+</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">height =</span> <span class="fu">unit</span>(.<span class="dv">35</span>, <span class="st">"cm"</span>), <span class="at">pad_x =</span> <span class="fu">unit</span>(.<span class="dv">5</span>, <span class="st">"cm"</span>),</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>                              <span class="at">tick_height =</span> <span class="fu">unit</span>(<span class="dv">3</span>, <span class="st">"cm"</span>), <span class="at">pad_y =</span> <span class="fu">unit</span>(.<span class="dv">5</span>, <span class="st">"cm"</span>), <span class="at">text_cex =</span> .<span class="dv">85</span>)<span class="sc">+</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>, <span class="at">width =</span> <span class="fu">unit</span>(.<span class="dv">75</span>, <span class="st">"cm"</span>), <span class="at">height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"cm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="maps_files/figure-html/fig903-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="inset-maps" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="inset-maps"><span class="header-section-number">8.6</span> Inset maps</h2>
+<p>An inset map is a smaller map rendered within or next to the main map. It could serve many different purposes, including showing the relative position of the study area in regional area. In figure @ref(fig:fig9011) is the map showing the contour interval off-kimbiji, Tanzania. The inset map show the area of Kimbiji in the Western Indian Ocean Region. The chunk below was used to create figure @ref(fig:fig911). In a nutshell, we assign the study area map as <code>main.map</code> and the regional map as <code>inset.map</code> and then we used function from the <strong>cowplot</strong> package to combine the two maps.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>main.map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> kimbiji, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>)<span class="sc">+</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour2</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">binwidth =</span> <span class="dv">50</span>, <span class="at">col =</span> <span class="st">"grey"</span>)<span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour2</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">binwidth =</span> <span class="dv">200</span>)<span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_text_contour</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">binwidth =</span> <span class="dv">200</span>, <span class="at">rotate =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="fl">6.3</span>))<span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>, .<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.95</span>, <span class="sc">-</span><span class="fl">6.35</span>, <span class="at">length.out =</span> <span class="dv">4</span>))<span class="sc">+</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.28</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.48</span>, <span class="at">label =</span> <span class="st">"Zanzibar </span><span class="sc">\n</span><span class="st">Channel"</span>)<span class="sc">+</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.37</span>, <span class="at">label =</span> <span class="st">"Unguja </span><span class="sc">\n</span><span class="st">Island"</span>)<span class="sc">+</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.3</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.91</span>, <span class="at">label =</span> <span class="st">"Dar es Salaam"</span>)<span class="sc">+</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>)<span class="sc">+</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>)</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>world <span class="ot">=</span> spData<span class="sc">::</span>world</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>aoi <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">lon =</span> <span class="fu">c</span>(<span class="fl">38.5</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="fl">38.5</span>, <span class="fl">38.5</span>), </span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">lat =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">8</span>))</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>inset.map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="dv">45</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="sc">-</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> aoi, <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), <span class="at">size =</span> <span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"white"</span>)) <span class="sc">+</span></span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">ggdraw</span>()<span class="sc">+</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">draw_plot</span>(<span class="at">plot =</span> main.map, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">height =</span> <span class="dv">1</span>, <span class="at">scale =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">draw_plot</span>(<span class="at">plot =</span> inset.map, <span class="at">x =</span> .<span class="dv">558</span>, <span class="at">y =</span> .<span class="dv">05</span>, <span class="at">width =</span> .<span class="dv">3</span>,<span class="at">height =</span> .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-map11" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig-map11-1.png" class="img-fluid figure-img" width="480"></p>
+<p></p><figcaption class="figure-caption">Figure 8.1: The main map with the inset map showing the positon of the study areas in the region</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>main.map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour_fill</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">na.fill =</span> <span class="cn">TRUE</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour_tanaka</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth))<span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_text_contour</span>(<span class="at">data =</span> off.kimbiji, </span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>               <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z=</span>depth), <span class="at">rotate =</span> <span class="cn">TRUE</span>, <span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="fl">3.4</span>)<span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> kimbiji, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>)<span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">7</span>, <span class="sc">-</span><span class="fl">6.3</span>))<span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="cn">NA</span>),</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">39.2</span>, <span class="fl">39.8</span>, .<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">6.95</span>, <span class="sc">-</span><span class="fl">6.35</span>, <span class="at">length.out =</span> <span class="dv">4</span>))<span class="sc">+</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> oce<span class="sc">::</span><span class="fu">oce.colorsGebco</span>(<span class="dv">120</span>))<span class="sc">+</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)<span class="sc">+</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.28</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.48</span>, <span class="at">label =</span> <span class="st">"Zanzibar </span><span class="sc">\n</span><span class="st">Channel"</span>)<span class="sc">+</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.37</span>, <span class="at">label =</span> <span class="st">"Unguja </span><span class="sc">\n</span><span class="st">Island"</span>)<span class="sc">+</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">39.3</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">6.91</span>, <span class="at">label =</span> <span class="st">"Dar es Salaam"</span>)<span class="sc">+</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>)<span class="sc">+</span></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>, <span class="at">width =</span> <span class="fu">unit</span>(.<span class="dv">75</span>, <span class="st">"cm"</span>))</span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>world <span class="ot">=</span> spData<span class="sc">::</span>world</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>aoi <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">lon =</span> <span class="fu">c</span>(<span class="fl">38.5</span>, <span class="dv">40</span>, <span class="dv">40</span>, <span class="fl">38.5</span>, <span class="fl">38.5</span>), </span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">lat =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">8</span>))</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a>inset.map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> world, <span class="at">fill =</span> <span class="st">"grey90"</span>, <span class="at">col =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">37</span>, <span class="dv">45</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">12</span>,<span class="sc">-</span><span class="dv">1</span>))<span class="sc">+</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="at">data =</span> aoi, <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat), <span class="at">size =</span> <span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"white"</span>)) <span class="sc">+</span></span>
+<span id="cb33-36"><a href="#cb33-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb33-37"><a href="#cb33-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-38"><a href="#cb33-38" aria-hidden="true" tabindex="-1"></a>cowplot<span class="sc">::</span><span class="fu">ggdraw</span>()<span class="sc">+</span></span>
+<span id="cb33-39"><a href="#cb33-39" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">draw_plot</span>(<span class="at">plot =</span> main.map, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="dv">1</span>, <span class="at">height =</span> <span class="dv">1</span>, <span class="at">scale =</span> <span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb33-40"><a href="#cb33-40" aria-hidden="true" tabindex="-1"></a>  cowplot<span class="sc">::</span><span class="fu">draw_plot</span>(<span class="at">plot =</span> inset.map, <span class="at">x =</span> .<span class="dv">558</span>, <span class="at">y =</span> .<span class="dv">05</span>, <span class="at">width =</span> .<span class="dv">3</span>,<span class="at">height =</span> .<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-map12" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig-map12-1.png" class="img-fluid figure-img" width="480"></p>
+<p></p><figcaption class="figure-caption">Figure 8.2: The main map with the inset map showing the positon of the study areas in the region</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="choropleth-maps" class="level3" data-number="8.6.1">
+<h3 data-number="8.6.1" class="anchored" data-anchor-id="choropleth-maps"><span class="header-section-number">8.6.1</span> Choropleth maps</h3>
+<p>Chloropleth maps use color or shading on predefined areas to map values of a numeric or categorical variable in that area. For example we are interested to map the different coral reefs in Jibondo Island, Mafia, Tanzania. First we import the data into R using the <code>st_read()</code> function from <strong>sf</strong> package <span class="citation" data-cites="sf">(<a href="#ref-sf" role="doc-biblioref">Pebesma 2018</a>)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>jibondo.reefs <span class="ot">=</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="at">dsn =</span> <span class="st">"assets/shp//jibondo_reefs.shp"</span>,<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>jibondo.reefs</code> file is simple feature (equivalent to shapefile) with sixteeen polygons in four groups—coastal-shallow areas, islands, reef flat and submerged reefs. We use the variable type to map the different coastal features in Jibondo. The code used to make (<a href="#fig-map13">Figure&nbsp;<span>8.3</span></a>) is written as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(RColorBrewer)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> jibondo.reefs, <span class="fu">aes</span>(<span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.57</span>, <span class="fl">39.88</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">8.15</span>,<span class="sc">-</span><span class="fl">7.88</span>)) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> jibondo.reefs, <span class="fu">aes</span>(<span class="at">label =</span> mwamba), <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">%+%</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">8</span>,.<span class="dv">18</span>)) <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Accent"</span>) <span class="sc">+</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_x_longitude</span>(<span class="at">ticks =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_y_latitude</span>(<span class="at">ticks =</span> <span class="fl">0.08</span>) <span class="sc">+</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">"Reef Type"</span>,</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">title.position =</span>  <span class="st">"top"</span>,</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>                             <span class="at">keywidth =</span> <span class="fl">1.1</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ncol =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-map13" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig-map13-1.png" class="img-fluid figure-img" width="480"></p>
+<p></p><figcaption class="figure-caption">Figure 8.3: Reefs and non-reeef features in Jibondo Island, Mafia</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The variable used to make (<a href="#fig-map14">Figure&nbsp;<span>8.4</span></a>) is a categorical, but we can also map continuous variables. For this case, we want to map the catch per unit effort (CPUE) of octopus at each reef to identify octopus catches at different reefs as seen in figure</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> jibondo.reefs, </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">aes</span>(<span class="at">fill =</span> cpue <span class="sc">%&gt;%</span><span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>()))<span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">39.57</span>, <span class="fl">39.88</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">8.15</span>,<span class="sc">-</span><span class="fl">7.88</span>))<span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> jibondo.reefs, <span class="fu">aes</span>(<span class="at">label =</span> mwamba), <span class="at">check_overlap =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">%+%</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>), <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">9</span>,.<span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># scale_fill_brewer(palette = "Accent") +</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_fill_d3</span>()<span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_x_longitude</span>(<span class="at">ticks =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_y_latitude</span>(<span class="at">ticks =</span> <span class="fl">0.08</span>)<span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">title.position =</span>  <span class="st">"top"</span>,</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>                             <span class="at">keywidth =</span> <span class="fl">1.1</span>,</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ncol =</span> <span class="dv">1</span>, </span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>                             <span class="at">title =</span> <span class="st">"CPUE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-map14" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig-map14-1.png" class="img-fluid figure-img" width="480"></p>
+<p></p><figcaption class="figure-caption">Figure 8.4: Reefs and non-reeef features in Jibondo Island, Mafia</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally let’s map the the spatial patterns of sea surface temperature anomaly. We plot the departure of sea surface temperature from zonal average mean. Let’s import the dataset from the workspace. For more information on how to compute the zonal departure see chapter…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>temperature.anomaly <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"assets//shp/sst_anomaly.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+
+<table>
+ <thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">Coordinate (Degree)</div></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1"></th>
+</tr>
+  <tr>
+   <th style="text-align:center;"> Latitude </th>
+   <th style="text-align:center;"> Longitude </th>
+   <th style="text-align:center;"> Depth </th>
+   <th style="text-align:center;"> Anomaly </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> -50.5 </td>
+   <td style="text-align:center;width: 2cm; "> 151.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> 2.46 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 5.5 </td>
+   <td style="text-align:center;width: 2cm; "> 167.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> 0.95 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 15.5 </td>
+   <td style="text-align:center;width: 2cm; "> 155.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> 1.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> -35.5 </td>
+   <td style="text-align:center;width: 2cm; "> -174.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -0.10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> -5.5 </td>
+   <td style="text-align:center;width: 2cm; "> 88.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> 1.28 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 30.5 </td>
+   <td style="text-align:center;width: 2cm; "> -23.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -0.60 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> -75.5 </td>
+   <td style="text-align:center;width: 2cm; "> -30.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -0.13 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> -0.5 </td>
+   <td style="text-align:center;width: 2cm; "> -113.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -3.11 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 25.5 </td>
+   <td style="text-align:center;width: 2cm; "> -151.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -0.71 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 70.5 </td>
+   <td style="text-align:center;width: 2cm; "> -167.5 </td>
+   <td style="text-align:center;width: 2cm; "> 0 </td>
+   <td style="text-align:center;width: 2cm; "> -1.21 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">geom_contour_fill</span>(<span class="at">data =</span> temperature.anomaly,</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">aes</span>(<span class="at">x =</span> lon, <span class="at">y =</span> lat, <span class="at">z =</span> anomaly), <span class="at">na.fill =</span> T) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span>  spData<span class="sc">::</span>world, <span class="at">col =</span> <span class="cn">NA</span>, <span class="at">fill =</span> <span class="st">"grey40"</span>)<span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">180</span>,<span class="dv">178</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">90</span>,<span class="dv">85</span>), <span class="at">clip =</span> <span class="st">"on"</span>, <span class="at">expand =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> oce<span class="sc">::</span><span class="fu">oce.colors9A</span>(<span class="dv">120</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">2</span>))<span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>, <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>, <span class="at">colour =</span> <span class="st">"black"</span>), </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))<span class="sc">+</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">title =</span> <span class="fu">expression</span>(Temperature<span class="sc">~</span>anomaly<span class="sc">~</span>(degree<span class="sc">*</span>C)),</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>                               <span class="at">title.position =</span> <span class="st">"right"</span>, </span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>                               <span class="at">title.hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>                               <span class="at">title.theme =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>),</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>                               <span class="at">label.theme =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>                               <span class="at">direction =</span> <span class="st">"vertical"</span>,</span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>                               <span class="at">reverse =</span> <span class="cn">FALSE</span>, <span class="at">raster =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>                               <span class="at">barwidth =</span> <span class="fu">unit</span>(.<span class="dv">4</span>, <span class="st">"cm"</span>),</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>                               <span class="at">barheight =</span> <span class="fu">unit</span>(<span class="fl">6.5</span>, <span class="st">"cm"</span>)))<span class="sc">+</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_y_latitude</span>(<span class="at">ticks =</span> <span class="dv">30</span>) <span class="sc">+</span> </span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>  metR<span class="sc">::</span><span class="fu">scale_x_longitude</span>(<span class="at">ticks =</span> <span class="dv">45</span>)<span class="sc">+</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-map15" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="maps_files/figure-html/fig-map15-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 8.5: Departure of the sea surfae temprature at each location from the zonally averaged field</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-egg" class="csl-entry" role="doc-biblioentry">
+Auguie, Baptiste. 2018. <em>Egg: Extensions for ’Ggplot2’: Custom Geom, Plot Alignment, Symmetrised Scale, and Fixed Panel Size</em>. <a href="https://CRAN.R-project.org/package=egg">https://CRAN.R-project.org/package=egg</a>.
+</div>
+<div id="ref-metr" class="csl-entry" role="doc-biblioentry">
+Campitelli, Elio. 2019. <em>metR: Tools for Easier Analysis of Meteorological Fields</em>. <a href="https://CRAN.R-project.org/package=metR">https://CRAN.R-project.org/package=metR</a>.
+</div>
+<div id="ref-sf" class="csl-entry" role="doc-biblioentry">
+Pebesma, Edzer. 2018. <em>Sf: Simple Features for r</em>. <a href="https://CRAN.R-project.org/package=sf">https://CRAN.R-project.org/package=sf</a>.
+</div>
+<div id="ref-gganimate" class="csl-entry" role="doc-biblioentry">
+Pedersen, Thomas Lin, and David Robinson. 2017. <em>Gganimate: A Grammar of Animated Graphics</em>. <a href="http://github.com/thomasp85/gganimate">http://github.com/thomasp85/gganimate</a>.
+</div>
+<div id="ref-ggplot" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="http://ggplot2.org">http://ggplot2.org</a>.
+</div>
+<div id="ref-cowplot" class="csl-entry" role="doc-biblioentry">
+Wilke, Claus O. 2018. <em>Cowplot: Streamlined Plot Theme and Plot Annotations for ’Ggplot2’</em>. <a href="https://CRAN.R-project.org/package=cowplot">https://CRAN.R-project.org/package=cowplot</a>.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./eda.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./mapsDynamic.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
