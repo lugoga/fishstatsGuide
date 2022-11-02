@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 19&nbsp; Length Based Spawning Potential Ratio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./maps.html" rel="next">
+<link href="./chisquare.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"> <span class="header-section-number">19.1</span> Introduction</a>
+  <ul class="collapse">
+  <li><a href="#estimate-the-stock" id="toc-estimate-the-stock" class="nav-link" data-scroll-target="#estimate-the-stock"> <span class="header-section-number">19.1.1</span> Estimate the Stock</a></li>
+  <li><a href="#length-frequency" id="toc-length-frequency" class="nav-link" data-scroll-target="#length-frequency"> <span class="header-section-number">19.1.2</span> Length frequency</a></li>
+  <li><a href="#recruitment" id="toc-recruitment" class="nav-link" data-scroll-target="#recruitment"> <span class="header-section-number">19.1.3</span> Recruitment</a></li>
+  <li><a href="#cohort-identification" id="toc-cohort-identification" class="nav-link" data-scroll-target="#cohort-identification"> <span class="header-section-number">19.1.4</span> Cohort identification</a></li>
+  </ul></li>
+  <li><a href="#derivation-of-reference-points" id="toc-derivation-of-reference-points" class="nav-link" data-scroll-target="#derivation-of-reference-points"> <span class="header-section-number">19.2</span> Derivation of reference points</a>
+  <ul class="collapse">
+  <li><a href="#estimate-size-at-first-maturity" id="toc-estimate-size-at-first-maturity" class="nav-link" data-scroll-target="#estimate-size-at-first-maturity"> <span class="header-section-number">19.2.1</span> Estimate size at first maturity</a></li>
+  <li><a href="#catch-converted-curve" id="toc-catch-converted-curve" class="nav-link" data-scroll-target="#catch-converted-curve"> <span class="header-section-number">19.2.2</span> Catch Converted Curve</a></li>
+  </ul></li>
+  <li><a href="#data-analysis-and-packages" id="toc-data-analysis-and-packages" class="nav-link" data-scroll-target="#data-analysis-and-packages"> <span class="header-section-number">19.3</span> Data Analysis and Packages</a></li>
+  <li><a href="#dsfa-neritic-data" id="toc-dsfa-neritic-data" class="nav-link" data-scroll-target="#dsfa-neritic-data"> <span class="header-section-number">19.4</span> DSFA neritic data</a></li>
+  <li><a href="#l50" id="toc-l50" class="nav-link" data-scroll-target="#l50"> <span class="header-section-number">19.5</span> L50</a></li>
+  <li><a href="#length-frequency-1" id="toc-length-frequency-1" class="nav-link" data-scroll-target="#length-frequency-1"> <span class="header-section-number">19.6</span> Length frequency</a></li>
+  <li><a href="#powell-wetherall-method" id="toc-powell-wetherall-method" class="nav-link" data-scroll-target="#powell-wetherall-method"> <span class="header-section-number">19.7</span> Powell-Wetherall method</a></li>
+  <li><a href="#elefan" id="toc-elefan" class="nav-link" data-scroll-target="#elefan"> <span class="header-section-number">19.8</span> ELEFAN</a></li>
+  <li><a href="#catch-converted" id="toc-catch-converted" class="nav-link" data-scroll-target="#catch-converted"> <span class="header-section-number">19.9</span> catch-converted</a></li>
+  <li><a href="#recruitment-1" id="toc-recruitment-1" class="nav-link" data-scroll-target="#recruitment-1"> <span class="header-section-number">19.10</span> Recruitment</a></li>
+  <li><a href="#length-based-spawning-potential-ratio-lbspr" id="toc-length-based-spawning-potential-ratio-lbspr" class="nav-link" data-scroll-target="#length-based-spawning-potential-ratio-lbspr"> <span class="header-section-number">19.11</span> Length-based spawning potential ratio (LBSPR)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(TropFishR)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(magrittr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(LBSPR)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(hrbrthemes)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(patchwork)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(sf)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">19.1</span> Introduction</h2>
+<p>Overall purpose of fisheries science is to provide decision-markers with advice on the relative merits of alternative management <span class="citation" data-cites="bradley">(<a href="#ref-bradley" role="doc-biblioref">Bradley et al. 2019</a>)</span>. Fisheries managers recognize that stock assessments of species that have poor data (quality is poor) or are data poor (data are limited in quantity) are very challenging. Because of this dual limitations, assessments of the status of exploited fish stock are often highly uncertain. However, to achieve an effective fisheries management require a better understanding of life history information of fishery stock <span class="citation" data-cites="golden jackson">(<a href="#ref-golden" role="doc-biblioref">Golden et al. 2016</a>; <a href="#ref-jackson" role="doc-biblioref">Jackson et al. 2001</a>)</span>. According to <span class="citation" data-cites="bown2013co">Bown, Gray, and Stead (<a href="#ref-bown2013co" role="doc-biblioref">2013</a>)</span>, fisheries management is a complex socio-political process, and there is no silver bullet to improve global fisheries. Yet understanding the population biology of fish species is essential to meet one of the main objective of fishery science of maximizing yield to fisheries, while safeguarding the long-term viability of populations and ecosystem <span class="citation" data-cites="pope2000gauging">(<a href="#ref-pope2000gauging" role="doc-biblioref">Pope et al. 2000</a>)</span>.</p>
+<p>Rapidly global population growth <span class="citation" data-cites="goetz2019transport ahmadi2020towards">(<a href="#ref-goetz2019transport" role="doc-biblioref">Goetz 2019</a>; <a href="#ref-ahmadi2020towards" role="doc-biblioref">Ahmadi et al. 2020</a>)</span> and changing ocean conditions <span class="citation" data-cites="board2010ocean">(<a href="#ref-board2010ocean" role="doc-biblioref">Board, Council, et al. 2010</a>)</span> caused by climate change and natural variability have posed a threat on fishery resources <span class="citation" data-cites="bradley">(<a href="#ref-bradley" role="doc-biblioref">Bradley et al. 2019</a>)</span>. This challenges demands fisheries an adjust of biological reference points <span class="citation" data-cites="hilborn2020effective">(<a href="#ref-hilborn2020effective" role="doc-biblioref">Hilborn et al. 2020</a>)</span>. However, to address growing uncertainty about stock status, requires more precise data collection of high resolution spatial and temporal fisheries data <span class="citation" data-cites="punt2021evaluating">(<a href="#ref-punt2021evaluating" role="doc-biblioref">Punt et al. 2021</a>)</span>. But, the ecological characteristics of fished stocks make data collection difficult. The relative invisibility in the oceans, wide distribution and mobility across jurisdictional boundaries, and complex interactions within marine ecosystems and the physical environment has made collection of fishery data time-consuming and expensive.</p>
+<p>A key element to determine stock status is to estimate or specify reference points that serve as baselines against which current stock size estimates are compared. The two widely used reference points to assess and manage fish stocks are <em>stock size</em> and <em>exploitation</em>. While a <em>stock size</em> reference point determines whether the stock is in an over-fished, an <em>exploitation</em> reference point identifies whether over-fishing is taking place. Stock status and reference points are most often derived from stock assessments that requires certain minimum information on the biology, catch or effort, and measures of relative abundance of the stock from fishery data. In developing countries, fishery data are especially poor and basic biological studies are limited because of low financial capital allocated to capacity infrastructure and scientific training to collect, analyse and interpret fishery data.</p>
+<p>The past decade has seen an advancement and emergence of several data-poor methods <span class="citation" data-cites="punt2011among jiao2011poor dick2011depletion">(<a href="#ref-punt2011among" role="doc-biblioref">Punt, Smith, and Smith 2011</a>; <a href="#ref-jiao2011poor" role="doc-biblioref">Jiao et al. 2011</a>; <a href="#ref-dick2011depletion" role="doc-biblioref">Dick and MacCall 2011</a>)</span>. However, the International Council for the Exploration of the Seas (ICES) identified and discussed the use of length-based methods for assessing stock of data-poor fishery <span class="citation" data-cites="sheninternational">(<a href="#ref-sheninternational" role="doc-biblioref">Shen et al., n.d.</a>)</span>. Other method include catch-only and catch-based methods. Many of these size-based techniques were developed to estimate the growth and mortality rates of fish without the need for expensive and difficult to obtain age data. Recently, <span class="citation" data-cites="lbspr">Hordyk (<a href="#ref-lbspr" role="doc-biblioref">2019</a>)</span> developed a model capable to estimate stock status of exploited fishery from a data-poor. The model suits small-scale and data-poor fisheries like the kawakawa fishery in coastal waters of Tanzania. Unlike the industrial fishery, data for small-scale fishery is often restricted by lack of technical expertise and expense. However, measurement of length composition data of an exploited stock are economically cheap and simple to collect for small-scale fisheries (Quinn and Deriso, 1999).</p>
+<p>In this study, we used a Kawakawa (<em>Euthynnus affinis</em>) as an example to demonstrate the advantages of using length-based model in assessing the stock status of data-poor species. Kawakawa is an epipelagic migratory tuna species that is widely distributed in the tropical and subtropical waters of the Indo-Pacific region. In the Indian Ocean, this species extends from South Africa (Smith and Heemstra, 1986), along the coasts of east Africa, Arabian Peninsula, the Indian sub-continent, and Malaysian Peninsula. It is also found in the Red Sea, Persian Gulf, and off islands in the Indian Ocean, including Madagascar, Comoros Islands, Mauritius, Reunion, Seychelles, Lakshadweep, Andaman Islands, Nicobar Islands, Sri Lanka, and Maldives <span class="citation" data-cites="rfishbase">(<a href="#ref-rfishbase" role="doc-biblioref">Boettiger, Temple Lang, and Wainwright 2012</a>)</span>. In Tanzania, this species is mostly caught in the neritic waters. Kawakawa is also a merit species and is most commonly seen in the ringnet catches, although few of individual are caught by hand-line, longline and small purse seine.</p>
+<!-- Kawakawa is the most abundant and economically important tuna species.It supports a large artisanal fishery, which has been operating for many years. Despite the economical importance of this species, little is known about the biology of kawakawa. Different aspects of biological work of kawakawa have been done by different authors [@nishida2017stock; @jatmiko] but no work has been done on stock assessment of this species in coastal waters of Tanzania. According to @rfishbase vulnerability criteria, the stock of kawakawa is moderate vulnerable and IUCN Red List criteria classified kawakawa as the least concern fish group [@endangeredyft]. Like other tuna and tuna like species in the neritic waters, kawakawa are particularly data-limited group, which explains why its stock has not been assessed assessed with conventional fisheries stock assessment methods [@wetherall; @powell; @gayanilo; @pauly1982]. -->
+<p>As important as this modeling is to science-based management, no published application of SPR models exists for kawakawa from the Pemba Channel. Our study aimed to use the length-based method to determine reference points and estimate the stock of of Kawakawa in neritic waters of Tanzania. To help achieve this goal, several objectives were defined. The first objective was to determine the length at first maturity of kawakawa individuals and test whether the length of maturity is different from the median fork length of species. The second objective was to establish biological and exploitation reference points from data-poor kawakawa fishery using traditional methods. The third objective was to use the estimated biological and exploitation reference points to simulate across the range of life histories, based on relationships between length of capture and length at maturity to estimate the stock of kawakawa in the Pemba channel.</p>
+<section id="estimate-the-stock" class="level3" data-number="19.1.1">
+<h3 data-number="19.1.1" class="anchored" data-anchor-id="estimate-the-stock"><span class="header-section-number">19.1.1</span> Estimate the Stock</h3>
+<p>We used the Length-Based Spawning Potential Ratio (LBSPR) model to assess the stock status based on length frequency data of Kawakawa in the territorial water. The LBSPR was chosen for this analysis because is able to estimate fisheries stock from limited data— a situation where few data are available. The LBSPR models are equilibrium based, and assume that the length composition data is representative of the exploited population at steady state. Because of limited data, LBSPR was deploy to first to simulate the expected length composition and growth curve. These parameters are then fitted to the model with the empirical length frequency data to estimate relative apical fishing mortality and spawning potential ratio of kawakawa.</p>
+</section>
+<section id="length-frequency" class="level3" data-number="19.1.2">
+<h3 data-number="19.1.2" class="anchored" data-anchor-id="length-frequency"><span class="header-section-number">19.1.2</span> Length frequency</h3>
+<p>The raw raw length measurements were first converted to length frequency and summarized the length-frequency matrix data into one column per year. This structure of LFQ data is needed when catch data is converted to growth. Then length frequency data set was restructured according to a list of steps to emphasize cohorts in the data. The steps can be found in various publications, see <span class="citation" data-cites="brey">Brey and Pauly (<a href="#ref-brey" role="doc-biblioref">1986</a>)</span> or <span class="citation" data-cites="pauly">Pauly (<a href="#ref-pauly" role="doc-biblioref">1981</a>)</span>. Here, the steps documented in <span class="citation" data-cites="gayanilo">Gayanilo and Pauly (<a href="#ref-gayanilo" role="doc-biblioref">1997</a>)</span> are used.</p>
+</section>
+<section id="recruitment" class="level3" data-number="19.1.3">
+<h3 data-number="19.1.3" class="anchored" data-anchor-id="recruitment"><span class="header-section-number">19.1.3</span> Recruitment</h3>
+<p>Recruitment patterns of a stock was computed by backward projection onto the length axis of a set of length frequency data using the von Bertallanfy growth curve <span class="citation" data-cites="pauly1982">(<a href="#ref-pauly1982" role="doc-biblioref">Pauly 1982</a>)</span>. The method assumes that (i) all individual fish in a data set grow as described by a single set of growth parameters and (ii) one month out of twelve always has zero recruitment. The second assumption is probably not met, since temperate species may contain more than one month with zero recruitment, while tropical species may have more constant recruitment without months of no recruitment.</p>
+<p>Although the default setting provided a reliable recruitment, however, the time lag between peak spawning and recruitment made the 0.25 tsample inaccurate to estimate the recruitment period of Kawakawa because it contains matrix of sampling dates. Therefore, to have a vector of date of each sampling data, the date were converted to fraction date by extracting the day of the year of sampling date and divide by 365.25</p>
+</section>
+<section id="cohort-identification" class="level3" data-number="19.1.4">
+<h3 data-number="19.1.4" class="anchored" data-anchor-id="cohort-identification"><span class="header-section-number">19.1.4</span> Cohort identification</h3>
+<p>We identified kawakawa cohorts by means of length-frequency histograms analyses. Length-frequency histograms were created for each sampling months from size data for 1,866 observation based on class intervals of 2.0cm fork length. From the length-frequency histograms, we used the modal progression routine of FiSAT to identify potential cohorts. Modes were accepted as distinct cohorts only when differentiated by a separation index above the critical value of 2 and validated with growth curves. One-sample Wilcoxon tests were used to confirm the goodness of fit of observed and predicted length frequencies and detect departures from normality of the observed length-frequency distributions <span class="citation" data-cites="r-base">(<a href="#ref-r-base" role="doc-biblioref">R Core Team 2020</a>)</span>.</p>
+</section>
+</section>
+<section id="derivation-of-reference-points" class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="derivation-of-reference-points"><span class="header-section-number">19.2</span> Derivation of reference points</h2>
+<section id="estimate-size-at-first-maturity" class="level3" data-number="19.2.1">
+<h3 data-number="19.2.1" class="anchored" data-anchor-id="estimate-size-at-first-maturity"><span class="header-section-number">19.2.1</span> Estimate size at first maturity</h3>
+<p>Size at first maturity (<span class="math inline">\(L_{50}\)</span>) describe the length at which 50 percent of the individuals fish caught are adults or with mature gonads. The size at 50% maturity (<span class="math inline">\(L_{50}\)</span>) was estimated as the length at which a randomly chosen specimen has a 50% chance of being mature <span class="citation" data-cites="sizemat">(<a href="#ref-sizemat" role="doc-biblioref">Torrejon-Magallanes 2020</a>)</span>. We used a morphometric instead of gonado somatic technique to estimate <span class="math inline">\(L_{50}\)</span> of Kawakawa because is robust in assessing the stock using the length-based-spawning potential ratio (LBSPR). In the regression analysis, the fork length is denoted as the explanatory variable and the classification of maturity (<em>juveniles</em> versus <em>adults</em>) is considered the response variable (<em>binomial</em>). The variables are fitted to a logit function in equation below:</p>
+<p><span class="math display">\[
+P_{CS} = \frac{1}{1+e^{-(\hat{\beta}_{0} + \hat{\beta}_{1}\times X)}}
+\]</span></p>
+<p>where PCS is the probability of an individual of being mature at a determinate X length. <span class="math inline">\(\beta_{0}\)</span> (intercept) and <span class="math inline">\(\beta_{1}\)</span> (slope) are parameters estimated. The L_50_ is calculated in equation below:</p>
+<p><span class="math display">\[
+L_{50} = -\frac{\hat{\beta}_{0}}{\hat{\beta}_{1}}
+\]</span></p>
+</section>
+<section id="catch-converted-curve" class="level3" data-number="19.2.2">
+<h3 data-number="19.2.2" class="anchored" data-anchor-id="catch-converted-curve"><span class="header-section-number">19.2.2</span> Catch Converted Curve</h3>
+<p>Life history parameters were determined from growth parameters (length asymptotic and growth coefficient), mortality and size at first maturity. Total mortality was estimated using the length–converted catch curve model. The selectivity parameters were estimated by the length-converted catch curve analysis with simultaneous estimation of the selection ogive. The construction of the catch curves requires information about growth parameters to estimate the relative age of the individuals. Here, growth parameters (<span class="math inline">\(L_\infty\)</span> and <span class="math inline">\(K\)</span>) of the von Bertlanffy growth equation (VBGE) were computed. Based on the growth parameters, the instantaneous natural mortality rate (<span class="math inline">\(M\)</span>) were approximated by means of the empirical formula in equation below:</p>
+<p><span class="math display">\[
+M = 4.118K^{0.73} L_{\infty}-0.33
+\]</span></p>
+<p>where K and L∞ are the growth parameters of the VBGE. By subtraction of <span class="math inline">\(M\)</span> from <span class="math inline">\(Z\)</span>, an estimate of the instantaneous fishing mortality rate (F) was estimated and an indicator of the exploitation rate was estimated as (<span class="math inline">\(E = \frac{F}{Z}\)</span>).</p>
+<!-- ### Estimate Total Mortality rate (Z) and Growth Parameter (K) -->
+<p>A <em>Powell-Wetherall</em> method was used to estimate the instantaneous total mortality rate (<span class="math inline">\(Z\)</span>) and the infinite length (<span class="math inline">\(L_\infty\)</span>) of the von Bertalanffy growth equation <span class="citation" data-cites="powell wetherall">(<a href="#ref-powell" role="doc-biblioref">Powell 1979</a>; <a href="#ref-wetherall" role="doc-biblioref">Wetherall, Polovina, and Ralston 1987</a>)</span>. The Electronic LEngth Frequency ANalysis (ELEFAN) method was used to fitting the best growth curve, which allows the fitted curve through the maximum number of peaks of the length frequency distribution.With the aid of the best growth curve, the growth constant and asymptotic length (<span class="math inline">\(L_{\infty}\)</span>) were estimated. The von Bertalanffy growth equation was defined in equation below;</p>
+<p><span class="math display">\[
+L_t = L_{\infty} [1-exp (-K(t-t_0))]
+\]</span></p>
+<p>Where <span class="math inline">\(L_t\)</span> is length at time <span class="math inline">\(t\)</span>, <span class="math inline">\(L_\infty\)</span>, the asymptotic length, <span class="math inline">\(K\)</span>, the growth coefficient and <span class="math inline">\(t_0\)</span>, is the hypothetical time at which length is equal to zero. The <span class="math inline">\(t_0\)</span> value estimated using the empirical equation below;</p>
+<p><span class="math display">\[
+Log_{10}(-t_0) = -0.3922 - 0.2752 \times Log_{10}\times L_\infty - 1.038 \times Log_10 \times K
+\]</span></p>
+</section>
+</section>
+<section id="data-analysis-and-packages" class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="data-analysis-and-packages"><span class="header-section-number">19.3</span> Data Analysis and Packages</h2>
+<p>We used R–a language and environment for statistical computing version 4.5 <span class="citation" data-cites="r-base">(<a href="#ref-r-base" role="doc-biblioref">R Core Team 2020</a>)</span> to process, analyse, and visualize, plots and maps. Wilcoxon test was used to test whether the length at maturity was significant difference from the median fork length of kawakawa. Several packages were used to perform create length frequency, compute biological references points and estimate exploitation parameters, which are TropFishR <span class="citation" data-cites="tropfish">(<a href="#ref-tropfish" role="doc-biblioref">Mildenberger, Taylor, and Wolff 2017</a>)</span>, sizeMat <span class="citation" data-cites="sizemat">(<a href="#ref-sizemat" role="doc-biblioref">Torrejon-Magallanes 2020</a>)</span> and LBSPR <span class="citation" data-cites="lbspr">(<a href="#ref-lbspr" role="doc-biblioref">Hordyk 2019</a>)</span> packages. Other packages used for data management and analytic tasks includes <strong>readr</strong> <span class="citation" data-cites="readr">(<a href="#ref-readr" role="doc-biblioref">Wickham and Hester 2020</a>)</span> package for reading comma–separated files, <strong>readxl</strong> for Excel spreadsheets <span class="citation" data-cites="readxl">(<a href="#ref-readxl" role="doc-biblioref">Wickham and Bryan 2019</a>)</span>, and <strong>ncdf4</strong> <span class="citation" data-cites="ncdf4">(<a href="#ref-ncdf4" role="doc-biblioref">Pierce 2019</a>)</span> for importing satellite data stored in NECDF file format and <strong>sf</strong> <span class="citation" data-cites="sf">(<a href="#ref-sf" role="doc-biblioref">Pebesma 2018</a>)</span> package for loading shapefile and simple feature files.</p>
+<p>Other packages include <strong>lubridate</strong> <span class="citation" data-cites="lubridate">(<a href="#ref-lubridate" role="doc-biblioref">Grolemund and Wickham 2011</a>)</span> for dealing with date and group observations to monsoon seasons, <strong>wior</strong> package <span class="citation" data-cites="wior">Semba and Peter (<a href="#ref-wior" role="doc-biblioref">2020</a>)</span> was used to detect outlier observations from the datasets, <strong>dplyr</strong> <span class="citation" data-cites="dplyr">(<a href="#ref-dplyr" role="doc-biblioref">Wickham et al. 2021</a>)</span> for manipulating data, and <strong>tidyr</strong> <span class="citation" data-cites="tidyr">(<a href="#ref-tidyr" role="doc-biblioref">Wickham 2021</a>)</span> for organizing the file into a consistent format for subsequent analysis and mapping. The results from the analysis were summarized and presented in tables with <strong>knitr</strong> <span class="citation" data-cites="knitr">(<a href="#ref-knitr" role="doc-biblioref">Xie 2014</a>)</span> and <strong>kableExtra</strong> <span class="citation" data-cites="kableextra">(<a href="#ref-kableextra" role="doc-biblioref">Zhu 2021</a>)</span> packages while plotting and mapping was made with the <strong>ggplot2</strong> <span class="citation" data-cites="ggplot">(<a href="#ref-ggplot" role="doc-biblioref">Wickham 2016</a>)</span>, and <strong>ggstatsplot</strong> <span class="citation" data-cites="ggstatsplot">(<a href="#ref-ggstatsplot" role="doc-biblioref">Patil 2021</a>)</span> and <strong>metR</strong> <span class="citation" data-cites="metr">(<a href="#ref-metr" role="doc-biblioref">Campitelli 2021</a>)</span> packages. <strong>patchwork</strong> <span class="citation" data-cites="patchwork">(<a href="#ref-patchwork" role="doc-biblioref">Pedersen 2020</a>)</span> was used to combine plots and export them in both PDF and PNG formats. The <strong>bookdown</strong> <span class="citation" data-cites="bookdown">(<a href="#ref-bookdown" role="doc-biblioref">Xie 2016</a>)</span> and <strong>rmarkdown</strong> <span class="citation" data-cites="rmarkdown">(<a href="#ref-rmarkdown" role="doc-biblioref">Xie, Dervieux, and Riederer 2020</a>)</span> packages were used to typeset and compile LATEX document of the manuscript an knit with <strong>knitr</strong> package <span class="citation" data-cites="knitr">(<a href="#ref-knitr" role="doc-biblioref">Xie 2014</a>)</span> to various format including PDF, tex and word. The script file that can be used to reproduce the analysis and plotting figures used in this study can be accessed from <a href="www.github.com">this</a> github link.</p>
+</section>
+<section id="dsfa-neritic-data" class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="dsfa-neritic-data"><span class="header-section-number">19.4</span> DSFA neritic data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>neritic <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"d:/semba/dsfa_fumba/length_weight_neritic.csv"</span>) <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>neritic <span class="ot">=</span> neritic <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fishing_date =</span> lubridate<span class="sc">::</span><span class="fu">mdy</span>(fishing_date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">fl =</span> focul_length, <span class="at">wt =</span> uzito, <span class="at">species =</span>aina_ya_tuna_walioteuliwa, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">gear =</span> aina_ya_mtego) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">if_else</span>(species <span class="sc">==</span> <span class="st">"Sehewa (Kawakawa)"</span>, <span class="st">"Kawakawa"</span>,species))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>neritic <span class="sc">%&gt;%</span> </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(kijiji) <span class="sc">%&gt;%</span> <span class="fu">count</span>(<span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 11 x 2
+# Groups:   kijiji [11]
+   kijiji             n
+   &lt;chr&gt;          &lt;int&gt;
+ 1 Shangani East   4135
+ 2 Halmashauri     3808
+ 3 Nungwi          2429
+ 4 Wete            1299
+ 5 Magengeni        541
+ 6 Kunduchi Pwani   239
+ 7 Kilindoni        135
+ 8 Jimbiza           19
+ 9 Bweni              5
+10 Other              3
+11 Tumbuju            2</code></pre>
+</div>
+</div>
+</section>
+<section id="l50" class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="l50"><span class="header-section-number">19.5</span> L50</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>kawa <span class="ot">=</span> neritic <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Kawakawa"</span> <span class="sc">&amp;</span> wt <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">&amp;</span> fl <span class="sc">&gt;</span> <span class="dv">31</span> <span class="sc">&amp;</span> fl <span class="sc">&lt;</span> <span class="dv">80</span> <span class="sc">&amp;</span> kijiji <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Halmashauri"</span>, <span class="st">"Shangani East"</span>)) </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>classify <span class="ot">=</span> kawa <span class="sc">%&gt;%</span> </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  sizeMat<span class="sc">::</span><span class="fu">classify_mature</span>(<span class="at">varNames =</span> <span class="fu">c</span>(<span class="st">"fl"</span>, <span class="st">"wt"</span>), <span class="at">varSex =</span> <span class="cn">NULL</span>, <span class="at">method =</span> <span class="st">"qd"</span>, <span class="at">selectSex =</span> <span class="cn">NULL</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>all individuals were used in the analysis </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>classify <span class="sc">%&gt;%</span> <span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># classify </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## convert classify dataset to tibble/dataframe</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>classifiy.tb <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> classify<span class="sc">$</span>x, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> classify<span class="sc">$</span>y, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">mature =</span> classify<span class="sc">$</span>mature</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">group =</span> <span class="fu">if_else</span>(mature <span class="sc">==</span> <span class="dv">1</span>,  <span class="st">"Adult"</span>, <span class="st">"Juvenile"</span>)) </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">#%&gt;%   wior::outlier_remove(y) </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>classifiy.tb <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(kawa) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">month =</span> lubridate<span class="sc">::</span><span class="fu">month</span>(fishing_date, <span class="at">label =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> month, <span class="at">fill =</span> group))<span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">preserve =</span> <span class="st">"single"</span>), <span class="at">width =</span> <span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_fill_lancet</span>()<span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">3</span>,.<span class="dv">85</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of relying on the base plot, we can exract the data and use the power of ggplot2 and its sister packages to make elegant plots</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>formula <span class="ot">=</span> y<span class="sc">~</span>x</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="do">## compute percentage of simulated avalue</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>percentage <span class="ot">=</span> classifiy.tb <span class="sc">%&gt;%</span> </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">percentage =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>),<span class="dv">2</span>)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>textual <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">xa =</span> <span class="dv">80</span>,<span class="at">ya=</span><span class="dv">6</span>, <span class="at">group =</span> <span class="cn">NA</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"Percentage of adult is"</span>, percentage<span class="sc">$</span>percentage[<span class="dv">1</span>], <span class="st">" and that of Juvenile is "</span>,  percentage<span class="sc">$</span>percentage[<span class="dv">1</span>]))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>kaw.juv.adult <span class="ot">=</span>  classifiy.tb <span class="sc">%&gt;%</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> group, <span class="at">fill =</span> group, <span class="at">shape =</span> group))<span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span>formula, <span class="at">se =</span> <span class="cn">TRUE</span> )<span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> scales<span class="sc">::</span><span class="fu">log10_trans</span>(), <span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="at">width =</span> <span class="fl">1.5</span>))<span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="at">width =</span> <span class="dv">10</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">75</span>))<span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_color_lancet</span>()<span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>  ggsci<span class="sc">::</span><span class="fu">scale_fill_lancet</span>(<span class="at">alpha =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ggpmisc::stat_poly_line(formula = formula) +</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">stat</span>(rr.label)),</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                        <span class="at">formula =</span> formula, <span class="at">label.x =</span> .<span class="dv">04</span>, <span class="at">label.y =</span> <span class="fu">c</span>(.<span class="dv">82</span>,.<span class="dv">75</span>))<span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_poly_eq</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">stat</span>(eq.label)), </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>                        <span class="at">formula =</span> formula) <span class="sc">+</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">75</span>,.<span class="dv">15</span>), </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>), </span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fork length (cm)"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>kaw.juv.adult</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> classifiy.tb <span class="sc">%$%</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glm</span>(y<span class="sc">~</span>x <span class="sc">+</span> group)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  car<span class="sc">::</span><span class="fu">Anova</span>(<span class="at">type =</span> <span class="st">"III"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Analysis of Deviance Table (Type III tests)
+
+Response: y
+      LR Chisq Df Pr(&gt;Chisq)    
+x         1931  1    &lt; 2e-16 ***
+group       50  1    1.5e-12 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  ggstatsplot<span class="sc">::</span><span class="fu">ggcoefstats</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fit <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  equatiomatic<span class="sc">::</span><span class="fu">extract_eq</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># operatorname,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">var_colors =</span> <span class="fu">c</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"#ffa91f"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"#00d1ab"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">greek_colors =</span> <span class="fu">c</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"black"</span>, <span class="st">"#3A21B3"</span>, <span class="st">"#58A1D9"</span>, <span class="st">"#FF7582"</span>, <span class="st">"black"</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">subscript_colors =</span> <span class="fu">c</span>(</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>     <span class="cn">NA_character_</span>, <span class="st">"#3A21B3"</span>, <span class="st">"#58A1D9"</span>, <span class="st">"#FF7582"</span>, <span class="cn">NA_character_</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">wrap =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">terms_per_line =</span> <span class="dv">3</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><span class="math display">\[
+\begin{aligned}
+E( \operatorname{y} ) &amp;= {\color{black}{\alpha}} + {\color{#3A21B3}{\beta}}_{{\color{#3A21B3}{1}}}({\color{#ffa91f}{\operatorname{x}}}) + {\color{#58A1D9}{\beta}}_{{\color{#58A1D9}{2}}}(\operatorname{group}_{\operatorname{Juvenile}})
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### estimate maturity</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>myMature <span class="ot">=</span> classify<span class="sc">%&gt;%</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  sizeMat<span class="sc">::</span><span class="fu">morph_mature</span>(<span class="at">method =</span> <span class="st">"fq"</span>, <span class="at">niter =</span> <span class="dv">100</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>myMature<span class="sc">%&gt;%</span> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>formula: Y = 1/1+exp-(A + B*X) </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Original Bootstrap (Median)
+A   -81.3653 -83.1864          
+B   1.6349   1.6699            
+L50 49.7685  49.7425           
+R2  -        0.9481            </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### PLot estimated morphomometric maturity</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>myMature <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">onlyOgive =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Size at morphometric maturity = 49.7 
+Confidence intervals = 49.5 - 50 
+Rsquare = 0.95</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>l50 <span class="ot">=</span> <span class="fl">49.8</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">=</span> <span class="fl">0.95</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>xpos <span class="ot">=</span> <span class="dv">65</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>markx <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">25</span>, <span class="at">x1 =</span> l50, <span class="at">y =</span> <span class="fl">0.5</span>,<span class="at">y1 =</span> <span class="fl">0.5</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>marky <span class="ot">=</span> <span class="fu">tibble</span>(<span class="at">x =</span> l50, <span class="at">x1 =</span> l50, <span class="at">y =</span> <span class="dv">0</span>,<span class="at">y1 =</span> <span class="fl">0.5</span>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>mystats <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span><span class="fu">c</span>(xpos,xpos), <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.9</span>,.<span class="dv">75</span>), </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">"R2"</span>, <span class="st">"L50"</span>), <span class="at">value =</span> <span class="fu">c</span>(r2, l50)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"*R*&lt;sup&gt;2&lt;/sup&gt; = {round(value, 2)}"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">x =</span> xpos, <span class="at">y =</span> <span class="fl">0.75</span>, <span class="at">variable =</span> <span class="st">"L50"</span>, <span class="at">value =</span> l50, </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"*L*&lt;sub&gt;50&lt;/sub&gt; = {round(value, 2)}"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>kaw.morpho <span class="ot">=</span> myMature<span class="sc">$</span>out <span class="sc">%&gt;%</span> </span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x))<span class="sc">+</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> fitted), <span class="at">color =</span> <span class="st">"black"</span>)<span class="sc">+</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> markx, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> x1, <span class="at">yend =</span> y1), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">data =</span> marky, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">xend =</span> x1, <span class="at">yend =</span> y1), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># coord_cartesian(expand = FALSE)+</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fork length (cm)"</span>, <span class="at">y =</span> <span class="st">"Maturity"</span>)<span class="sc">+</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>())<span class="sc">+</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="at">width =</span> <span class="dv">10</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">85</span>))<span class="sc">+</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">x =</span> l50, <span class="at">y =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="fl">2.2</span>)<span class="sc">+</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  ggtext<span class="sc">::</span><span class="fu">geom_richtext</span>(<span class="at">data =</span> mystats, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label))</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>kaw.morpho</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(kawa<span class="sc">$</span>fl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 57</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>kaw.hist <span class="ot">=</span> kawa <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># wior::outlier_remove(fl) %&gt;% </span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select(fl, maturity_stage) %&gt;% </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  ggstatsplot<span class="sc">::</span><span class="fu">gghistostats</span>(<span class="at">x =</span> fl, </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                            <span class="at">test.value =</span> myMature<span class="sc">$</span>L50_boot <span class="sc">%&gt;%</span> <span class="fu">median</span>(),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">type =</span> <span class="st">"n"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bf.message =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                            <span class="co"># normal.curve = TRUE, </span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">binwidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> myMature<span class="sc">$</span>L50_boot <span class="sc">%&gt;%</span> <span class="fu">median</span>(), <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">size =</span> <span class="fl">1.2</span>)<span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Fork length (cm)"</span>)<span class="sc">+</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_width</span>(<span class="at">width =</span> <span class="dv">10</span>))</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>kaw.hist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="length-frequency-1" class="level2" data-number="19.6">
+<h2 data-number="19.6" class="anchored" data-anchor-id="length-frequency-1"><span class="header-section-number">19.6</span> Length frequency</h2>
+<p>Convert raw length measurements to length frequency data (lfq class).</p>
+<p>Modify length-freqeuncy (LFQ) data. Allows to summarise catch matrix of LFQ data to one column per year. This is required for e.g.&nbsp;catchCurve. Allows to change bin size of LFQ data. Allows to ad plus group to catch matrix.</p>
+<p>Then length frequency data set was restructured according to a list of steps to emphasise cohorts in the data. The steps can be found in various publications, see <span class="citation" data-cites="brey">Brey and Pauly (<a href="#ref-brey" role="doc-biblioref">1986</a>)</span> or <span class="citation" data-cites="pauly">Pauly (<a href="#ref-pauly" role="doc-biblioref">1981</a>)</span>. Here, the steps documented in <span class="citation" data-cites="gayanilo">Gayanilo and Pauly (<a href="#ref-gayanilo" role="doc-biblioref">1997</a>)</span> are used.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kawa.lfq <span class="ot">=</span> kawa <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqCreate</span>(<span class="at">Lname =</span> <span class="st">"fl"</span>, <span class="at">Dname =</span> <span class="st">"fishing_date"</span>, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bin_size =</span> <span class="dv">1</span>, <span class="at">species =</span> <span class="st">"Kawakawa"</span>, <span class="at">Lmin =</span> <span class="dv">31</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">length_unit =</span> <span class="st">"cm"</span>, <span class="at">aggregate_dates =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>kaw.mod <span class="ot">=</span> kawa.lfq <span class="sc">%&gt;%</span> </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqModify</span>(<span class="at">bin_size =</span> <span class="dv">2</span>, <span class="at">aggregate =</span> <span class="st">"quarter"</span>, <span class="at">vectorise_catch =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqRestructure</span>(<span class="at">MA =</span> <span class="dv">11</span>, <span class="at">addl.sqrt =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">Fname =</span> <span class="st">"catch"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">75</span>))</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">Fname =</span> <span class="st">"rcounts"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="powell-wetherall-method" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="powell-wetherall-method"><span class="header-section-number">19.7</span> Powell-Wetherall method</h2>
+<p>A method to estimate the instantaneous total mortality rate (Z) and the infinite length of the von Bertalanffy growth equation <span class="citation" data-cites="powell">(<a href="#ref-powell" role="doc-biblioref">Powell 1979</a>)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>res_PW <span class="ot">&lt;-</span> <span class="fu">powell_wetherall</span>(<span class="at">param =</span> kaw.mod,</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">catch_columns =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(kaw.mod<span class="sc">$</span>catch),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">reg_int =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">14</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show results</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"Linf ="</span>,<span class="fu">round</span>(res_PW<span class="sc">$</span>Linf_est,<span class="dv">2</span>), <span class="st">"±"</span>, <span class="fu">round</span>(res_PW<span class="sc">$</span>se_Linf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Linf =61.25±3"</code></pre>
+</div>
+</div>
+</section>
+<section id="elefan" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="elefan"><span class="header-section-number">19.8</span> ELEFAN</h2>
+<p>Electronic LEngth Frequency ANalysis for estimating growth parameter. This functions allows to perform the K-Scan and Response surface analysis to estimate growth parameters. It combines the step of restructuring length-frequency data (lfqRestructure) followed by the fitting of VBGF curves through the restructured data (lfqFitCurves). K-Scan is a method used to search for the K parameter with the best fit while keeping the Linf fixed. In contrast, with response surface analysis both parameters are estimated and the fits are displayed in a heatmap.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ELEFAN with K-Scan</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>res_KScan <span class="ot">&lt;-</span> <span class="fu">ELEFAN</span>(kaw.mod, <span class="at">Linf_fix =</span> res_PW<span class="sc">$</span>Linf_est,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">MA=</span><span class="dv">5</span>, <span class="at">addl.sqrt =</span> <span class="cn">TRUE</span>, <span class="at">hide.progressbar =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimisation procuedure of ELEFAN is running. 
+This will take some time. 
+The process bar will inform you about the process of the calculations.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show results</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>res_KScan<span class="sc">$</span>par; res_KScan<span class="sc">$</span>Rn_max</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Linf
+[1] 61.3
+
+$K
+[1] 1.42
+
+$t_anchor
+[1] 0.0563
+
+$C
+[1] 0
+
+$ts
+[1] 0
+
+$phiL
+[1] 3.73</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.231</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">Fname =</span> <span class="st">"catch"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">75</span>))</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>lt <span class="ot">&lt;-</span> kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqFitCurves</span>(<span class="at">par =</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="fl">61.25</span>, <span class="at">K=</span><span class="fl">1.42</span>, <span class="at">t_anchor=</span><span class="fl">0.056</span>, <span class="at">C=</span><span class="fl">0.5</span>, <span class="at">ts=</span><span class="dv">0</span>),</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">draw =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">Fname =</span> <span class="st">"rcounts"</span>, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">75</span>))</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>lt <span class="ot">&lt;-</span> kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqFitCurves</span>(<span class="at">par =</span> <span class="fu">list</span>(<span class="at">Linf=</span><span class="fl">61.25</span>, <span class="at">K=</span><span class="fl">1.42</span>, <span class="at">t_anchor=</span><span class="fl">0.056</span>, <span class="at">C=</span><span class="fl">0.5</span>, <span class="at">ts=</span><span class="dv">0</span>),</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">draw =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lty =</span> <span class="dv">3</span>, <span class="at">lwd=</span><span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this figure was exported in console with a title lfq_cohort.pdf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="catch-converted" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="catch-converted"><span class="header-section-number">19.9</span> catch-converted</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ab <span class="ot">=</span> kaw.mod <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqModify</span>(<span class="at">vectorise_catch =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>                       <span class="co"># plus_group = 67,</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">bin_size =</span><span class="dv">4</span>,</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                       <span class="co"># minDate = as.Date("2020-06-30"),</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>                       <span class="co"># maxDate = as.Date("2020-12-31"),</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">year =</span> <span class="dv">2020</span>) </span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>ab<span class="sc">$</span>Linf <span class="ot">=</span> <span class="fl">61.25</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>ab<span class="sc">$</span>K <span class="ot">=</span> <span class="fl">1.42</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>catch.converted <span class="ot">=</span> ab <span class="sc">%&gt;%</span> </span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">catchCurve</span>(<span class="at">reg_int =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">68</span>), </span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">calc_ogive =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># cumulative = TRUE,</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">auto =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-15-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>catch.converted<span class="sc">$</span>F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>NULL</code></pre>
+</div>
+</div>
+</section>
+<section id="recruitment-1" class="level2" data-number="19.10">
+<h2 data-number="19.10" class="anchored" data-anchor-id="recruitment-1"><span class="header-section-number">19.10</span> Recruitment</h2>
+<p>This function calculates recruitment patterns of a stock by backward projection onto the length axis of a set of length frequency data using the (special, generalised or seasonalised) von Bertallanfy growth curve <span class="citation" data-cites="pauly1982">(<a href="#ref-pauly1982" role="doc-biblioref">Pauly 1982</a>)</span>. The method assumes that (i) all fish in a data set grow as described by a single set of growth parameters and (ii) one month out of twelve always has zero recruitment. The second assumption is probably not met, since temperate species may contain more than one month with zero recruitment, while tropical species may have more constant recruitment without months of no recruitment. If t0 is not provided, a relative recruitment pattern will be estimated without specific month values returned in the results. However, an estimate of t0 can be obtained by the time lag between peak spawning and recruitment. Several length-frequency data sets can be used to estimate the recrutiment pattern by providing catch as a matrix and setting catch_column to NA (default). Then the fraction per time is calculated for each size class in each sample and then pooled together. For the generalised vBGF, D is required, for the seasonalised vBGF C, ts and D.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>catch.converted <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recruitment</span>(<span class="at">tsample =</span> <span class="fl">0.25</span>, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>If no t0 is provided only relative recruitment pattern can be estimated.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$species
+[1] "Kawakawa"
+
+$stock
+[1] NA
+
+$dates
+[1] "2020-01-01"
+
+$midLengths
+ [1] 34 38 42 46 50 54 58 62 66 70
+
+$catch
+ [1]   2  17  63  94  96 193 314 222  67  14
+
+$comment
+[1] ""
+
+$rcounts
+    X2019.08.15 X2019.11.15 X2020.02.15 X2020.05.15 X2020.08.15 X2020.11.15
+V1      0.00000      0.0000      0.0000      0.0000     0.00000     -0.8194
+V2      0.00000      0.0000      0.0000      0.0000     0.00000     -0.8468
+V3      0.00108      0.0000      0.0000      0.0000     0.00000     -0.8727
+V4      0.00337      0.0000      0.0000      0.0000     0.00000      0.1036
+V5      0.00000      0.0000     -0.3684      0.0000     0.00000      0.9354
+V6      0.00000     -0.2288     -0.6595      0.0000     0.00000      0.7009
+V7      0.00000     -0.4853     -0.2477      0.0000    -0.11889     -0.0016
+V8      0.00000     -0.5031      0.0941      0.0000    -0.04782      0.1357
+V9      0.01158      0.4732      0.7015      0.0000    -0.18403     -0.7371
+V10     0.00216     -0.3383     -0.3056      0.0000    -0.19768     -0.7894
+V11     0.00216      0.0633      0.0641     -0.2905    -0.18070     -0.4138
+V12     0.00000      0.3884      1.3428     -0.2169     0.07256      0.5164
+V13     0.00000     -0.0456      0.7258     -0.0183     0.16572      0.9703
+V14     0.00000      0.5332      0.1291      0.3833     0.21984      1.2248
+V15     0.00000      0.5951      0.3791      0.4087     0.26284      0.7729
+V16     0.00000     -0.0651     -0.3723     -0.0291     0.00816      0.0575
+V17     0.00000     -0.2826     -0.5594     -0.1949     0.00000      0.0450
+V18     0.00000     -0.1043      0.0000     -0.0424     0.00000     -0.6049
+V19     0.00000      0.0000     -0.2083      0.0000     0.00000     -0.3766
+V20     0.00000      0.0000      0.0000      0.0000     0.00000      0.0000
+V21     0.00000      0.0000      0.0000      0.0000     0.00000      0.0000
+V22     0.00000      0.0000      0.0000      0.0000     0.00000      0.0000
+    X2021.02.15 X2021.05.15
+V1       0.0000      0.0000
+V2       0.0000      0.0000
+V3      -0.5810      0.0000
+V4      -0.0679      0.0000
+V5       0.0248      0.0000
+V6       0.3158      0.0000
+V7       0.1953     -0.1289
+V8       0.0892     -0.0529
+V9      -0.3506      0.0000
+V10     -0.6001      0.0000
+V11     -0.1193      0.0158
+V12     -0.0738      0.3697
+V13      0.7595      0.2058
+V14      1.2925      0.1599
+V15      0.8188      0.3838
+V16      0.2460     -0.0649
+V17      0.0845     -0.1515
+V18     -0.4996      0.0000
+V19     -0.4935     -0.0781
+V20      0.0000      0.0000
+V21     -0.3049      0.0000
+V22      0.0000      0.0000
+
+$peaks_mat
+    X2019.08.15 X2019.11.15 X2020.02.15 X2020.05.15 X2020.08.15 X2020.11.15
+V1            0           0           0           0           0           0
+V2            0           0           0           0           0           0
+V3            4           0           0           0           0           0
+V4            4           0           0           0           0          19
+V5            0           0           0           0           0          19
+V6            0           0           0           0           0          19
+V7            0           0           0           0           0           0
+V8            0           0          10           0           0          20
+V9            5           7          10           0           0           0
+V10           5           0           0           0           0           0
+V11           5           8          11           0           0           0
+V12           0           8          11           0          16          21
+V13           0           0          11           0          16          21
+V14           0           9          11          13          16          21
+V15           0           9          11          13          16          21
+V16           0           0           0           0          16          21
+V17           0           0           0           0           0          21
+V18           0           0           0           0           0           0
+V19           0           0           0           0           0           0
+V20           0           0           0           0           0           0
+V21           0           0           0           0           0           0
+V22           0           0           0           0           0           0
+    X2021.02.15 X2021.05.15
+V1            0           0
+V2            0           0
+V3            0           0
+V4            0           0
+V5           22           0
+V6           22           0
+V7           22           0
+V8           22           0
+V9            0           0
+V10           0           0
+V11           0          25
+V12           0          25
+V13          23          25
+V14          23          25
+V15          23          25
+V16          23           0
+V17          23           0
+V18           0           0
+V19           0           0
+V20           0           0
+V21           0           0
+V22           0           0
+
+$ASP
+[1] 8.48
+
+$MA
+[1] 11
+
+$Linf
+[1] 61.2
+
+$K
+[1] 1.42
+
+$t_midL
+ [1] 0.570 0.682 0.815 0.979 1.193 1.503 2.068   NaN   NaN   NaN
+
+$lnC_dt
+ [1] 2.96 4.94 6.06 6.23 5.94 6.18 5.74  NaN  NaN   NA
+
+$reg_int
+[1] 5 7
+
+$linear_mod
+
+Call:
+lm(formula = yvar ~ xvar, data = df.CC.cut)
+
+Coefficients:
+(Intercept)         xvar  
+      6.423       -0.296  
+
+
+$Z
+[1] 0.296
+
+$se
+[1] 0.403
+
+$confidenceInt
+[1] -4.83  5.42
+
+$intercept
+[1] 6.42
+
+$linear_mod_sel
+
+Call:
+lm(formula = ln_1_S_1 ~ t_ogive, na.action = na.omit)
+
+Coefficients:
+(Intercept)      t_ogive  
+       15.7        -21.7  
+
+
+$Sobs
+[1] 0.0371 0.2780 0.8864 1.0975
+
+$ln_1_S_1
+[1]  3.256  0.954 -2.054    NaN
+
+$Sest
+ [1] 0.0355 0.2949 0.8825 0.9962 1.0000 1.0000 1.0000    NaN    NaN    NaN
+
+$t50
+[1] 0.722
+
+$t75
+[1] 0.773
+
+$t95
+[1] 0.858
+
+$L50
+[1] 39.3
+
+$L75
+[1] 40.8
+
+$L95
+[1] 43.1
+
+$ti
+ [1] 0.320 0.432 0.565 0.729 0.943 1.253 1.818   NaN   NaN   NaN
+
+$tS_frac
+ [1] 0.320 0.432 0.565 0.729 0.943 0.253 0.818   NaN   NaN   NaN
+
+$cor_months
+ [1]   4   6   7   9  12   4  10 NaN NaN NaN
+
+$months
+ [1]  1  2  3  4  5  6  7  8  9 10 11 12
+
+$all_recruits
+ [1]   0   0   0 195   0  17  63   0  94 314   0  96
+
+$mean_recruits
+ [1]   0   0   0 195   0  17  63   0  94 314   0  96
+
+$per_recruits
+ [1]  0.00  0.00  0.00 25.03  0.00  2.18  8.09  0.00 12.07 40.31  0.00 12.32
+
+attr(,"class")
+[1] "recruitment"</code></pre>
+</div>
+</div>
+<p>Although the detault setting provided a reliable recruitment, however, the 0.25 tsample is not accurate for our data because our dataset contain matrix of sampling dates. We therefore need to convert to fraction date by extracting the day of the year of sampling date and divide it by 365.25</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve sampling times from catch matrix</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>s_dates <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(kaw.mod<span class="sc">$</span>dates, <span class="at">format=</span><span class="st">"%d.%m.%Y"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="do">## convert to day in a year</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>year.day <span class="ot">=</span> s_dates <span class="sc">%&gt;%</span> lubridate<span class="sc">::</span><span class="fu">yday</span>()</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>sampling.time <span class="ot">=</span> year.day<span class="sc">/</span><span class="fl">365.25</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">1</span>))</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>kawa.lfq <span class="sc">%&gt;%</span> </span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqModify</span>(<span class="at">bin_size =</span> <span class="dv">2</span>, <span class="at">aggregate =</span> <span class="st">"month"</span>, <span class="at">years =</span> <span class="dv">2020</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  TropFishR<span class="sc">::</span><span class="fu">lfqRestructure</span>(<span class="at">MA =</span> <span class="dv">11</span>, <span class="at">addl.sqrt =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">Fname =</span> <span class="st">"catch"</span>, </span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">par =</span> <span class="fu">list</span>(<span class="at">Linf =</span> <span class="fl">61.25</span>, <span class="at">K =</span> <span class="fl">1.42</span>, <span class="at">t_anchor =</span> <span class="fl">0.056</span>, <span class="at">C =</span> <span class="fl">0.25</span>, <span class="at">ts =</span> <span class="dv">0</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">35</span>,<span class="dv">75</span>), <span class="at">las=</span><span class="dv">1</span>)</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>recruits <span class="ot">=</span> catch.converted <span class="sc">%&gt;%</span> </span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recruitment</span>(<span class="at">tsample =</span> sampling.time, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lbspr_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>If no t0 is provided only relative recruitment pattern can be estimated.</code></pre>
+</div>
+</div>
+</section>
+<section id="length-based-spawning-potential-ratio-lbspr" class="level2" data-number="19.11">
+<h2 data-number="19.11" class="anchored" data-anchor-id="length-based-spawning-potential-ratio-lbspr"><span class="header-section-number">19.11</span> Length-based spawning potential ratio (LBSPR)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># estimation of M</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>Ms <span class="ot">&lt;-</span> TropFishR<span class="sc">::</span><span class="fu">M_empirical</span>(<span class="at">Linf =</span> res_KScan<span class="sc">$</span>par<span class="sc">$</span>Linf, </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">K_l =</span> res_KScan<span class="sc">$</span>par<span class="sc">$</span>K, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">method =</span> <span class="st">"Then_growth"</span>)</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>kaw.mod<span class="sc">$</span>M <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(Ms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>kaw.pars <span class="ot">=</span> <span class="fu">new</span>(<span class="st">"LB_pars"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>myMature<span class="sc">%&gt;%</span> </span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>formula: Y = 1/1+exp-(A + B*X) </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Original Bootstrap (Median)
+A   -81.3653 -83.1864          
+B   1.6349   1.6699            
+L50 49.7685  49.7425           
+R2  -        0.9481            </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>kawa <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutate(uzito = as.numeric(uzito)) %&gt;% </span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter(code == "FRI" &amp; fl &lt; 60 &amp; between(new.date, lubridate::dmy(010620), lubridate::dmy(311220))) %&gt;%</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(fl, species) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  ggpubr<span class="sc">::</span><span class="fu">get_summary_stats</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 14
+  species  variable     n   min   max median    q1    q3   iqr   mad  mean    sd
+  &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 Kawakawa fl        1866    33    74     57    52    60     8  5.78  55.5  6.62
+# ... with 2 more variables: se &lt;dbl&gt;, ci &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="do">## biological parameters</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>Species <span class="ot">=</span> <span class="st">"Kawakawa"</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>L_units <span class="ot">=</span> <span class="st">"cm"</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>L50 <span class="ot">=</span> myMature<span class="sc">$</span>out <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">between</span>(fitted, <span class="fl">0.49</span>,<span class="fl">0.60</span>)) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(x)</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>L95 <span class="ot">=</span> myMature<span class="sc">$</span>out <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">between</span>(fitted, <span class="fl">0.93</span>,<span class="fl">0.971</span>)) <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(x)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>MK <span class="ot">=</span> kaw.mod<span class="sc">$</span>M<span class="sc">/</span>res_KScan<span class="sc">$</span>par<span class="sc">$</span>K</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>Linf <span class="ot">=</span> res_KScan<span class="sc">$</span>par<span class="sc">$</span>Linf</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Exploitation parameters</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>SL50 <span class="ot">=</span> catch.converted<span class="sc">$</span>L50</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>SL95 <span class="ot">=</span> catch.converted<span class="sc">$</span>L95</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>FM <span class="ot">=</span> <span class="fl">1.07</span><span class="co">#catch.converted$FM %&gt;% as.numeric() %&gt;% abs()</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>BinWidth <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>BinMin <span class="ot">=</span> <span class="dv">33</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>kaw.pars<span class="sc">@</span>BinMax <span class="ot">=</span> <span class="dv">74</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a><span class="co"># kaw.pars</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="ot">=</span> kaw.pars <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">LBSPRsim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="sc">%&gt;%</span> <span class="fu">plotSim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-stock" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="lbspr_files/figure-html/fig-stock-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure 19.1: Estimated a) the expected (equilibrium) size structure of the catch and the expected unfished size structure of the vulnerable population, b) the maturity and selectivity-at-length curves, c) the von Bertalanffy growth curve with relative age, and d) the SPR and relative yield curves as a function of relative fishing mortality (see note above on the F/M ratio).</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="sc">%&gt;%</span> </span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotSim</span>(<span class="at">lf.type =</span> <span class="st">"pop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lbspr_files/figure-html/stock-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">estimated stock population</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="sc">%&gt;%</span> <span class="fu">plotSim</span>(<span class="at">type =</span> <span class="st">"growth"</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="sc">%&gt;%</span> <span class="fu">plotSim</span>(<span class="at">type =</span> <span class="st">"len.freq"</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>kaw.sim <span class="sc">%&gt;%</span> <span class="fu">plotSim</span>(<span class="at">type =</span> <span class="st">"yield.curve"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">Z =</span> catch.converted<span class="sc">$</span>Z, <span class="at">K =</span> catch.converted<span class="sc">$</span>K,<span class="at">MK =</span> kaw.sim<span class="sc">@</span>MK,<span class="at">FM =</span> kaw.sim<span class="sc">@</span>FM, <span class="at">t50 =</span> catch.converted<span class="sc">$</span>t50, <span class="at">t95 =</span> catch.converted<span class="sc">$</span>t95,   <span class="at">L50 =</span> kaw.sim<span class="sc">@</span>L50, <span class="at">L95 =</span> kaw.sim<span class="sc">@</span>L95, <span class="at">SL50 =</span> kaw.sim<span class="sc">@</span>SL50, <span class="at">SL95 =</span> kaw.sim<span class="sc">@</span>SL95,<span class="at">Linf =</span> kaw.sim<span class="sc">@</span>Linf, <span class="at">SPR =</span> kaw.sim<span class="sc">@</span>SPR, <span class="at">yield =</span> kaw.sim<span class="sc">@</span>Yield, <span class="at">YPR =</span> kaw.sim<span class="sc">@</span>YPR, <span class="at">SSB =</span> kaw.sim<span class="sc">@</span>SSB, <span class="at">SSB0 =</span> kaw.sim<span class="sc">@</span>SSB0) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kbl</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Reference"</span>, <span class="st">"Value"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">latex_options =</span> <span class="st">"hold_position"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="tbl-stock" class="anchored">
+
+<table class="table" style="margin-left: auto; margin-right: auto;"><caption>Table 19.1:  Biological and exploitation Reference Points for Kawakawa tuna along the neritic waters of Tanzania </caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Reference </th>
+   <th style="text-align:right;"> Value </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Z </td>
+   <td style="text-align:right;"> 2.96e-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> K </td>
+   <td style="text-align:right;"> 1.42e+00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> MK </td>
+   <td style="text-align:right;"> 9.63e-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> FM </td>
+   <td style="text-align:right;"> 1.07e+00 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> t50 </td>
+   <td style="text-align:right;"> 7.22e-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> t95 </td>
+   <td style="text-align:right;"> 8.58e-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> L50 </td>
+   <td style="text-align:right;"> 4.98e+01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> L95 </td>
+   <td style="text-align:right;"> 5.13e+01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SL50 </td>
+   <td style="text-align:right;"> 3.93e+01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SL95 </td>
+   <td style="text-align:right;"> 4.31e+01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Linf </td>
+   <td style="text-align:right;"> 6.13e+01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SPR </td>
+   <td style="text-align:right;"> 2.49e-01 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> yield </td>
+   <td style="text-align:right;"> 1.41e+08 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> YPR </td>
+   <td style="text-align:right;"> 2.21e+04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SSB </td>
+   <td style="text-align:right;"> 5.90e+07 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> SSB0 </td>
+   <td style="text-align:right;"> 3.73e+04 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-ahmadi2020towards" class="csl-entry" role="doc-biblioentry">
+Ahmadi, Mohammad Sadeq, Janez Sušnik, William Veerbeek, and Chris Zevenbergen. 2020. <span>“Towards a Global Day Zero? Assessment of Current and Future Water Supply and Demand in 12 Rapidly Developing Megacities.”</span> <em>Sustainable Cities and Society</em> 61: 102295.
+</div>
+<div id="ref-board2010ocean" class="csl-entry" role="doc-biblioentry">
+Board, Ocean Studies, National Research Council, et al. 2010. <em>Ocean Acidification: A National Strategy to Meet the Challenges of a Changing Ocean</em>. National Academies Press.
+</div>
+<div id="ref-rfishbase" class="csl-entry" role="doc-biblioentry">
+Boettiger, Carl, Duncan Temple Lang, and Peter Wainwright. 2012. <span>“Rfishbase: Exploring, Manipulating and Visualizing <span>FishBase</span> Data from r.”</span> <em>Journal of Fish Biology</em>, November. <a href="https://doi.org/10.1111/j.1095-8649.2012.03464.x">https://doi.org/10.1111/j.1095-8649.2012.03464.x</a>.
+</div>
+<div id="ref-bown2013co" class="csl-entry" role="doc-biblioentry">
+Bown, Natalie K, Tim S Gray, and Selina M Stead. 2013. <span>“Co-Management and Adaptive Co-Management: Two Modes of Governance in a Honduran Marine Protected Area.”</span> <em>Marine Policy</em> 39: 128–34.
+</div>
+<div id="ref-bradley" class="csl-entry" role="doc-biblioentry">
+Bradley, Darcy, Matt Merrifield, Karly M. Miller, Serena Lomonico, Jono R. Wilson, and Mary G. Gleason. 2019. <span>“Opportunities to Improve Fisheries Management Through Innovative Technology and Advanced Data Systems.”</span> Journal Article. <em>Fish and Fisheries</em> 20 (3): 564–83. https://doi.org/<a href="https://doi.org/10.1111/faf.12361">https://doi.org/10.1111/faf.12361</a>.
+</div>
+<div id="ref-brey" class="csl-entry" role="doc-biblioentry">
+Brey, Thomas, and Daniel Pauly. 1986. <span>“Electronic Length Frequency Analysis: A Revised and Expanded User’s Guide to ELEFAN 0, 1 and 2.”</span>
+</div>
+<div id="ref-metr" class="csl-entry" role="doc-biblioentry">
+Campitelli, Elio. 2021. <em>metR: Tools for Easier Analysis of Meteorological Fields</em>. <a href="https://doi.org/10.5281/zenodo.2593516">https://doi.org/10.5281/zenodo.2593516</a>.
+</div>
+<div id="ref-dick2011depletion" class="csl-entry" role="doc-biblioentry">
+Dick, EJ, and Alec D MacCall. 2011. <span>“Depletion-Based Stock Reduction Analysis: A Catch-Based Method for Determining Sustainable Yields for Data-Poor Fish Stocks.”</span> <em>Fisheries Research</em> 110 (2): 331–41.
+</div>
+<div id="ref-gayanilo" class="csl-entry" role="doc-biblioentry">
+Gayanilo, FC, and Daniel Pauly. 1997. <em>FAO-ICLARM Stock Assessment Tools: Reference Manual</em>. Vol. 8. Food; Agriculture Organization of the United Nations Rome.
+</div>
+<div id="ref-goetz2019transport" class="csl-entry" role="doc-biblioentry">
+Goetz, Andrew R. 2019. <span>“Transport Challenges in Rapidly Growing Cities: Is There a Magic Bullet?”</span> Taylor &amp; Francis.
+</div>
+<div id="ref-golden" class="csl-entry" role="doc-biblioentry">
+Golden, Christopher D, Edward H Allison, William WL Cheung, Madan M Dey, Benjamin S Halpern, Douglas J McCauley, Matthew Smith, Bapu Vaitla, Dirk Zeller, and Samuel S Myers. 2016. <span>“Nutrition: Fall in Fish Catch Threatens Human Health.”</span> Journal Article. <em>Nature News</em> 534 (7607): 317.
+</div>
+<div id="ref-lubridate" class="csl-entry" role="doc-biblioentry">
+Grolemund, Garrett, and Hadley Wickham. 2011. <span>“Dates and Times Made Easy with <span class="nocase">lubridate</span>.”</span> <em>Journal of Statistical Software</em> 40 (3): 1–25. <a href="https://www.jstatsoft.org/v40/i03/">https://www.jstatsoft.org/v40/i03/</a>.
+</div>
+<div id="ref-hilborn2020effective" class="csl-entry" role="doc-biblioentry">
+Hilborn, Ray, Ricardo Oscar Amoroso, Christopher M Anderson, Julia K Baum, Trevor A Branch, Christopher Costello, Carryn L De Moor, et al. 2020. <span>“Effective Fisheries Management Instrumental in Improving Fish Stock Status.”</span> <em>Proceedings of the National Academy of Sciences</em> 117 (4): 2218–24.
+</div>
+<div id="ref-lbspr" class="csl-entry" role="doc-biblioentry">
+Hordyk, Adrian. 2019. <em>LBSPR: Length-Based Spawning Potential Ratio</em>. <a href="https://CRAN.R-project.org/package=LBSPR">https://CRAN.R-project.org/package=LBSPR</a>.
+</div>
+<div id="ref-jackson" class="csl-entry" role="doc-biblioentry">
+Jackson, Jeremy BC, Michael X Kirby, Wolfgang H Berger, Karen A Bjorndal, Louis W Botsford, Bruce J Bourque, Roger H Bradbury, Richard Cooke, Jon Erlandson, and James A Estes. 2001. <span>“Historical Overfishing and the Recent Collapse of Coastal Ecosystems.”</span> Journal Article. <em>Science</em> 293 (5530): 629–37.
+</div>
+<div id="ref-jiao2011poor" class="csl-entry" role="doc-biblioentry">
+Jiao, Yan, Enric Cortés, Kate Andrews, and Feng Guo. 2011. <span>“Poor-Data and Data-Poor Species Stock Assessment Using a Bayesian Hierarchical Approach.”</span> <em>Ecological Applications</em> 21 (7): 2691–2708.
+</div>
+<div id="ref-tropfish" class="csl-entry" role="doc-biblioentry">
+Mildenberger, Tobias K., Marc H. Taylor, and Matthias Wolff. 2017. <span>“TropFishR: An r Package for Fisheries Analysis with Length-Frequency Data.”</span> <em>Methods in Ecology and Evolution</em> 8 (11): 1520–27. <a href="https://doi.org/10.1111/2041-210X.12791">https://doi.org/10.1111/2041-210X.12791</a>.
+</div>
+<div id="ref-ggstatsplot" class="csl-entry" role="doc-biblioentry">
+Patil, Indrajeet. 2021. <span>“<span class="nocase">Visualizations with statistical details: The <span class="nocase">’ggstatsplot’</span> approach</span>.”</span> <em><span>Journal of Open Source Software</span></em> 6 (61): 3167. <a href="https://doi.org/10.21105/joss.03167">https://doi.org/10.21105/joss.03167</a>.
+</div>
+<div id="ref-pauly" class="csl-entry" role="doc-biblioentry">
+Pauly, Daniel. 1981. <span>“The Relationships Between Gill Surface Area and Growth Performance in Fish: A Generalization of von Bertalanffy’s Theory of Growth.”</span>
+</div>
+<div id="ref-pauly1982" class="csl-entry" role="doc-biblioentry">
+———. 1982. <span>“Studying Single-Species Dynamics in a Tropical Multispecies Context.”</span> In <em>Theory and Management of Tropical Fisheries. ICLARM Conference Proceedings</em>, 9:33–70. 360. International Centre for Living Aquatic Resources Manila, Philippines.
+</div>
+<div id="ref-sf" class="csl-entry" role="doc-biblioentry">
+Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for R: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
+</div>
+<div id="ref-patchwork" class="csl-entry" role="doc-biblioentry">
+Pedersen, Thomas Lin. 2020. <em>Patchwork: The Composer of Plots</em>. <a href="https://CRAN.R-project.org/package=patchwork">https://CRAN.R-project.org/package=patchwork</a>.
+</div>
+<div id="ref-ncdf4" class="csl-entry" role="doc-biblioentry">
+Pierce, David. 2019. <em>Ncdf4: Interface to Unidata netCDF (Version 4 or Earlier) Format Data Files</em>. <a href="https://CRAN.R-project.org/package=ncdf4">https://CRAN.R-project.org/package=ncdf4</a>.
+</div>
+<div id="ref-pope2000gauging" class="csl-entry" role="doc-biblioentry">
+Pope, John G, Dave S Macdonald, Niels Daan, John D Reynolds, and Simon Jennings. 2000. <span>“Gauging the Impact of Fishing Mortality on Non-Target Species.”</span> <em>ICES Journal of Marine Science</em> 57 (3): 689–96.
+</div>
+<div id="ref-powell" class="csl-entry" role="doc-biblioentry">
+Powell, David G. 1979. <span>“Estimation of Mortality and Growth Parameters from the Length Frequency of a Catch [Model].”</span> <em>Rapports Et Proces-Verbaux Des Reunions (Denmark)</em>.
+</div>
+<div id="ref-punt2021evaluating" class="csl-entry" role="doc-biblioentry">
+Punt, André E, Michael G Dalton, Wei Cheng, Albert J Hermann, Kirstin K Holsman, Thomas P Hurst, James N Ianelli, et al. 2021. <span>“Evaluating the Impact of Climate and Demographic Variation on Future Prospects for Fish Stocks: An Application for Northern Rock Sole in Alaska.”</span> <em>Deep Sea Research Part II: Topical Studies in Oceanography</em> 189: 104951.
+</div>
+<div id="ref-punt2011among" class="csl-entry" role="doc-biblioentry">
+Punt, André E, David C Smith, and Anthony DM Smith. 2011. <span>“Among-Stock Comparisons for Improving Stock Assessments of Data-Poor Stocks: The <span>‘Robin Hood’</span> Approach.”</span> <em>ICES Journal of Marine Science</em> 68 (5): 972–81.
+</div>
+<div id="ref-r-base" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2020. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-wior" class="csl-entry" role="doc-biblioentry">
+Semba, Masumbuko, and Nyamisi Peter. 2020. <em>Wior: Easy Tidy and Process Oceanographic Data</em>.
+</div>
+<div id="ref-sheninternational" class="csl-entry" role="doc-biblioentry">
+Shen, Xinqiang, K Richardson, E Nielsen, S Mellergaard, and Charlotten1und Cast1e. n.d. <span>“International Council for the Exploration of the Seas.”</span>
+</div>
+<div id="ref-sizemat" class="csl-entry" role="doc-biblioentry">
+Torrejon-Magallanes, Josymar. 2020. <em>sizeMat: Estimate Size at Sexual Maturity</em>. <a href="https://CRAN.R-project.org/package=sizeMat">https://CRAN.R-project.org/package=sizeMat</a>.
+</div>
+<div id="ref-wetherall" class="csl-entry" role="doc-biblioentry">
+Wetherall, JA, JJ Polovina, and S Ralston. 1987. <span>“Estimating Growth and Mortality in Steady-State Fish Stocks from Length-Frequency Data.”</span> In <em>ICLARM Conf. Proc</em>, 13:53–74.
+</div>
+<div id="ref-ggplot" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley. 2016. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+</div>
+<div id="ref-tidyr" class="csl-entry" role="doc-biblioentry">
+———. 2021. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+</div>
+<div id="ref-readxl" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Jennifer Bryan. 2019. <em>Readxl: Read Excel Files</em>. <a href="https://CRAN.R-project.org/package=readxl">https://CRAN.R-project.org/package=readxl</a>.
+</div>
+<div id="ref-dplyr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2021. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+</div>
+<div id="ref-readr" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, and Jim Hester. 2020. <em>Readr: Read Rectangular Text Data</em>. <a href="https://CRAN.R-project.org/package=readr">https://CRAN.R-project.org/package=readr</a>.
+</div>
+<div id="ref-knitr" class="csl-entry" role="doc-biblioentry">
+Xie, Yihui. 2014. <span>“Knitr: A Comprehensive Tool for Reproducible Research in <span>R</span>.”</span> In <em>Implementing Reproducible Computational Research</em>, edited by Victoria Stodden, Friedrich Leisch, and Roger D. Peng. Chapman; Hall/CRC. <a href="http://www.crcpress.com/product/isbn/9781466561595">http://www.crcpress.com/product/isbn/9781466561595</a>.
+</div>
+<div id="ref-bookdown" class="csl-entry" role="doc-biblioentry">
+———. 2016. <em>Bookdown: Authoring Books and Technical Documents with <span>R</span> Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/bookdown">https://bookdown.org/yihui/bookdown</a>.
+</div>
+<div id="ref-rmarkdown" class="csl-entry" role="doc-biblioentry">
+Xie, Yihui, Christophe Dervieux, and Emily Riederer. 2020. <em>R Markdown Cookbook</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://bookdown.org/yihui/rmarkdown-cookbook">https://bookdown.org/yihui/rmarkdown-cookbook</a>.
+</div>
+<div id="ref-kableextra" class="csl-entry" role="doc-biblioentry">
+Zhu, Hao. 2021. <em>kableExtra: Construct Complex Table with ’Kable’ and Pipe Syntax</em>. <a href="https://CRAN.R-project.org/package=kableExtra">https://CRAN.R-project.org/package=kableExtra</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./chisquare.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./maps.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

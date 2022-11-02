@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 12&nbsp; Descriptive versus inferential statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./onesample.html" rel="next">
+<link href="./regressionGAM.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#hypothesis-tests" id="toc-hypothesis-tests" class="nav-link active" data-scroll-target="#hypothesis-tests"> <span class="header-section-number">12.1</span> Hypothesis tests</a></li>
+  <li><a href="#steps-for-conducting-test-statistic" id="toc-steps-for-conducting-test-statistic" class="nav-link" data-scroll-target="#steps-for-conducting-test-statistic"> <span class="header-section-number">12.2</span> Steps <strong>for conducting test statistic</strong></a></li>
+  <li><a href="#statistical-experiments-and-significance-testing" id="toc-statistical-experiments-and-significance-testing" class="nav-link" data-scroll-target="#statistical-experiments-and-significance-testing"> <span class="header-section-number">13</span> Statistical Experiments and Significance Testing</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>Remember that <a href="https://statsandr.com/blog/descriptive-statistics-by-hand/"><strong>descriptive statistics</strong></a> is the branch of statistics that aim to <strong>describe and summarize a set of data</strong>. In other words, the branch of <a href="https://statsandr.com/blog/descriptive-statistics-by-hand/">descriptive statistics</a> helps to have a better understanding and a clear image about a set of observations. With descriptive statistics, there is no uncertainty because we describe only the group of observations that we decided to work on and no attempt is made to generalize the observed characteristics to another or to a larger group of observations.</p>
+<p><a href="https://statsandr.com/tags/inferential-statistics/"><strong>Inferential statistics</strong></a>, one the other hand, is the branch of statistics that uses a random sample of data taken from a population to make inferences, i.e., to <strong>draw conclusions about the <em>population</em> of interest</strong> (see the <a href="https://statsandr.com/blog/what-is-the-difference-between-population-and-sample/">difference between population and sample</a> if you need a refresh of the two concepts). In other words, information from the sample is used to make generalizations about the parameter of interest in the population.</p>
+<p>The two most important tools used in the domain of inferential statistics are:</p>
+<ul>
+<li><p>hypothesis test, and</p></li>
+<li><p>confidence interval</p></li>
+</ul>
+<p>In this chapter, the different <strong><em>steps required to perform and conclude a hypothesis test by hand</em></strong>is presented and discussed. These steps are illustrated with a basic example. This will build the theoretical foundations of hypothesis testing, which will in turn be of great help for the understanding of most <a href="https://statsandr.com/blog/what-statistical-test-should-i-do/">statistical tests</a>.</p>
+<section id="hypothesis-tests" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="hypothesis-tests"><span class="header-section-number">12.1</span> Hypothesis tests</h2>
+<p>Hypothesis tests come in many forms and can be used for many parameters or research questions. The steps I present in this article are not applicable to <em>all</em> hypothesis test, unfortunately. They are however, appropriate for <em>at least</em> the most common hypothesis tests—the tests on:</p>
+<ol type="1">
+<li><p>One mean:</p></li>
+<li><p>Two means:</p>
+<ul>
+<li><p>independent samples:</p></li>
+<li><p>paired samples:</p></li>
+</ul></li>
+<li><p>One proportion:</p></li>
+<li><p>Two proportions:</p></li>
+<li><p>One variance:</p></li>
+<li><p>Two variances:</p></li>
+</ol>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The good news is that the principles behind these 6 statistical tests (and many more) share similar basic statistical approach. Therefore, by understanding the underlying process of one among them, make learning others pretty much easier.</p>
+</div>
+</div>
+</section>
+<section id="steps-for-conducting-test-statistic" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="steps-for-conducting-test-statistic"><span class="header-section-number">12.2</span> Steps <strong>for conducting test statistic</strong></h2>
+<p>Unlike <a href="https://statsandr.com/blog/descriptive-statistics-in-r/">descriptive statistics</a> where the interest is to describe the data at hand, <strong>hypothesis tests use a subset of observations</strong>, referred as a <a href="https://statsandr.com/blog/what-is-the-difference-between-population-and-sample/">sample</a>, <strong>to draw conclusions about a population under investigation</strong>. Often times four steps are involved, which include:</p>
+<ol type="1">
+<li><p>Stating the <strong>null and alternative hypothesis</strong></p></li>
+<li><p>Computing the <strong>test statistic</strong></p></li>
+<li><p>Finding the <strong>critical value</strong></p></li>
+<li><p><strong>Concluding</strong> and interpreting the results</p></li>
+</ol>
+<section id="step-1-stating-the-null-and-alternative-hypothesis" class="level4" data-number="12.2.0.1">
+<h4 data-number="12.2.0.1" class="anchored" data-anchor-id="step-1-stating-the-null-and-alternative-hypothesis"><span class="header-section-number">12.2.0.1</span> <strong>Step #1: Stating the null and alternative hypothesis</strong></h4>
+<p>As discussed before, a hypothesis test first requires an idea, that is, an assumption about a phenomenon. This assumption, referred as hypothesis, is derived from the theory and/or the research question.</p>
+<p>Since a hypothesis test is used to confirm or refute a prior belief, we need to <strong>formulate our belief so that there is a null and an alternative hypothesis</strong>. Those hypotheses must be <a href="https://statsandr.com/blog/the-9-concepts-and-formulas-in-probability-that-every-data-scientist-should-know/#union-of-two-events">mutually exclusive</a>, which means that they cannot be true at the same time. This is step #1.</p>
+<p>In the context of our scenario, the null and alternative hypothesis are thus:</p>
+<ul>
+<li><p>Null hypothesis denoted as <span class="math inline">\(H_0\)</span>—<span class="math inline">\(\mu\)</span> = 3</p></li>
+<li><p>Alternative hypothesis denoted as <span class="math inline">\(H_1\)</span>—<span class="math inline">\(\mu\)</span> <span class="math inline">\(\neq\)</span> 3</p></li>
+</ul>
+<p><strong>Step #2: Computing the test statistic</strong></p>
+<p>The <strong>test statistic</strong> (often called <strong>t-stat</strong>) is, in some sense, a metric indicating <strong>how extreme the observations are compared to the null hypothesis</strong>. The higher the t-stat (in absolute value), the more extreme the observations are.</p>
+<p>There are several formulas to compute the t-stat, with one formula for each type of hypothesis test—one or two means, one or two proportions, one or two variances. This means that there is a formula to compute the t-stat for a hypothesis test on one mean, another formula for a test on two means, another for a test on one proportion, etc.<sup><a href="https://statsandr.com/blog/hypothesis-test-by-hand/#fn5">5</a></sup> The only difficulty in this second step is to choose the appropriate formula. As soon as you know which formula to use based on the type of test, you simply have to apply it to the data.</p>
+</section>
+<section id="step-3-finding-the-critical-value" class="level4" data-number="12.2.0.2">
+<h4 data-number="12.2.0.2" class="anchored" data-anchor-id="step-3-finding-the-critical-value"><span class="header-section-number">12.2.0.2</span> <strong>Step #3: Finding the critical value</strong></h4>
+<p>Although the t-stat gives us an indication of how extreme our observations are, we cannot tell whether this "score of extremity" is <em>too</em> extreme or not based on its value only. So, at this point, we cannot yet tell whether our data are too extreme or not. For this, we need to compare our t-stat with a threshold—referred as <strong>critical value</strong>—given by the <a href="https://statsandr.com/blog/a-guide-on-how-to-read-statistical-tables/">probability distribution</a> tables (and which can, of course, also be found with R).</p>
+<p>Another parameter is a <a href="https://statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/#a-note-on-p-value-and-significance-level-alpha">significance level</a>. The <strong>significance level</strong>, denoted <span class="math inline">\(\alpha\)</span>, is the probability of wrongly rejecting the null hypothesis, so the <strong>probability of rejecting the null hypothesis although it is in reality true</strong>. In this sense, it is an error (type I error, as opposed to the type II error<sup><a href="https://statsandr.com/blog/hypothesis-test-by-hand/#fn8">8</a></sup>) that we accept to deal with, in order to be able to draw conclusions about a population based on a subset of it.</p>
+<hr>
+</section>
+</section>
+<section id="statistical-experiments-and-significance-testing" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Statistical Experiments and Significance Testing</h1>
+<p>Design of experiments is a cornerstone of the practice of statistics, with applications in virtually all areas of research. The goal is to design an experiment in order to confirm or reject a hypothesis. Data scientists often need to conduct continual experiments, particularly regarding user interface and product marketing. This chapter reviews traditional experimental design and discusses some common challenges in data science. It also covers some oft-cited concepts in statistical inference and explains their meaning and relevance (or lack of relevance) to data science.</p>
+<p>Whenever you see references to statistical significance, <code>t-tests</code>, or<code>p-values</code>, it is typically in the context of the classical statistical inference “pipeline” (see Figure 3-1). This process starts with a hypothesis (“A total length of yellowfin tuna found in Somalia is bigger than in Kenya during the northeast monsoon season”). An experiment is designed to test the hypothesis—designed in such a way that it hopefully will deliver conclusive results. The data is collected and analyzed, and then a conclusion is drawn. The term inference reflects the intention to apply the experiment results, which involve a limited set of data, to a larger process or population.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">xpnorm</span>(<span class="at">q =</span> <span class="fu">c</span>(<span class="dv">18</span>, <span class="dv">28</span>), <span class="at">mean =</span> <span class="dv">24</span>, <span class="at">sd =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'mosaic':
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>If X ~ N(24, 3), then </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    P(X &lt;= 18) = P(Z &lt;= -2.000) = 0.02275   P(X &lt;= 28) = P(Z &lt;=  1.333) = 0.90879</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    P(X &gt;  18) = P(Z &gt;  -2.000) = 0.97725   P(X &gt;  28) = P(Z &gt;   1.333) = 0.09121</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="hypothesisTesting_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.02275013 0.90878878</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mosaic<span class="sc">::</span><span class="fu">xpnorm</span>(<span class="dv">28</span>, <span class="at">mean =</span> <span class="dv">25</span>, <span class="at">sd =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>If X ~ N(25, 6), then </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    P(X &lt;= 28) = P(Z &lt;= 0.5) = 0.6915</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>    P(X &gt;  28) = P(Z &gt;  0.5) = 0.3085</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="hypothesisTesting_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6914625</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./regressionGAM.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./onesample.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

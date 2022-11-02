@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 16&nbsp; Analysis of Variance (ANOVA)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./kwanova.html" rel="next">
+<link href="./wilcoxon.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"> <span class="header-section-number">16.1</span> Introduction</a></li>
+  <li><a href="#aim-and-hypotheses-of-anova" id="toc-aim-and-hypotheses-of-anova" class="nav-link" data-scroll-target="#aim-and-hypotheses-of-anova"> <span class="header-section-number">16.2</span> <strong>Aim and hypotheses of ANOVA</strong></a></li>
+  <li><a href="#assumptions-of-anova" id="toc-assumptions-of-anova" class="nav-link" data-scroll-target="#assumptions-of-anova"> <span class="header-section-number">16.3</span> <strong>Assumptions of ANOVA</strong></a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"> <span class="header-section-number">16.4</span> Data</a></li>
+  <li><a href="#how-to-interpret-anova-table" id="toc-how-to-interpret-anova-table" class="nav-link" data-scroll-target="#how-to-interpret-anova-table"> <span class="header-section-number">16.5</span> how to interpret ANOVA table</a></li>
+  <li><a href="#post-hoc" id="toc-post-hoc" class="nav-link" data-scroll-target="#post-hoc"> <span class="header-section-number">16.6</span> Post-hoc</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">16.1</span> Introduction</h2>
+<p>ANOVA (ANalysis Of VAriance) is a <a href="https://statsandr.com/blog/what-statistical-test-should-i-do/">statistical test</a> to determine whether two or more population means are different. In other words, it is used to <strong>compare two or more groups</strong> to see if they are significantly <strong>different</strong>.</p>
+<p>In practice, however, the:</p>
+<ul>
+<li><p><a href="https://statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/"><strong>Student t-test</strong></a> is used to compare <strong>2 groups</strong>;</p></li>
+<li><p><strong>ANOVA</strong> generalizes the t-test beyond 2 groups, so it is used to compare <strong>3 or more groups</strong>.</p></li>
+</ul>
+<p>Note that there are several versions of the ANOVA (e.g., one-way ANOVA, two-way ANOVA, mixed ANOVA, repeated measures ANOVA, etc.). In this chapter, we learn the simplest form—the <strong>one-way ANOVA</strong>.</p>
+<p>Although ANOVA is used to make inference about means of different groups, the method is called <em>analysis of variance</em> because it compares the <em>between</em> variance (the variance between the different groups) and the variance <em>within</em> (the variance within each group). If the between variance is significantly larger than the within variance, the group means are declared to be different. Otherwise, we cannot conclude one way or the other. The two variances are compared to each other by taking the ratio <span class="math inline">\((\frac{variance_{between}}{variance_{within}})\)</span> and then by comparing this ratio to a threshold from the Fisher (a threshold based on a specific significance level, usually 5%).</p>
+<p>This is enough theory regarding the ANOVA method for now. In the remaining of this chapter, we discuss about it from a more practical point of view, and in particular we will cover the following points:</p>
+<ul>
+<li>the aim of the ANOVA, when it should be used and the null/alternative hypothesis</li>
+<li>the underlying assumptions of the ANOVA and how to check them</li>
+<li>how to perform the ANOVA in R</li>
+<li>how to interpret results of the ANOVA</li>
+<li>understand the notion of post-hoc test and interpret the results</li>
+<li>how to visualize results of ANOVA and post-hoc tests</li>
+</ul>
+</section>
+<section id="aim-and-hypotheses-of-anova" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="aim-and-hypotheses-of-anova"><span class="header-section-number">16.2</span> <strong>Aim and hypotheses of ANOVA</strong></h2>
+<p>As mentioned in the introduction, the ANOVA is used to compare groups (in practice, 3 or more groups). More generally, it is used to:</p>
+<ul>
+<li><p>study whether measurements are similar across different modalities (also called levels or treatments in the context of ANOVA) of a <a href="https://statsandr.com/blog/variable-types-and-examples/#qualitative">categorical</a> variable</p></li>
+<li><p>compare the impact of the different levels of a categorical variable on a <a href="https://statsandr.com/blog/variable-types-and-examples/#quantitative">quantitative</a> variable</p></li>
+<li><p>explain a quantitative variable based on a qualitative variable</p></li>
+</ul>
+<p>In the context of our example, we are going to use the Kruskal-Wallis test to help us answer the following question: <em>Is the total length of the chinook different between the three locations?</em>.</p>
+<p>The null and alternative hypotheses of the Kruskal-Wallis test are:</p>
+<ul>
+<li><p>H0H0: The total length of chinook are equal for the chinook sampled at three locations</p></li>
+<li><p>H1H1: The total length of chinook are not equal for the chinook sampled at three locations</p></li>
+</ul>
+</section>
+<section id="assumptions-of-anova" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="assumptions-of-anova"><span class="header-section-number">16.3</span> <strong>Assumptions of ANOVA</strong></h2>
+<p>As for many <a href="https://statsandr.com/blog/what-statistical-test-should-i-do/">statistical tests</a>, there are some assumptions that need to be met in order to be able to interpret the results. When one or several assumptions are not met, although it is technically possible to perform these tests, it would be incorrect to interpret the results and trust the conclusions.</p>
+<p>Below are the assumptions of the ANOVA, how to test them and which other tests exist if an assumption is not met:</p>
+<ul>
+<li><p><strong>Variable type</strong>: ANOVA requires a mix of one <a href="https://statsandr.com/blog/variable-types-and-examples/#continuous">continuous quantitative</a> dependent variable (which corresponds to the measurements to which the question relates) and one <a href="https://statsandr.com/blog/variable-types-and-examples/#qualitative">qualitative</a> independent variable (with at least 2 levels which will determine the groups to compare).</p></li>
+<li><p><strong>Independence</strong>: the data, collected from a representative and randomly selected portion of the total <a href="https://statsandr.com/blog/what-is-the-difference-between-population-and-sample/">population</a>, should be independent between groups and within each group. The assumption of independence is most often verified based on the design of the experiment and on the good control of experimental conditions rather than via a formal test. If you are still unsure about independence based on the experiment design, ask yourself if one observation is related to another (if one observation has an impact on another) within each group or between the groups themselves. If not, it is most likely that you have independent <a href="https://statsandr.com/blog/what-is-the-difference-between-population-and-sample/">samples</a>. If observations between samples (forming the different groups to be compared) are dependent (for example, if three measurements have been collected on the <strong>same individuals</strong> as it is often the case in medical studies when measuring a metric (i) before, (ii) during and (iii) after a treatment), the repeated measures ANOVA should be preferred in order to take into account the dependency between the samples.</p></li>
+</ul>
+<p><strong>Normality</strong>:</p>
+<p>In case of small samples, residuals<sup><a href="https://statsandr.com/blog/anova-in-r/#fn2">2</a></sup> should follow approximately a <a href="https://statsandr.com/blog/do-my-data-follow-a-normal-distribution-a-note-on-the-most-widely-used-distribution-and-how-to-test-for-normality-in-r/"><strong>normal distribution</strong></a>. The normality assumption can be tested visually thanks to a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#histogram">histogram</a> and a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#qq-plot">QQ-plot</a>, and/or formally via a <a href="https://statsandr.com/blog/do-my-data-follow-a-normal-distribution-a-note-on-the-most-widely-used-distribution-and-how-to-test-for-normality-in-r/#normality-test">normality test</a> such as the Shapiro-Wilk or Kolmogorov-Smirnov test. If, even after a transformation of your data (e.g., logarithmic transformation, square root, Box-Cox, etc.), the residuals still do not follow approximately a normal distribution, the <a href="https://statsandr.com/blog/kruskal-wallis-test-nonparametric-version-anova/">Kruskal-Wallis test</a> can be applied (<code>kruskal.test(variable ~ group, data = dat</code> in R). This non-parametric test, robust to non normal distributions, has the same goal than the ANOVA—compare 3 or more groups—but it uses sample medians instead of sample means to compare groups.</p>
+<p>In case of large samples, <strong>normality is not required</strong> (this is a common misconception!). By the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem</a>, sample means of large samples are often well-approximated by a normal distribution even if the data are not normally distributed (<a href="https://statsandr.com/blog/anova-in-r/#ref-stevens2013intermediate">Stevens 2013</a>).<sup><a href="https://statsandr.com/blog/anova-in-r/#fn3">3</a></sup> It is therefore not required to test the normality assumption when the number of observations in each group/sample is large (usually n≥30n≥30).</p>
+<ul>
+<li><p><strong>Equality of variances</strong>: the variances of the different groups should be equal in the populations (an assumption called homogeneity of the variances, or even sometimes referred as homoscedasticity, as opposed to heteroscedasticity if variances are different across groups). This assumption can be tested graphically (by comparing the dispersion in a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#boxplot">boxplot</a> or <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#dotplot">dotplot</a> for instance), or more formally via the Levene’s test (<code>leveneTest(variable ~ group)</code> from the <code>{car}</code> package) or Bartlett’s test, among others. If the hypothesis of equal variances is rejected, another version of the ANOVA can be used: the Welch ANOVA (<code>oneway.test(variable ~ group, var.equal = FALSE)</code>). Note that the Welch ANOVA does not require homogeneity of the variances, but the distributions should still follow approximately a normal distribution. Note that the <a href="https://statsandr.com/blog/kruskal-wallis-test-nonparametric-version-anova/">Kruskal-Wallis test</a> does not require the assumptions of normality nor homoscedasticity of the variances.<sup><a href="https://statsandr.com/blog/anova-in-r/#fn4">4</a></sup></p></li>
+<li><p><strong>Outliers</strong>: An <a href="https://statsandr.com/blog/outliers-detection-in-r/">outlier</a> is a value or an observation that is distant from the other observations. There should be <strong>no significant outliers in the different groups</strong>, or the conclusions of your ANOVA may be flawed. There are several methods to <a href="https://statsandr.com/blog/outliers-detection-in-r/">detect outliers</a> in your data but in order to deal with them, it is your choice to either:</p></li>
+<li><p>use the non-parametric version (i.e., the Kruskal-Wallis test)</p></li>
+<li><p>transform your data (logarithmic or Box-Cox transformation, among others)</p></li>
+<li><p>or remove them (be careful)</p></li>
+</ul>
+<p>Choosing the appropriate test depending on whether assumptions are met may be confusing so here is a brief summary:</p>
+<ol type="1">
+<li><p>Check that your observations are independent.</p></li>
+<li><p>Sample sizes:</p></li>
+</ol>
+<ul>
+<li><p>In case of small samples, test the normality of residuals: - If normality is assumed, test the homogeneity of the variances:</p>
+<pre><code>    -   If variances are equal, use **ANOVA**.
+
+    -   If variances are not equal, use the **Welch ANOVA**.
+
+-   If normality is not assumed, use the **Kruskal-Wallis test**.</code></pre>
+<ul>
+<li><p>In case of large samples normality is assumed, so test the homogeneity of the variances:</p>
+<ul>
+<li><p>If variances are equal, use <strong>ANOVA</strong>.</p></li>
+<li><p>If variances are not equal, use the <strong>Welch ANOVA</strong>.</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Now that we have seen the underlying assumptions of the ANOVA, we review them specifically for our dataset before applying the appropriate version of the test.</p>
+<p><strong>Normality</strong></p>
+<p>Since the smallest sample size per group (i.e., per species) is 68, we have large samples. Therefore, we do not need to check normality. Normally, we would directly test the homogeneity of the variances without testing normality. However, for the sake of illustration, we act as if the sample sizes were small in order to illustrate what would need to be done in that case.</p>
+<p>Remember that <a href="https://statsandr.com/blog/do-my-data-follow-a-normal-distribution-a-note-on-the-most-widely-used-distribution-and-how-to-test-for-normality-in-r/">normality</a> of residuals can be tested visually via a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#histogram">histogram</a> and a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#qq-plot">QQ-plot</a>, and/or formally via a <a href="https://statsandr.com/blog/do-my-data-follow-a-normal-distribution-a-note-on-the-most-widely-used-distribution-and-how-to-test-for-normality-in-r/#normality-test">normality test</a> (Shapiro-Wilk test for instance).</p>
+<p>Before checking the normality assumption, we first need to compute the ANOVA (more on that in this <a href="https://statsandr.com/blog/anova-in-r/#anova-in-r">section</a>). We then save the results in <code>res_aov</code> :</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="anova_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In R, we can test normality of the residuals with the Shapiro-Wilk test thanks to the <code>shapiro.test()</code> function:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Shapiro-Wilk normality test
+#&gt; 
+#&gt; data:  tl
+#&gt; W = 1, p-value = 0.01</code></pre>
+</div>
+<p><em>P</em>-value of the Shapiro-Wilk test on the residuals is larger than the usual significance level of α=5%α=5%, so we do not reject the hypothesis that residuals follow a normal distribution (<em>p</em>-value = 0.01).</p>
+<p>We showed that all assumptions of the ANOVA are met. We can thus proceed to the implementation of the ANOVA in R, but first, let’s do some preliminary analyses to better understand the research question.</p>
+</section>
+<section id="data" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="data"><span class="header-section-number">16.4</span> Data</h2>
+<p>The data we are going to use is <code>chinook</code>dataset, which found in <strong>FSA</strong> package. This dataset is a dataframe with 112 observations of lengths and weights for Chinook Salmon from three locations in Argentina.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Rows: 112
+#&gt; Columns: 3
+#&gt; $ tl  &lt;dbl&gt; 120.1, 115.0, 111.2, 110.2, 110.0, 109.7, 105.0, 100.1, 98.0, 92.1~
+#&gt; $ w   &lt;dbl&gt; 17.9, 17.2, 16.8, 15.8, 14.3, 13.8, 12.8, 11.7, 12.8, 14.8, 9.7, 7~
+#&gt; $ loc &lt;fct&gt; Argentina, Argentina, Argentina, Argentina, Argentina, Argentina, ~</code></pre>
+</div>
+<p>As an advice, it always recommended that we should visualize the data and understandt the overying patterns before performing the ANOVA test in R. The best way to do so is to draw and compare boxplots of the quantitative variable total length for each location.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="anova_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The boxplots above show that total length sampled from Puyehue has the lowest median values compared to other locations. Besides a boxplot for each location, it is also a good practice to compute some <a href="https://statsandr.com/blog/descriptive-statistics-in-r/"><strong>descriptive statistics</strong></a> such as the <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#mean">mean</a> and <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#standard-deviation-and-variance">standard deviation</a> by location. This can be done, for instance <code>group_by()</code> functions from the <strong>dplyr</strong> package and <code>get_summary_stats</code> from <strong>ggpubr</strong> package:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; # A tibble: 3 x 10
+#&gt;   loc           n   min   max median   iqr  mean    sd    se    ci
+#&gt;   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1 Argentina    34  59.9 120.    92.0  15.8  91.3 14.0   2.40  4.88
+#&gt; 2 Petrohue     30  68.5 114.    94.8  12.1  95.9  9.24  1.69  3.45
+#&gt; 3 Puyehue      48  18    80.5   63.6  20.4  59.4 16.0   2.31  4.66</code></pre>
+</div>
+<p>Mean is also the lowest for for chinook sample collected at Puyehue and highest for for Petrohue. Boxplots and descriptive statistics are, however, not enough to conclude that total length of chinook salmon from the three locations are significantly different.</p>
+<p><strong>ANOVA in R</strong></p>
+<p>As you guessed by now, only the ANOVA can help us to make inference about the population given the sample at hand, and help us to answer the initial research question <em>Is the total length of chinook salmon vary between the three sampled locations?</em></p>
+<p>Several approach are used to compute ANOVA in R. We learn two of them: One popular function is <code>oneway.test</code></p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  One-way analysis of means
+#&gt; 
+#&gt; data:  tl and loc
+#&gt; F = 83, num df = 2, denom df = 109, p-value &lt;2e-16</code></pre>
+</div>
+<p>The second approach is by simply combine <code>aov</code> with <code>summary</code> functions</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt;              Df Sum Sq Mean Sq F value Pr(&gt;F)    
+#&gt; loc           2  32172   16086    83.4 &lt;2e-16 ***
+#&gt; Residuals   109  21028     193                   
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<p>The output result of the two approaches provide similar test statistic (<code>F-value</code> ) and the <em>p</em>-value (<code>p-value</code> in the first method and <code>Pr(&gt;F)</code> in the second one) are exactly the same for both methods, which means that in case of equal variances, results and conclusions will be unchanged.</p>
+<p>While <code>oneway.test</code> provide access to switch from the ANOVA (used when variances are equal) to the Welch ANOVA (used when variances are <strong>un</strong>equal) by simpliying parsing <code>var.equal = FALSE</code>, the approach does not provide ANOVA table as output. In contrast, <code>aov</code> approach provides:</p>
+<ul>
+<li>the full ANOVA table (with degrees of freedom, mean squares, etc.) is printed, which may be of interest in some (theoritical) cases</li>
+<li>results of the ANOVA are used later for <code>post-hoc</code> tests</li>
+</ul>
+</section>
+<section id="how-to-interpret-anova-table" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="how-to-interpret-anova-table"><span class="header-section-number">16.5</span> how to interpret ANOVA table</h2>
+<p>Given that the <em>p</em>-value is smaller than 0.05, we reject the null hypothesis, so we reject the hypothesis that all means are equal. Therefore, we can conclude that the total length of chinook salmon vary among locations (<em>p</em>-value &lt; 0.05). A <strong>report</strong> package has a <code>report</code> function which has ability to intepret results from <code>aov</code></p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; The ANOVA (formula: tl ~ loc) suggests that:
+#&gt; 
+#&gt;   - The main effect of loc is statistically significant and large (F(2, 109) =
+#&gt; 83.38, p &lt; .001; Eta2 = 0.60, 95% CI [0.51, 1.00])
+#&gt; 
+#&gt; Effect sizes were labelled following Field's (2013) recommendations.</code></pre>
+</div>
+<p>statistical rich plots are becoming popular and <strong>ggstatsplot</strong> packages in R offers that ability. For instance, we learn how to use <code>ggbetweenstats</code> function from within the <strong>ggstatsplot</strong> package to compute ANOVA in R by simply parsing an argument <code>type = "parametric"</code>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="anova_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="post-hoc" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="post-hoc"><span class="header-section-number">16.6</span> Post-hoc</h2>
+<p>When comparing the means for the levels of a factor in an analysis of variance, a simple comparison using t-tests will inflate the probability of declaring a significant difference when it is not in fact present. This because the intervals are calculated with a given coverage probability for each interval but the interpretation of the coverage is usually with respect to the entire family of intervals.</p>
+<p>John Tukey introduced intervals based on the range of the sample means rather than the individual differences. The intervals returned by this function are based on this Studentized range statistics. In R the post-hoc analysis of ANOVA can be accomplished with <code>TukeyHSD</code> function as;</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt;   Tukey multiple comparisons of means
+#&gt;     95% family-wise confidence level
+#&gt; 
+#&gt; Fit: aov(formula = tl ~ loc)
+#&gt; 
+#&gt; $loc
+#&gt;                     diff    lwr   upr p adj
+#&gt; Petrohue-Argentina   4.6  -3.67  12.9 0.386
+#&gt; Puyehue-Argentina  -31.9 -39.31 -24.5 0.000
+#&gt; Puyehue-Petrohue   -36.5 -44.19 -28.8 0.000</code></pre>
+</div>
+<p>The results can also be visualized with the <code>plot()</code> function:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="anova_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>R has <code>pairwise.t.test</code> function that also help us to assess which group in anova are significant different from the rest</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Pairwise comparisons using t tests with pooled SD 
+#&gt; 
+#&gt; data:  tl and loc 
+#&gt; 
+#&gt;          Argentina Petrohue
+#&gt; Petrohue 0.2       -       
+#&gt; Puyehue  &lt;2e-16    &lt;2e-16  
+#&gt; 
+#&gt; P value adjustment method: holm</code></pre>
+</div>
+<p>There are times when one need to include ANOVA and post-hoc tests result on the same plot. This is easily achieved using <strong>ggstatsplot</strong> package and then parsing an argument <code>pairwise.comparisons = TRUE</code> as the code highlight below;</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="anova_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./wilcoxon.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./kwanova.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

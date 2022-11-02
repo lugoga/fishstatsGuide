@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 8&nbsp; Detect Outlier(s)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./regression.html" rel="next">
+<link href="./eda.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"> <span class="header-section-number">8.1</span> Data</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics"> <span class="header-section-number">8.2</span> <strong>Descriptive statistics</strong></a></li>
+  <li><a href="#minimum-and-maximum" id="toc-minimum-and-maximum" class="nav-link" data-scroll-target="#minimum-and-maximum"> <span class="header-section-number">8.3</span> <strong>Minimum and maximum</strong></a></li>
+  <li><a href="#statistical-tests" id="toc-statistical-tests" class="nav-link" data-scroll-target="#statistical-tests"> <span class="header-section-number">8.4</span> Statistical tests</a>
+  <ul class="collapse">
+  <li><a href="#grubbss-test" id="toc-grubbss-test" class="nav-link" data-scroll-target="#grubbss-test"> <span class="header-section-number">8.4.1</span> Grubbs's test</a></li>
+  </ul></li>
+  <li><a href="#dixons-test" id="toc-dixons-test" class="nav-link" data-scroll-target="#dixons-test"> <span class="header-section-number">8.5</span> <strong>Dixon's test</strong></a></li>
+  <li><a href="#rosners-test" id="toc-rosners-test" class="nav-link" data-scroll-target="#rosners-test"> <span class="header-section-number">8.6</span> <strong>Rosner's test</strong></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>An outlier is a value or an observation that is distant from other observations, that is to say, a data point that differs significantly from other data points. Enderlein (1987) goes even further as the author considers outliers as values that deviate so much from other observations one might suppose a different underlying sampling mechanism.</p>
+<p>An outlier may be due to the variability inherent in the observed phenomenon. For example, it is often the case that there are outliers when collecting data on salaries, as some people make much more money than the rest. Outliers can also arise due to an experimental, measurement or encoding error. For instance, a human weighting 786 kg (1733 pounds) is clearly an error when encoding the weight of the subject. Her or his weight is most probably 78.6 kg (173 pounds) or 7.86 kg (17 pounds) depending on whether weights of adults or babies have been measured.</p>
+<p>For this reason, it sometimes makes sense to formally distinguish two classes of outliers: (i) extreme values and (ii) mistakes. Extreme values are statistically and philosophically more interesting, because they are possible but unlikely responses. (Thanks Felix Kluxen for the valuable suggestion.)</p>
+<p>In this article, I present several approaches to detect outliers in R, from simple techniques such as <a href="https://statsandr.com/blog/descriptive-statistics-in-r/">descriptive statistics</a> (including minimum, maximum, histogram, boxplot and percentiles) to more formal techniques such as the Hampel filter, the Grubbs, the Dixon and the Rosner tests for outliers.</p>
+<p>Although there is no strict or unique rule whether outliers should be removed or not from the dataset before doing statistical analyses, it is quite common to, at least, remove or impute outliers that are due to an experimental or measurement error (like the weight of 786 kg (1733 pounds) for a human). Some <a href="https://statsandr.com/blog/what-statistical-test-should-i-do/">statistical tests</a> require the absence of outliers in order to draw sound conclusions, but removing outliers is not recommended in all cases and must be done with caution.</p>
+<p>This chapter help us understand in detail whether we should remove outliers or not (nor if you should impute them with the median, mean, mode or any other value), but it will help you to detect them in order to, as a first step, verify them. After their verification, it is then your choice to exclude or include them for your analyses (and this usually requires a thoughtful reflection on the researcher’s side). Removing or keeping outliers mostly depend on three factors:</p>
+<ol type="1">
+<li><p>The domain/context of your analyses and the research question. In some domains, it is common to remove outliers as they often occur due to a malfunctioning process. In other fields, outliers are kept because they contain valuable information. It also happens that analyses are performed twice, once with and once without outliers to evaluate their impact on the conclusions. If results change drastically due to some influential values, this should caution the researcher to make overambitious claims.</p></li>
+<li><p>Whether the tests you are going to apply are robust to the presence of outliers or not. For instance, the slope of a simple <a href="https://statsandr.com/blog/multiple-linear-regression-made-simple/">linear regression</a> may significantly varies with just one outlier, whereas non-parametric tests such as the <a href="https://statsandr.com/blog/wilcoxon-test-in-r-how-to-compare-2-groups-under-the-non-normality-assumption/">Wilcoxon test</a> are usually robust to outliers.</p></li>
+<li><p>How distant are the outliers from other observations? Some observations considered as outliers (according to the techniques presented below) are actually not really extreme compared to all other observations, while other potential outliers may be really distant from the rest of the observations.</p></li>
+</ol>
+<p>The dataset <code>mpg</code> from the <code>{ggplot2}</code> package will be used to illustrate the different approaches of outliers detection in R, and in particular we will focus on the variable <code>hwy</code> (highway miles per gallon).</p>
+<section id="data" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="data"><span class="header-section-number">8.1</span> Data</h2>
+<p>The data we are going to use is <code>chinook</code>dataset, which found in <strong>FSA</strong> package. This dataset is a dataframe with 112 observations of lengths and weights for Chinook Salmon from three locations in Argentina.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Rows: 112
+#&gt; Columns: 3
+#&gt; $ tl  &lt;dbl&gt; 120.1, 115.0, 111.2, 110.2, 110.0, 109.7, 105.0, 100.1, 98.0, 92.1~
+#&gt; $ w   &lt;dbl&gt; 17.9, 17.2, 16.8, 15.8, 14.3, 13.8, 12.8, 11.7, 12.8, 14.8, 9.7, 7~
+#&gt; $ loc &lt;fct&gt; Argentina, Argentina, Argentina, Argentina, Argentina, Argentina, ~</code></pre>
+</div>
+</section>
+<section id="descriptive-statistics" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="descriptive-statistics"><span class="header-section-number">8.2</span> <strong>Descriptive statistics</strong></h2>
+</section>
+<section id="minimum-and-maximum" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="minimum-and-maximum"><span class="header-section-number">8.3</span> <strong>Minimum and maximum</strong></h2>
+<p>The first step to detect outliers in R is to start with some <a href="https://statsandr.com/blog/descriptive-statistics-in-r/">descriptive statistics</a>, and in particular with the <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#minimum-and-maximum">minimum and maximum</a>.</p>
+<p>In R, this can easily be done with the <code>summary()</code> function:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;    18.0    65.6    81.6    78.9    94.7   120.1</code></pre>
+</div>
+<p>where the minimum and maximum are respectively the first and last values in the output above. Alternatively, they can also be computed with the <code>min()</code> and <code>max()</code>, or <code>range()</code> functions</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+
+<table style="width: auto;" class="table table-condensed">
+<caption>
+Data summary
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Name
+</td>
+<td style="text-align:left;">
+Piped data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of rows
+</td>
+<td style="text-align:left;">
+112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Number of columns
+</td>
+<td style="text-align:left;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_______________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Column type frequency:
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+________________________
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Group variables
+</td>
+<td style="text-align:left;">
+None
+</td>
+</tr>
+</tbody>
+
+</table>
+<p><strong>Variable type: numeric</strong></p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+skim_variable
+</th>
+<th style="text-align:right;">
+n_missing
+</th>
+<th style="text-align:right;">
+complete_rate
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+p0
+</th>
+<th style="text-align:right;">
+p25
+</th>
+<th style="text-align:right;">
+p50
+</th>
+<th style="text-align:right;">
+p75
+</th>
+<th style="text-align:right;">
+p100
+</th>
+<th style="text-align:left;">
+hist
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+tl
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+78.9
+</td>
+<td style="text-align:right;">
+21.9
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+65.6
+</td>
+<td style="text-align:right;">
+81.6
+</td>
+<td style="text-align:right;">
+94.7
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+&lt;U+2582&gt;&lt;U+2582&gt;&lt;U+2587&gt;&lt;U+2587&gt;&lt;U+2583&gt;
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+</div>
+<p>Boxlot is also helpuful to detect whether the dataset has outliers</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="outlier_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A boxplot helps to visualize a quantitative variable by displaying five common location summary (minimum, median, first and third quartiles and maximum) and any observation that was classified as a suspected outlier using the <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#interquartile-range">interquartile range (IQR)</a> criterion. The IQR criterion means that all observations above q0.75+1.5⋅IQRq0.75+1.5⋅IQR or below q0.25−1.5⋅IQRq0.25−1.5⋅IQR (where q0.25q0.25 and q0.75q0.75 correspond to first and third quartile respectively, and IQR is the difference between the third and first quartile) are considered as potential outliers by R. In other words, all observations outside of the following interval will be considered as potential outliers:</p>
+<p><span class="math inline">\(I=[q0.25−1.5⋅IQR;q0.75+1.5⋅IQR]I=[q0.25−1.5⋅IQR;q0.75+1.5⋅IQR]\)</span></p>
+<p>Observations considered as potential outliers by the IQR criterion are displayed as points in the boxplot. Based on this criterion, there are 2 potential outliers (see the 2 points above the vertical line, at the top of the boxplot).</p>
+<p>Remember that it is not because an observation is considered as a potential outlier by the IQR criterion that you should remove it. Removing or keeping an outlier depends on (i) the context of your analysis, (ii) whether the tests you are going to perform on the dataset are robust to outliers or not, and (iii) how far is the outlier from other observations.</p>
+<p>It is also possible to extract the values of the potential outliers based on the IQR criterion thanks to the <code>boxplot.stats()$out</code> function:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; [1] 18</code></pre>
+</div>
+</section>
+<section id="statistical-tests" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="statistical-tests"><span class="header-section-number">8.4</span> Statistical tests</h2>
+<p>In this section, we present 3 more formal techniques to detect outliers:</p>
+<ol type="1">
+<li><p>Grubbs's test</p></li>
+<li><p>Dixon's test</p></li>
+<li><p>Rosner's test</p></li>
+</ol>
+<p>These 3 statistical tests are part of more formal techniques of outliers detection as they all involve the computation of a test statistic that is compared to tabulated critical values (that are based on the sample size and the desired confidence level).</p>
+<p>Note that the 3 tests are appropriate only when the data (without any outliers) are <strong>approximately normally distributed</strong>. The normality assumption must thus be verified before applying these tests for outliers (see how to <a href="https://statsandr.com/blog/do-my-data-follow-a-normal-distribution-a-note-on-the-most-widely-used-distribution-and-how-to-test-for-normality-in-r/">test the normality assumption in R</a>).</p>
+<section id="grubbss-test" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="grubbss-test"><span class="header-section-number">8.4.1</span> Grubbs's test</h3>
+<p>The Grubbs test allows to detect whether the highest or lowest value in a dataset is an outlier.</p>
+<p>The Grubbs test detects one outlier at a time (highest or lowest value), so the null and alternative hypotheses are as follows:</p>
+<ul>
+<li><p>H0H0: The <em>highest</em> value is <strong>not</strong> an outlier</p></li>
+<li><p>H1H1: The <em>highest</em> value is an outlier</p></li>
+</ul>
+<p>if we want to test the highest value, or:</p>
+<ul>
+<li><p>H0H0: The <em>lowest</em> value is <strong>not</strong> an outlier</p></li>
+<li><p>H1H1: The <em>lowest</em> value is an outlier</p></li>
+</ul>
+<p>if we want to test the lowest value.</p>
+<p>As for any <a href="https://statsandr.com/blog/what-statistical-test-should-i-do/">statistical test</a>, if the <a href="https://statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/#a-note-on-p-value-and-significance-level-alpha"><strong><em>p</em>-value</strong></a> <strong>is less</strong> than the chosen <strong>significance threshold</strong> (generally α=0.05α=0.05) then the null hypothesis is rejected and we will conclude that the <strong>lowest/highest value is an outlier</strong>. On the contrary, if the <strong><em>p</em>-value is greater or equal</strong> than the significance level, the null hypothesis is not rejected, and we will conclude that, based on the data, we do not reject the hypothesis that the <strong>lowest/highest value is not an outlier</strong>.</p>
+<p>Note that the Grubbs test is not appropriate for sample size of 6 or less (n≤6n≤6).</p>
+<p>To perform the Grubbs test in R, we use the <code>grubbs.test()</code> function from the <code>{outliers}</code> package:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Grubbs test for one outlier
+#&gt; 
+#&gt; data:  tl
+#&gt; G = 2.8, U = 0.9, p-value = 0.3
+#&gt; alternative hypothesis: lowest value 18 is an outlier</code></pre>
+</div>
+<p>The <em>p</em>-value is 0.056. At the 5% significance level, we do not reject the hypothesis that the <em>highest</em> value 44 is <strong>not</strong> an outlier.</p>
+<p>By default, the test is performed on the highest value (as shown in the R output: <code>alternative hypothesis: highest value 44 is an outlier</code>). If you want to do the test for the lowest value, simply add the argument <code>opposite = TRUE</code> in the <code>grubbs.test()</code> function:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Grubbs test for one outlier
+#&gt; 
+#&gt; data:  tl
+#&gt; G = 2, U = 1, p-value = 1
+#&gt; alternative hypothesis: highest value 120.1 is an outlier</code></pre>
+</div>
+<p>The R output indicates that the test is now performed on the lowest value (see <code>alternative hypothesis: lowest value 12 is an outlier</code>).</p>
+<p>The <em>p</em>-value is 1. At the 5% significance level, we do not reject the hypothesis that the <em>lowest</em> value 12 is <strong>not</strong> an outlier.</p>
+</section>
+</section>
+<section id="dixons-test" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="dixons-test"><span class="header-section-number">8.5</span> <strong>Dixon's test</strong></h2>
+<p>Similar to the Grubbs test, Dixon test is used to test whether a single low or high value is an outlier. So if more than one outliers is suspected, the test has to be performed on these suspected outliers individually.</p>
+<p>Note that Dixon test is most useful for small sample size (usually n≤25n≤25).</p>
+<p>To perform the Dixon's test in R, we use the <code>dixon.test()</code> function from the <code>{outliers}</code> package. However, we <a href="https://statsandr.com/blog/data-manipulation-in-r/#subset-a-data-frame">restrict our dataset</a> to the 20 first observations as the Dixon test can only be done on small sample size (R will throw an error and accepts only dataset of 3 to 30 observations):</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>The results show that the lowest value 15 is an outlier (<em>p</em>-value = 0.007).</p>
+<p>To test for the highest value, simply add the <code>opposite = TRUE</code> argument to the <code>dixon.test()</code> function:</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>The results show that the highest value 31 is <strong>not</strong> an outlier (<em>p</em>-value = 0.858).</p>
+</section>
+<section id="rosners-test" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="rosners-test"><span class="header-section-number">8.6</span> <strong>Rosner's test</strong></h2>
+<p>Rosner's test for outliers has the advantages that:</p>
+<ol type="1">
+<li><p>it is used to <strong>detect several outliers at once</strong> (unlike Grubbs and Dixon test which must be performed iteratively to screen for multiple outliers), and</p></li>
+<li><p>it is designed to avoid the problem of masking, where an outlier that is close in value to another outlier can go undetected.</p></li>
+</ol>
+<p>Unlike Dixon test, note that Rosner test is most appropriate when the sample size is large (n≥20n≥20). We therefore use again the initial dataset <code>dat</code>, which includes 234 observations.</p>
+<p>To perform the Rosner test we use the <code>rosnerTest()</code> function from the <code>{EnvStats}</code> package. This function requires at least 2 arguments: the data and the number of suspected outliers <code>k</code> (with <code>k = 3</code> as the default number of suspected outliers).</p>
+<p>For this example, we set the number of suspected outliers to be equal to 3, as suggested by the number of potential outliers outlined in the boxplot at the beginning of the article.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; $distribution
+#&gt; [1] "Normal"
+#&gt; 
+#&gt; $statistic
+#&gt;  R.1  R.2  R.3 
+#&gt; 2.78 2.56 2.45 
+#&gt; 
+#&gt; $sample.size
+#&gt; [1] 112
+#&gt; 
+#&gt; $parameters
+#&gt; k 
+#&gt; 3 
+#&gt; 
+#&gt; $alpha
+#&gt; [1] 0.05
+#&gt; 
+#&gt; $crit.value
+#&gt; lambda.1 lambda.2 lambda.3 
+#&gt;     3.42     3.42     3.42 
+#&gt; 
+#&gt; $n.outliers
+#&gt; [1] 0
+#&gt; 
+#&gt; $alternative
+#&gt; [1] "Up to 3 observations are not\n                                 from the same Distribution."
+#&gt; 
+#&gt; $method
+#&gt; [1] "Rosner's Test for Outliers"
+#&gt; 
+#&gt; $data
+#&gt;   [1] 120.1 115.0 111.2 110.2 110.0 109.7 105.0 100.1  98.0  92.1  99.0  97.9
+#&gt;  [13]  94.9  92.2  94.9  92.7  92.9  89.9  88.7  92.0  87.7  85.1  85.1  82.9
+#&gt;  [25]  82.9  83.8  82.2  81.0  78.8  78.8  74.9  68.1  66.8  59.9 113.8 112.9
+#&gt;  [37] 108.1 109.7 103.7 103.2  99.9  99.0 103.0 103.0  99.4  97.9  97.2  96.7
+#&gt;  [49]  95.1  92.2  93.0  92.2  91.2  88.1  94.6  94.3  92.5  88.1  89.8  88.8
+#&gt;  [61]  87.9  86.0  87.4  68.5  80.5  79.0  77.6  72.8  77.3  78.8  74.5  72.6
+#&gt;  [73]  73.3  74.0  75.2  76.6  72.0  70.6  71.8  70.2  68.2  67.3  67.7  65.9
+#&gt;  [85]  66.3  64.7  63.0  62.7  64.2  61.3  64.2  60.1  59.4  57.7  57.4  56.5
+#&gt;  [97]  54.1  54.1  56.0  52.0  50.8  49.3  43.8  39.8  39.0  35.4  36.9  32.1
+#&gt; [109]  31.9  29.2  25.2  18.0
+#&gt; 
+#&gt; $data.name
+#&gt; [1] "tl"
+#&gt; 
+#&gt; $bad.obs
+#&gt; [1] 0
+#&gt; 
+#&gt; $all.stats
+#&gt;   i Mean.i SD.i Value Obs.Num R.i+1 lambda.i+1 Outlier
+#&gt; 1 0   78.9 21.9  18.0     112  2.78       3.42   FALSE
+#&gt; 2 1   79.4 21.2  25.2     111  2.56       3.42   FALSE
+#&gt; 3 2   79.9 20.7  29.2     110  2.45       3.42   FALSE
+#&gt; 
+#&gt; attr(,"class")
+#&gt; [1] "gofOutlier"</code></pre>
+</div>
+<p>Based on the Rosner test, we see that there is only one outlier (see the <code>Outlier</code> column), and that it is the observation 34 (see <code>Obs.Num</code>) with a value of 212 (see <code>Value</code>).</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./eda.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./regression.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

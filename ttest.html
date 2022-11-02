@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 14&nbsp; Two Independent Samples-parametric</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./wilcoxon.html" rel="next">
+<link href="./onesample.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#null-and-alternative-hypothesis" id="toc-null-and-alternative-hypothesis" class="nav-link active" data-scroll-target="#null-and-alternative-hypothesis"> <span class="header-section-number">14.1</span> Null and alternative hypothesis</a></li>
+  <li><a href="#how-to-compute-students-t-test-in-r" id="toc-how-to-compute-students-t-test-in-r" class="nav-link" data-scroll-target="#how-to-compute-students-t-test-in-r"> <span class="header-section-number">14.2</span> How to compute Student’s t-test in R?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>In this section, we learn how to <strong>compare two groups when the normality assumption is met</strong>, using the <strong>ttest</strong>.</p>
+<p>One of the most important test within the branch of inferential statistics is the <strong>Student’s t-test</strong>.<sup><a href="https://statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/#fn1">1</a></sup> The Student’s t-test for two samples is used to <strong>test whether two groups (two populations) are different</strong> in terms of a quantitative variable, <strong>based on the comparison of two samples</strong> drawn from these two groups. In other words, a Student’s t-test for two samples allows to determine whether the two populations from which your two samples are drawn are different (with the two samples being measured on a <a href="https://statsandr.com/blog/variable-types-and-examples/#continuous">quantitative continuous</a> variable).</p>
+<p>To compare two samples, it is usual to compare a measure of central tendency computed for each sample. In the case of the Student’s t-test, the <a href="https://statsandr.com/blog/descriptive-statistics-by-hand/#mean">mean</a> is used to compare the two samples. However, in some cases, the mean is not appropriate to compare two samples so the <a href="https://statsandr.com/blog/descriptive-statistics-by-hand/#median">median</a> is used to compare them via the <a href="https://statsandr.com/blog/wilcoxon-test-in-r-how-to-compare-2-groups-under-the-non-normality-assumption/">Wilcoxon test</a>. The Student’s t-test and Wilcoxon test have the same final goal, that is, compare two samples in and determine whether the two populations from which they were drawn are the same or different.</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Although the Student’s t-test is more powerful than the Wilcoxon test but is sensitive to outliers and data asymmetry.</p>
+</div>
+</div>
+<p>This chapter aim to show how to compute the Student’s t-test in R, so we refrain from testing the assumptions and we assume all of them are met for this exercise.</p>
+<section id="null-and-alternative-hypothesis" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="null-and-alternative-hypothesis"><span class="header-section-number">14.1</span> Null and alternative hypothesis</h2>
+<p>Before we dive into the computations of the Student’s t-test by hand, let’s explore the null and alternative hypotheses of this test. Although Student’s t-test is based on the comparison of the means of the two samples, the final goal of this test is actually to test the following hypotheses:</p>
+<ul>
+<li><span class="math inline">\(H_O\)</span>: the two populations are similar</li>
+<li><span class="math inline">\(H_A\)</span>: the two populations are different</li>
+</ul>
+<p>This is in the general case where we simply want to determine whether the two populations are <strong>different</strong> or not (in terms of the dependent variable). In this sense, we have no prior belief about a particular population mean being larger or smaller than the other. This type of test is referred as a <strong>two-sided</strong> or bilateral test.</p>
+<p>If we have some prior beliefs about one population mean being larger or smaller than the other, the Student’s t-test also allows to test the following hypotheses:</p>
+<p>We may test whether the mean of the first population is significantly larger than the mean of the second, or the mean of the first population is significantly smaller than the mean of the second. This type of test is referred as a <em>one-sided</em> or <em>unilateral</em> test.</p>
+</section>
+<section id="how-to-compute-students-t-test-in-r" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="how-to-compute-students-t-test-in-r"><span class="header-section-number">14.2</span> How to compute Student’s t-test in R?</h2>
+<p>A good practice before doing t-tests in R is to visualize the data first and explore the existing pattern. We often use a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#boxplot">boxplot</a> or a <a href="https://statsandr.com/blog/descriptive-statistics-in-r/#density-plot">density plot</a> or both to visualize the mean of the two independent groups.</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-boxplot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ttest_files/figure-html/fig-boxplot-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 14.1: boxplot of total length</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p><a href="#fig-boxplot">Figure&nbsp;<span class="quarto-unresolved-ref">fig-boxplot</span></a> indicates that the median total length of bigeye tuna is slighter higher during the SE compared to NE monsoon season. But boxplot just help the eye to compare the patterns of the mean for the two sample, if we want to</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  tl by season
+#&gt; t = -8, df = 39, p-value = 4e-10
+#&gt; alternative hypothesis: true difference in means between group NE and group SE is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  -3.90 -2.37
+#&gt; sample estimates:
+#&gt; mean in group NE mean in group SE 
+#&gt;             44.7             47.8</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  tl by season
+#&gt; t = -8, df = 39, p-value = 4e-10
+#&gt; alternative hypothesis: true difference in means between group NE and group SE is not equal to 0
+#&gt; 95 percent confidence interval:
+#&gt;  -3.90 -2.37
+#&gt; sample estimates:
+#&gt; mean in group NE mean in group SE 
+#&gt;             44.7             47.8</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  tl by season
+#&gt; t = -8, df = 39, p-value = 2e-10
+#&gt; alternative hypothesis: true difference in means between group NE and group SE is less than 0
+#&gt; 95 percent confidence interval:
+#&gt;   -Inf -2.49
+#&gt; sample estimates:
+#&gt; mean in group NE mean in group SE 
+#&gt;             44.7             47.8</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt;  Welch Two Sample t-test
+#&gt; 
+#&gt; data:  tl by season
+#&gt; t = -8, df = 39, p-value = 1
+#&gt; alternative hypothesis: true difference in means between group NE and group SE is greater than 0
+#&gt; 95 percent confidence interval:
+#&gt;  -3.77   Inf
+#&gt; sample estimates:
+#&gt; mean in group NE mean in group SE 
+#&gt;             44.7             47.8</code></pre>
+</div>
+<p><a href="#fig-two-sample">Figure&nbsp;<span class="quarto-unresolved-ref">fig-two-sample</span></a> indicates the median total length of bigeye tuna during the two distinctive monsoon season along with the statistical rich information that help us to draw conclusion that the total length during the SE monsoon season is statistically significant (<em>p</em> &lt; 0.05)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-two-sample" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="ttest_files/figure-html/fig-two-sample-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 14.2: Statistical rich plots of two indenpendent samples</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./onesample.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./wilcoxon.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,43 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lugoga.github.io/ecasData/index.html</loc>
-    <lastmod>2022-10-24T08:01:33.305Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/intro.html</loc>
-    <lastmod>2022-10-24T07:56:16.423Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/Rlanguage.html</loc>
-    <lastmod>2022-10-24T07:55:26.413Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/dataTypes.html</loc>
-    <lastmod>2022-10-24T07:55:26.419Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/data.html</loc>
-    <lastmod>2022-10-24T07:55:26.420Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/dataManipulation.html</loc>
-    <lastmod>2022-10-24T07:55:26.422Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/plotting.html</loc>
-    <lastmod>2022-10-24T07:55:26.452Z</lastmod>
-  </url>
-  <url>
-    <loc>https://lugoga.github.io/ecasData/eda.html</loc>
-    <lastmod>2022-10-24T07:55:26.458Z</lastmod>
+    <loc>https://lugoga.github.io/ecasData/lbspr.html</loc>
+    <lastmod>2022-11-02T06:50:51.547Z</lastmod>
   </url>
   <url>
     <loc>https://lugoga.github.io/ecasData/maps.html</loc>
-    <lastmod>2022-10-24T07:55:26.467Z</lastmod>
+    <lastmod>2022-11-02T06:32:29.260Z</lastmod>
   </url>
   <url>
     <loc>https://lugoga.github.io/ecasData/mapsDynamic.html</loc>
-    <lastmod>2022-10-24T07:55:26.477Z</lastmod>
+    <lastmod>2022-11-02T06:32:29.268Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lugoga.github.io/ecasData/keyobjects.html</loc>
+    <lastmod>2022-11-02T06:56:52.147Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lugoga.github.io/ecasData/index.html</loc>
+    <lastmod>2022-11-02T06:58:06.220Z</lastmod>
+  </url>
+  <url>
+    <loc>https://lugoga.github.io/ecasData/intro.html</loc>
+    <lastmod>2022-11-02T06:58:32.190Z</lastmod>
   </url>
 </urlset>

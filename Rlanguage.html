@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WIO-fish - 2&nbsp; R as a Programming Language</title>
+<title>WIO-fish - 2&nbsp; Software and Tools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -78,6 +78,25 @@ code span.st { color: #4070a0; } /* String */
 code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -118,9 +137,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
 
 </head>
 
@@ -130,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -171,12 +187,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -201,14 +217,89 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -218,30 +309,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-happens-at-r-startup" id="toc-what-happens-at-r-startup" class="nav-link active" data-scroll-target="#what-happens-at-r-startup"> <span class="header-section-number">2.1</span> What happens at R startup</a></li>
-  <li><a href="#key-objects" id="toc-key-objects" class="nav-link" data-scroll-target="#key-objects"> <span class="header-section-number">2.2</span> Key objects</a>
+  <li><a href="#the-r-environment" id="toc-the-r-environment" class="nav-link active" data-scroll-target="#the-r-environment"> <span class="header-section-number">2.1</span> The R environment</a></li>
+  <li><a href="#why-r-for-fisheries-scientists" id="toc-why-r-for-fisheries-scientists" class="nav-link" data-scroll-target="#why-r-for-fisheries-scientists"> <span class="header-section-number">2.2</span> Why R for Fisheries Scientists?</a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"> <span class="header-section-number">2.3</span> Installation</a>
   <ul class="collapse">
-  <li><a href="#basic-objects" id="toc-basic-objects" class="nav-link" data-scroll-target="#basic-objects"> <span class="header-section-number">2.2.1</span> basic objects</a></li>
-  <li><a href="#atomic-vector" id="toc-atomic-vector" class="nav-link" data-scroll-target="#atomic-vector"> <span class="header-section-number">2.2.2</span> atomic vector</a></li>
-  <li><a href="#list" id="toc-list" class="nav-link" data-scroll-target="#list"> <span class="header-section-number">2.2.3</span> list</a></li>
-  <li><a href="#null" id="toc-null" class="nav-link" data-scroll-target="#null"> <span class="header-section-number">2.2.4</span> NULL</a></li>
-  <li><a href="#derived-objects" id="toc-derived-objects" class="nav-link" data-scroll-target="#derived-objects"> <span class="header-section-number">2.2.5</span> derived objects</a></li>
+  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"> <span class="header-section-number">2.3.1</span> Installing R</a></li>
+  <li><a href="#installing-rstudio" id="toc-installing-rstudio" class="nav-link" data-scroll-target="#installing-rstudio"> <span class="header-section-number">2.3.2</span> Installing RStudio</a></li>
+  <li><a href="#rstudio-layout" id="toc-rstudio-layout" class="nav-link" data-scroll-target="#rstudio-layout"> <span class="header-section-number">2.3.3</span> Rstudio Layout</a></li>
+  <li><a href="#working-with-r-script-files" id="toc-working-with-r-script-files" class="nav-link" data-scroll-target="#working-with-r-script-files"> <span class="header-section-number">2.3.4</span> Working with R Script Files</a></li>
+  <li><a href="#working-with-quarto-document-and-knitrlatex" id="toc-working-with-quarto-document-and-knitrlatex" class="nav-link" data-scroll-target="#working-with-quarto-document-and-knitrlatex"> <span class="header-section-number">2.3.5</span> Working with quarto document, and knitr/LATEX</a></li>
   </ul></li>
-  <li><a href="#key-actions" id="toc-key-actions" class="nav-link" data-scroll-target="#key-actions"> <span class="header-section-number">2.3</span> Key actions</a>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"> <span class="header-section-number">2.4</span> Packages</a>
   <ul class="collapse">
-  <li><a href="#assignment" id="toc-assignment" class="nav-link" data-scroll-target="#assignment"> <span class="header-section-number">2.3.1</span> assignment</a></li>
-  <li><a href="#subscripting" id="toc-subscripting" class="nav-link" data-scroll-target="#subscripting"> <span class="header-section-number">2.3.2</span> subscripting</a></li>
+  <li><a href="#other-packages" id="toc-other-packages" class="nav-link" data-scroll-target="#other-packages"> <span class="header-section-number">2.4.1</span> Other packages</a></li>
+  <li><a href="#loading-installed-packages" id="toc-loading-installed-packages" class="nav-link" data-scroll-target="#loading-installed-packages"> <span class="header-section-number">2.4.2</span> Loading installed packages</a></li>
+  <li><a href="#exploring-r-with-the-swirl-package" id="toc-exploring-r-with-the-swirl-package" class="nav-link" data-scroll-target="#exploring-r-with-the-swirl-package"> <span class="header-section-number">2.4.3</span> Exploring R with the {swirl} Package</a></li>
   </ul></li>
-  <li><a href="#random-generation" id="toc-random-generation" class="nav-link" data-scroll-target="#random-generation"> <span class="header-section-number">2.4</span> random generation</a></li>
-  <li><a href="#probability-distributions" id="toc-probability-distributions" class="nav-link" data-scroll-target="#probability-distributions"> <span class="header-section-number">2.5</span> Probability distributions</a></li>
-  <li><a href="#pseudorandomness" id="toc-pseudorandomness" class="nav-link" data-scroll-target="#pseudorandomness"> <span class="header-section-number">2.6</span> Pseudorandomness</a></li>
-  <li><a href="#errors-and-such" id="toc-errors-and-such" class="nav-link" data-scroll-target="#errors-and-such"> <span class="header-section-number">2.7</span> Errors and such</a>
-  <ul class="collapse">
-  <li><a href="#syntax-errors" id="toc-syntax-errors" class="nav-link" data-scroll-target="#syntax-errors"> <span class="header-section-number">2.7.1</span> syntax errors</a></li>
-  <li><a href="#object-not-found" id="toc-object-not-found" class="nav-link" data-scroll-target="#object-not-found"> <span class="header-section-number">2.7.2</span> object not found</a></li>
-  <li><a href="#other-errors" id="toc-other-errors" class="nav-link" data-scroll-target="#other-errors"> <span class="header-section-number">2.7.3</span> other errors</a></li>
-  <li><a href="#warnings" id="toc-warnings" class="nav-link" data-scroll-target="#warnings"> <span class="header-section-number">2.7.4</span> warnings</a></li>
-  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"> <span class="header-section-number">2.5</span> Conclusion</a></li>
+  <li><a href="#what-happens-at-r-startup" id="toc-what-happens-at-r-startup" class="nav-link" data-scroll-target="#what-happens-at-r-startup"> <span class="header-section-number">2.6</span> What happens at R startup</a></li>
   </ul>
 </nav>
     </div>
@@ -250,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></h1>
 </div>
 
 
@@ -264,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>You may or may not have used other programming languages before coming to R. Either way, R has several distinctive features which are worth noting. The primary purpose of this tutorial is — in the first few days of your contact with R — to help you become as comfortable with R as possible. I asked R users what their biggest stumbling blocks were in learning R. A common answer that surprised me was:</p>
+<p>The computer language we will be using in this book is <strong>R</strong>—the open source computer language developed mainly to address statistical computing. Nevertheless, pretty much anything can be done in R like developing web applications, creating website, writing and publishing books, plotting and mapping.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -278,14 +363,205 @@ Tip
 <p>The biggest stumbling block was thinking that R is hard.</p>
 </div>
 </div>
-<p>On reflection perhaps I shouldn’t have been so surprised by that answer. The vastness of the functionality of R can be quite intimidating (even to those of us who have been around it for years), but doing a single task in R is a logical and often simple process.</p>
-<section id="what-happens-at-r-startup" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="what-happens-at-r-startup"><span class="header-section-number">2.1</span> What happens at R startup</h2>
+<p>You may or may not have used other programming languages before coming to R. Either way, R has several distinctive features which are worth noting. The primary purpose of this chapter is designed to help you to get started using R and RStudio, assuming no prior use of either. chapter If you already have experience using R and RStudio, you may find some of the contents of this chapter to be a refresher - or as a chance to learn a few new things about setting up and using them.</p>
+<p>We will begin to layout a bit more framework on why so many data scientists choose to work with R over every other language.</p>
+<section id="the-r-environment" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="the-r-environment"><span class="header-section-number">2.1</span> The R environment</h2>
+<p>R is an integrated suite of software facilities for data manipulation, calculation and graphical display. It includes an effective data handling and storage facility, a suite of operators for calculations on arrays, in particular matrices, a large, coherent, integrated collection of intermediate tools for data analysis, graphical facilities for data analysis and display either on-screen or on hardcopy, and a well-developed, simple and effective programming language which includes conditionals, loops, user-defined recursive functions and input and output facilities. The term “environment” is intended to characterize it as a fully planned and coherent system, rather than an incremental accretion of very specific and inflexible tools, as is frequently the case with other data analysis software.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R has its own LaTeX-like documentation format, which is used to supply comprehensive documentation, both on-line in a number of formats and in hardcopy.</p>
+</div>
+</div>
+</section>
+<section id="why-r-for-fisheries-scientists" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="why-r-for-fisheries-scientists"><span class="header-section-number">2.2</span> Why R for Fisheries Scientists?</h2>
+<p>R provides a wide variety of statistical (linear and nonlinear modelling, classical statistical tests, time-series analysis, classification, clustering, …) and graphical techniques, and is highly extensible. The R language serves as a vehicle of choice for research in statistical methodology, and an Open Source route to participation in that activity.</p>
+<p>One of R’s strengths is the ease with which well-designed publication-quality plots can be produced, including mathematical symbols and formulae where needed.</p>
+<p>R is available as Free Software under the terms of the Free Software Foundation’s GNU General Public License in source code form. It compiles and runs on a wide variety of UNIX platforms and similar systems (including FreeBSD and Linux), Windows and MacOS.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many users think of R as a statistics system and forget that it as an environment within which statistical techniques are implemented.</p>
+</div>
+</div>
+<p><strong>Should you use R?</strong> You may want to ask yourself these questions?</p>
+<ol type="1">
+<li>Do I need a tool to work with data?</li>
+<li>Am I looking for something cost effective?</li>
+<li>Do I want to learn to code in a language that gives me a great deal of freedom?</li>
+<li>Would I like to be able to easily define my own procedures and functions?</li>
+<li>If you answered Yes to any of those question than it may be worthwhile for you to start using R.</li>
+</ol>
+</section>
+<section id="installation" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="installation"><span class="header-section-number">2.3</span> Installation</h2>
+<section id="installing-r" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">2.3.1</span> Installing R</h3>
+<p>To download R, go to CRAN, the comprehensive R archive network. CRAN is composed of a set of mirror servers distributed around the world and is used to distribute R and R packages. Don’t try and pick a mirror that’s close to you: instead use the cloud mirror, https://cloud.r-project.org, which automatically figures it out for you.</p>
+<p>A new major version of R comes out once a year, and there are 2-3 minor releases each year. It’s a good idea to update regularly. Upgrading can be a bit of a hassle, especially for major versions, which require you to reinstall all your packages, but putting it off only makes it worse.</p>
+<ol type="1">
+<li>Go to https://cran.r-project.org/</li>
+<li>Click Download R for Mac/Windows.</li>
+<li>Click the link appropriate for your system (Linux, Mac, Windows)</li>
+</ol>
+<p>Don’t worry; you will not mess anything up if you download (or even install!) the wrong file. Once you’ve installed R, you can get started.</p>
+</section>
+<section id="installing-rstudio" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="installing-rstudio"><span class="header-section-number">2.3.2</span> Installing RStudio</h3>
+<p>RStudio is an integrated development environment, or IDE, for R programming <span class="citation" data-cites="rstudio">(<a href="#ref-rstudio" role="doc-biblioref"><strong>rstudio?</strong></a>)</span>. RStudio is a set of integrated tools that allows for a more user-friendly experience for using R. Although you will likely use RStudio as your main console and editor, you must first install R, as RStudio uses R behind the scenes. Both R and RStudio are freely-available, cross-platform, and open-source.</p>
+<p>While one can certainly use R without using RStudio, RStudio makes a number of things easier and we highly recommend using RStudio. Furthermore, since RStudio is in active development, we fully expect more useful features in the future.</p>
+<p>Download and install it from http://www.rstudio.com/download. RStudio is updated a couple of times a year. When a new version is available, RStudio will let you know. It’s a good idea to upgrade regularly so you can take advantage of the latest and greatest features.</p>
+<ol type="1">
+<li>Go to https://www.rstudio.com/products/rstudio/download/</li>
+<li>Click Download under RStudio Desktop.</li>
+<li>Click the link appropriate for your system (Linux, Mac, Windows)</li>
+<li>Follow the instructions of the Installer.</li>
+</ol>
+</section>
+<section id="rstudio-layout" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="rstudio-layout"><span class="header-section-number">2.3.3</span> Rstudio Layout</h3>
+<p>Whenever we want to work with R, we’ll open RStudio. RStudio interfaces directly with R, and is an Integrated Development Environment (IDE). This means that RStudio comes with built-in features that make using R a little easier. When you start RStudio, you’ll see four key panels in the interface shown in <a href="#fig-interface">Figure&nbsp;<span class="quarto-unresolved-ref">fig-interface</span></a>. We’ll refer to these four “panes” as the <code>editor</code>, the <code>Console</code>, the <code>Environment</code>, and the <code>Files</code> panes. The large square on the left is the Console pane, the square in the top right is the Environment pane, and the square in the bottom right is the Files pane. As you work with R more, you’ll find yourself using the tabs within each of the panes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/rstudio3.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-interface" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/rstudio3.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 2.1: The interface of Rstudio IDE with four key panels</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When we create a new file, such as an R script, an R Markdown file, or a Shiny app, RStudio will open a fourth pane, known as the source or editor pane. The source pane should show up as a square in the top left. We can open up an .R script in the source pane by going to File, selecting New File, and then selecting R Script:</p>
+</section>
+<section id="working-with-r-script-files" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="working-with-r-script-files"><span class="header-section-number">2.3.4</span> Working with R Script Files</h3>
+<p>As an alternative, R commands can be stored in a file. RStudio provides an integrated editor for editing these files and facilitates executing some or all of the commands. To create a file, select File, then New File, then R Script from the RStudio menu. A file editor tab will open in the Source panel. R code can be entered here, and buttons and menu items are provided to run all the code (called sourcing the file) or to run the code on a single line or in a selected section of the file.</p>
+</section>
+<section id="working-with-quarto-document-and-knitrlatex" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="working-with-quarto-document-and-knitrlatex"><span class="header-section-number">2.3.5</span> Working with quarto document, and knitr/LATEX</h3>
+<p>A second alternative is to take advantage of RStudio’s support for reproducible research. If you already know LATEX, you will want to investigate the knitr/LATEX capabilities. For those who do not already know LATEX, the simpler RMarkdown system provides an easy entry into the world of reproducible research methods. It also provides a good facility for students to create homework and reports that include text, R code, R output, and graphics. To create a new RMarkdown file, select File, then New File, then RMarkdown. The file will be opened with a short template document that illustrates the mark up language.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-quarto" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/quartobook.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 2.2: Option for documents in Rstudio</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is important to remember that unlike R scripts, which are executed in the console and have access to the console environment, RMarkdown and knitr/LATEX files do not have access to the console environment This is a good feature because it forces the files to be selfcontained, which makes them transferable and respects good reproducible research practices. But beginners, especially if they adopt a strategy of trying things out in the console and copying and pasting successful code from the console to their file, will often create files that are incomplete and therefore do not compile correctly.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="packages" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="packages"><span class="header-section-number">2.4</span> Packages</h2>
+<p>This section will briefly go over installing packages that’s used throughout this book. An R <strong>package</strong> is a collection of functions, data, and documentation that extends the capabilities of base R. Using packages is key to the successful use of R. The majority of the packages that you will learn in this course are part of the so-called <strong>tidyverse</strong>. The packages in the <strong>tidyverse</strong> <em>share a common philosophy of data and R programming, and are designed to work together naturally</em>.</p>
+<p>The <strong>Tidyverse</strong> <span class="citation" data-cites="tidyverse">(<a href="#ref-tidyverse" role="doc-biblioref">Wickham et al. 2019</a>)</span> packages form a core set of functions that will allow us to perform most any type of data cleaning or analysis we will need to do. We will use the following packages from the tidyverse</p>
+<ul>
+<li><strong>ggplot2</strong>—for data visualisation.</li>
+<li><strong>dplyr</strong>—for data manipulation.</li>
+<li><strong>tidyr</strong>—for data tidying.</li>
+<li><strong>readr</strong>—for data import.</li>
+<li><strong>purrr</strong>—for functional programming.</li>
+<li><strong>tibble</strong>—for tibbles, a modern re-imagining of data frames.</li>
+</ul>
+<p>For us to use <strong>tidyverse</strong> and any other package that is not included in Base R, we must install them first. The easiest way to install packages is to use the <code>install.packages()</code> command. For example, let’s go ahead and install the <strong>tidyverse</strong> package on your machine:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On your own computer, type that line of code in the console, and then press enter to run it. R will download the packages from CRAN and install them on to your computer. If you have problems installing, make sure that you are connected to the internet, and that https://cloud.r-project.org/ isn’t blocked by your firewall or proxy.</p>
+<section id="other-packages" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="other-packages"><span class="header-section-number">2.4.1</span> Other packages</h3>
+<p>There are many other excellent packages that are not part of the tidyverse, because they solve problems in a different domain, or are designed with a different set of underlying principles. This doesn’t make them better or worse, just different. In other words, the complement to the tidyverse is not the messyverse, but many other universes of interrelated packages <span class="citation" data-cites="r4ds">(<a href="#ref-r4ds" role="doc-biblioref"><strong>r4ds?</strong></a>)</span>. As you tackle more data science projects with R, you’ll learn new packages and new ways of thinking about data. In this course we’ll use several data packages from outside the tidyverse:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>additional.packages <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"metR"</span>, <span class="st">"cowplot"</span>, <span class="st">"ggspatial"</span>, <span class="st">"patchwork"</span>, <span class="st">"ggrepel"</span>, <span class="st">"oce"</span>, <span class="st">"tmap"</span>, <span class="st">"leaflet"</span>, <span class="st">"bookdown"</span>, <span class="st">"blogdown"</span>, <span class="st">"rmarkdown"</span>, <span class="st">"tinytex"</span>, <span class="st">"tidymodels"</span>, <span class="st">"terra"</span>, <span class="st">"tidyterra"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(additional.packages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="loading-installed-packages" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="loading-installed-packages"><span class="header-section-number">2.4.2</span> Loading installed packages</h3>
+<p>With exception to base R package, add on package that are installed must be called with either <code>library</code> or <code>require</code> functions to make their tools accessible in R session. Let’s us load the <strong>tidyverse</strong> package we just installed</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: tidyverse</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>v ggplot2 3.3.6     v purrr   0.3.4
+v tibble  3.1.8     v dplyr   1.0.9
+v tidyr   1.2.0     v stringr 1.4.0
+v readr   2.1.2     v forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+</div>
+<p>You notice that when we load <strong>tidyverse</strong>, it popup a notification message showing the loaded packages and the conflicts they bring in. These conflicts happen when packages have functions with the same names as other functions. This is OK when you prefer the function in a package like tidyverse rather than some other function. Basically the last package loaded in will mask over other functions if they have common names.</p>
+</section>
+<section id="exploring-r-with-the-swirl-package" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="exploring-r-with-the-swirl-package"><span class="header-section-number">2.4.3</span> Exploring R with the {swirl} Package</h3>
+<p>If you were able to install the {dataedu} package without any issues or concerns, and you’re eager to get started exploring everything that R can do, you can supplement your learning through <a href="https://swirlstats.com/students.html">{swirl}</a> (https://swirlstats.com/students.html).</p>
+<p>You can install {swirl} by running the following code:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"swirl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>{swirl} is set of packages (see more on packages in <a href="#c06">Chapter 6</a>) that you can download, providing an interactive method for learning R by using R in the RStudio Console.<br>
+Since you’ve already installed R, RStudio, and the {swirl} package, you can follow the instructions on the {swirl} webpage or run the following code <em>in your console pane</em> to get started with a beginner-level course in {swirl}:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(swirl)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_course</span>(<span class="st">"R_Programming_E"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">swirl</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are multiple courses available on {swirl}, and you can access them by installing them and then running the <code>swirl()</code> command in your console. We are not affiliated with {swirl} in any way, nor is it required to use {swirl} in order to progress through this text, but it’s a great resource that we want to make sure is on your radar!</p>
+</section>
+</section>
+<section id="conclusion" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">2.5</span> Conclusion</h2>
+<p>It would be impossible for us to cover everything you can do with R in a single chapter of a book, but it is our hope that this chapter gives you a strong foundation from which to explore both subsequent chapters as well as additional R resources. Appendix extends some of the techniques introduced in</p>
+<hr>
+</section>
+<section id="what-happens-at-r-startup" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="what-happens-at-r-startup"><span class="header-section-number">2.6</span> What happens at R startup</h2>
 <p>R is mainly used as an interactive program — you give R a command and it responds to that command. The result may influence the next command that you give R.</p>
 <p>Between the time you start R and it gives you the first prompt, any number of things might happen (depending on your installation). But the thing that always happens is that some number of <strong>packages</strong> are <code>attached</code> to the <code>search list</code>.</p>
 <p>You can see what those packages are in your case with the command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">search</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
@@ -303,289 +579,16 @@ Tip
 <p>The first item on the search list is the “global environment”. This is your work space where the objects that you create during the R session will be.</p>
 <p>You quit R with the command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">q</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>R will ask you if you want to save or delete the global environment when you quit. If you do save the global environment, then you can start another R session with those objects in the global environment at the start of the new session. You are saving the objects in the global environment, you are not saving the session. In particular, you are not saving the search list.</p>
-</section>
-<section id="key-objects" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="key-objects"><span class="header-section-number">2.2</span> Key objects</h2>
-<p>An important strength of R is that it is very rich in the types of objects that it supports. That strength is rather a disadvantage when you are first learning R.</p>
-<p>But to start, you only need to get your head around a few types of objects.</p>
-<section id="basic-objects" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="basic-objects"><span class="header-section-number">2.2.1</span> basic objects</h3>
-<p>Here are three important basic objects:</p>
-<ul>
-<li><p>atomic vector</p></li>
-<li><p>list</p></li>
-<li><p>NULL</p></li>
-</ul>
-</section>
-<section id="atomic-vector" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="atomic-vector"><span class="header-section-number">2.2.2</span> atomic vector</h3>
-<p>There are three varieties of atomic vector that you are likely to encounter:</p>
-<ul>
-<li><p>numeric</p></li>
-<li><p>logical</p></li>
-<li><p>character</p></li>
-</ul>
-<p>The thing to remember about atomic vectors is that all of the elements in them are only of one type. There can not be an atomic vector that has both numbers and character strings, for instance.</p>
-</section>
-<section id="list" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="list"><span class="header-section-number">2.2.3</span> list</h3>
-<p>Lists can have different types of items in different components. A component of a list is allowed to be another list as well as an atomic vector (and other things).</p>
-</section>
-<section id="null" class="level3" data-number="2.2.4">
-<h3 data-number="2.2.4" class="anchored" data-anchor-id="null"><span class="header-section-number">2.2.4</span> NULL</h3>
-<p>The final object in the list above is <code>NULL</code>. This is an object that has zero length. Virtually all of the other objects that you deal with will have length greater than zero.</p>
-</section>
-<section id="derived-objects" class="level3" data-number="2.2.5">
-<h3 data-number="2.2.5" class="anchored" data-anchor-id="derived-objects"><span class="header-section-number">2.2.5</span> derived objects</h3>
-<p>There are three important types of what might be called derived — or non-basic — objects.</p>
-<ul>
-<li><p>matrix</p></li>
-<li><p>data frame</p></li>
-<li><p>factor</p></li>
-</ul>
-<section id="matrix-and-data-frame" class="level4" data-number="2.2.5.1">
-<h4 data-number="2.2.5.1" class="anchored" data-anchor-id="matrix-and-data-frame"><span class="header-section-number">2.2.5.1</span> matrix and data frame</h4>
-<p>Matrices and data frames are both rectangular data objects. The difference between them is that everything in a matrix has to be of the same atomic type, but data frames can have different types in different columns. Each column of a data frame has to be of a single type.</p>
-<p>A matrix can look exactly like a data frame, but they are implemented entirely differently.</p>
-<p>Sometimes it doesn’t matter whether you have a matrix or a data frame. Other times it is very important to know which you have.</p>
-</section>
-<section id="factor" class="level4" data-number="2.2.5.2">
-<h4 data-number="2.2.5.2" class="anchored" data-anchor-id="factor"><span class="header-section-number">2.2.5.2</span> factor</h4>
-<p>Factors represent categorical data. (You might ask why they aren’t called something like category — yeah, well, long story …)</p>
-<p>Factors are often easily confused with character vectors. In particular, columns of data frames that you might think of as character are many times actually factors.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Sometimes it doesn’t matter whether you have a factor or a character vector. Other times it is very important to know which you have.</p>
-</div>
-</div>
-</section>
-</section>
-</section>
-<section id="key-actions" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="key-actions"><span class="header-section-number">2.3</span> Key actions</h2>
-<p>Three basic actions in R are assignment, subscripting and random generation.</p>
-<section id="assignment" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="assignment"><span class="header-section-number">2.3.1</span> assignment</h3>
-<p>The action in R is precipitated by function calls. Most functions return a value (that is, some data object). You will often want to assign that result to a name. There are two ways of doing that. You can do:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a> meanx <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>or</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>meanx <span class="ot">=</span> <span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Once you have executed one of those commands, then <code>meanx</code> will be an object in your global environment.</p>
-<p>There is a shocking amount of controversy over which form of assignment to use. The position I’ll take here is to say to use whichever one you are more comfortable with. There are ways of running into trouble with either one, but using the arrow surrounded by spaces is probably the safest approach by a slight margin.</p>
-<p>Note that R is <strong>case-sensitive</strong>. The two names <code>meanx</code> and <code>Meanx</code> are different.</p>
-</section>
-<section id="subscripting" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="subscripting"><span class="header-section-number">2.3.2</span> subscripting</h3>
-<p>Subscripting is important. This is the act of extracting pieces from objects. Subscripting is done with square brackets:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>extracts the first element from x.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>extracts the element in the first row and third column of a matrix or data frame.</p>
-<p>Subscripting also includes replacing pieces of an object. The command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="ot">=</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>will change the first element of x to 9.</p>
-</section>
-</section>
-<section id="random-generation" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="random-generation"><span class="header-section-number">2.4</span> random generation</h2>
-<p>There is a variety of functions that produce randomness. For example, the command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>creates a vector of 9 numbers that are uniformly distributed between 0 and 1. You will get different answers from this command if you do it again.</p>
-<p><code>runif</code> function is also used to randomly generate element of vector when the minimum and maximum values are provided.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">9</span>, <span class="at">min =</span> <span class="dv">20</span>, <span class="at">max =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="probability-distributions" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">2.5</span> Probability distributions</h2>
-<p>R has functions for a number of probability distributions. In general, there are four functions for each distribution as shown in <a href="#tbl-probfunctions">Table&nbsp;<span>2.1</span></a>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-probfunctions" class="anchored">
-
-<table class="table" style="margin-left: auto; margin-right: auto;"><caption>Table 2.1:  Prefix name of probability distributions functions in R </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Function name </th>
-   <th style="text-align:left;"> Description </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> rxxx </td>
-   <td style="text-align:left;"> random generation </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> dxxx </td>
-   <td style="text-align:left;"> density function </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> pxxx </td>
-   <td style="text-align:left;"> cumulative probability function </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> qxxx </td>
-   <td style="text-align:left;"> quantile function </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>For example <code>rnorm</code> is the random generation function for the normal distribution. <code>dnorm</code> is the density for the normal. <code>pnorm</code> is the cumulative probability function for the normal — that is, this gives the probability of being less than or equal to a given quantile. <code>qnorm</code> is the quantile function — the inverse of the probability function (that is, it returns a quantile given a probability).</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="tbl-normdistribution" class="anchored">
-
-<table class="table" style="margin-left: auto; margin-right: auto;"><caption>Table 2.2:  Probility distribution functions in R </caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Distribution </th>
-   <th style="text-align:left;"> Functioons </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Uniform </td>
-   <td style="text-align:left;"> runif, dunif, punif, qunif </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Normal </td>
-   <td style="text-align:left;"> rnorm, dnorm, pnorm, qnorm </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Student’s t </td>
-   <td style="text-align:left;"> rt, dt, pt, qt </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> F </td>
-   <td style="text-align:left;"> rf, df, pf, qf </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Exponential </td>
-   <td style="text-align:left;"> rexp, dexp, pexp, qexp </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Log normal </td>
-   <td style="text-align:left;"> rlnorm, dlnorm, plnorm, qlnorm </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Beta </td>
-   <td style="text-align:left;"> rbeta, dbeta, pbeta, qbeta </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Binomial </td>
-   <td style="text-align:left;"> rbinom, dbinom, pbinom, qbinom </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Poisson </td>
-   <td style="text-align:left;"> rpois, dpois, ppois, qpois </td>
-  </tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>You can see a more complete list with the command:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>??distributions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The ecdf function takes a data vector as an argument and returns a function that is the cumulative probability function of the data.</p>
-<p>Many contributed packages contain functions for additional distributions.</p>
-</section>
-<section id="pseudorandomness" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="pseudorandomness"><span class="header-section-number">2.6</span> Pseudorandomness</h2>
-<p>In a certain sense most of what is said on this page is a lie. When you use a function like <code>rnorm</code> or <code>sample</code>, you are not generating randomness at all. These are pseudorandom functions. Technically you are generating chaos when you use them, not randomness. There are two main reasons to use pseudorandomness rather than randomness.</p>
-<ul>
-<li><p>The first is <code>convenience</code>. In the early days of computing there was no way to actually get true random values, so they had to invent pseudorandom methods. Now there is the possibility of using truly random values, but it is generally harder to do and seldom offers an advantage.</p></li>
-<li><p>The second reason to prefer pseudorandomness is reproducibility. Random numbers (by definition) are not reproducible. A program without reproducible results is a program that can not be debugged.</p></li>
-</ul>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>It is largely accidental that we have pseudorandom functions and not truly random functions. It\’s a happy accident.</p>
-</div>
-</div>
-</section>
-<section id="errors-and-such" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="errors-and-such"><span class="header-section-number">2.7</span> Errors and such</h2>
-<p>Sometime, probably soon, you are going to get an error in R.</p>
-<p>Hint: the universe doesn’t collapse into a singularity just because of an error in R. Actually, it builds character — see <a href="https://www.burns-stat.com/documents/tutorials/impatient-r/#makemistakes">Make mistakes on purpose.</a></p>
-<p>R produces errors and warnings. Both errors and warnings write a message — the difference is that errors halt the execution of the command but warnings do not.</p>
-<p>We’ll categorize errors into three types: syntax errors, object-not-found errors, and all the rest.</p>
-<section id="syntax-errors" class="level3" data-number="2.7.1">
-<h3 data-number="2.7.1" class="anchored" data-anchor-id="syntax-errors"><span class="header-section-number">2.7.1</span> syntax errors</h3>
-<p>If you get a syntax error, then you’ve entered a command that R can’t understand. Generally the error message is pretty good about pointing to the approximate point in the command where the error is.</p>
-<p>Common syntax mistakes are missing commas, unmatched parentheses, and the wrong type of closing brace for example, an opening square bracket but a closing parenthesis).</p>
-</section>
-<section id="object-not-found" class="level3" data-number="2.7.2">
-<h3 data-number="2.7.2" class="anchored" data-anchor-id="object-not-found"><span class="header-section-number">2.7.2</span> object not found</h3>
-<p>Errors of the object-not-found variety can have one of several causes:</p>
-<ul>
-<li><p>the name is not spelled correctly, or the capitalization is wrong</p></li>
-<li><p>the package or file containing the object is not on the search list</p></li>
-<li><p>something else (let your imagination run wild)</p></li>
-</ul>
-</section>
-<section id="other-errors" class="level3" data-number="2.7.3">
-<h3 data-number="2.7.3" class="anchored" data-anchor-id="other-errors"><span class="header-section-number">2.7.3</span> other errors</h3>
-<p>There are endless other ways of getting an error. Hence some detective work is generally necessary — think of it as a crossword puzzle that needs solving.</p>
-<p>It should become a reflex reaction to type:</p>
-<p>The results might not mean much to you at the moment, but they will at some point. The traceback tells you what functions were in effect at the time of the error. This can give you a hint of what is going wrong.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>traceback()<br>
-whenever you get an error.</p>
-</div>
-</div>
-</section>
-<section id="warnings" class="level3" data-number="2.7.4">
-<h3 data-number="2.7.4" class="anchored" data-anchor-id="warnings"><span class="header-section-number">2.7.4</span> warnings</h3>
-<p>A warning is not as serious as an error in that the command runs to completion. But that can mean that ignoring a warning can be very, very serious if it is suggesting to you that the answer you got was bogus.</p>
-<p>It is good policy to understand warning messages to see if they indicate a real problem or not.</p>
 
 
-</section>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-tidyverse" class="csl-entry" role="doc-biblioentry">
+Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->
@@ -694,7 +697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./dataTypes.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

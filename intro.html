@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -105,12 +168,12 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></a>
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Understanding Data in R</span></a>
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -135,14 +198,89 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -152,9 +290,11 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#initiatives-conducted-in-the-wio" id="toc-initiatives-conducted-in-the-wio" class="nav-link active" data-scroll-target="#initiatives-conducted-in-the-wio">Initiatives conducted in the WIO</a></li>
-  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">Objectives</a></li>
-  <li><a href="#scope-of-the-work" id="toc-scope-of-the-work" class="nav-link" data-scroll-target="#scope-of-the-work">Scope of the work</a></li>
+  <li><a href="#general-introduction" id="toc-general-introduction" class="nav-link active" data-scroll-target="#general-introduction"> <span class="header-section-number">1.1</span> General Introduction</a></li>
+  <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection"> <span class="header-section-number">1.2</span> Data Collection</a></li>
+  <li><a href="#types-of-data" id="toc-types-of-data" class="nav-link" data-scroll-target="#types-of-data"> <span class="header-section-number">1.3</span> Types of Data</a></li>
+  <li><a href="#methods-of-data-analysis" id="toc-methods-of-data-analysis" class="nav-link" data-scroll-target="#methods-of-data-analysis"> <span class="header-section-number">1.4</span> Methods of Data Analysis</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
     </div>
@@ -163,7 +303,7 @@ ul.task-list{list-style: none;}
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span id="intro" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
 </div>
 
 
@@ -177,47 +317,95 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<p>To raise awareness of countries in the Western Indian Ocean (WIO) in monitoring their progress toward the achievement of the Sustainable Development Goals (SDGs), the FAO has partnered with WIOMSA to support capacity-building activities in collection, monitoring, and assessment of fisheries data for the WIO region. In general, these activities aim to strengthen the workflow from fisheries data collection to support the monitoring and reporting of SDG 14.4.1.</p>
-<p>The prime goal of this initiative align with the the United Nations Decade of Ocean Science for Sustainable Development (2021-2030, Ocean Decade for short), which focus to support a new cooperative framework to ensure that global ocean science provides greater benefits for ocean ecosystems and wider society.</p>
-<div class="quarto-figure quarto-figure-center">
+<section id="general-introduction" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="general-introduction"><span class="header-section-number">1.1</span> General Introduction</h2>
+<p>Freshwater and marine scientists make observations and gather data about the natural processes and ecology of aquatic organisms and their habitats. They formulate and test hypotheses on the factors that have influenced particular region to create its structure and also make predictions about future changes to the planet.</p>
+<p>All of these steps in exploring the fisheries involve the acquisition and analysis of numerical data. A scientist therefore needs to have a firm understanding of statistical and numerical methods as well as the ability to utilize relevant computer software packages, in order to be able to analyze the acquired data.</p>
+<p>This guide introduces some of the most important methods of data analysis employed in aquatic sciences and illustrates their use through examples using the R® programming language. These examples can then be used as recipes for the analysis of the reader’s own data, after having learned their application with synthetic data. This introductory chapter deals with data acquisition (Section 1.2), the various types of data (Section 1.3) and the appropriate methods for analyzing data (Section 1.4). We therefore first explore the characteristics of typical data sets and subsequently investigate the various ways of analyzing data using R.</p>
+</section>
+<section id="data-collection" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="data-collection"><span class="header-section-number">1.2</span> Data Collection</h2>
+<p>Most data sets in sciences have a very limited sample size and also contain a significant number of uncertainties. Such data sets are typically used to describe rather large natural phenomena, such as a length and size of fish, a optimum conditions for certain habitats or a stock size of certain fish species. The methods described in this guide aim to find a way of predicting the characteristics of a larger population from a much smaller sample. An appropriate sampling strategy is the first step towards obtaining a good data set. The development of a successful strategy for field sampling requires decisions on the sample size and the spatial sampling scheme.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A population is the entire group that you want to draw conclusions about. A sample is the specific group that you will collect data from.</p>
+</div>
+</div>
+<p>The sample size includes the sample volume, the sample weight and the number of samples collected in the field. The sample weights or volumes can be critical factors if the samples are later analyzed in a laboratory and most statistical methods also have a minimum requirement for the sample size. The sample size also affects the number of sub-samples that can be collected from a single sample. If the population is heterogeneous then the sample needs to be large enough to represent the population’s variability, but on the other hand samples should be as small as possible in order to minimize the time and costs involved in their analysis.</p>
+<p><a href="#fig-pop-sample">Figure&nbsp;<span>1.1</span></a> shows a schematic that underpins the concepts of population versus sample. The lefthand side represents a population that, in statistics, is assumed to follow an underlying but unknown distribution. The only thing available is the sample data and its empirical distribution, shown on the righthand side. To get from the lefthand side to the righthand side, a sampling procedure is used (represented by an arrow). Traditional statistics focused very much on the lefthand side, using theory based on strong assumptions about the population. Modern statistics has moved to the righthand side, where such assumptions are not needed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"images/population_sample.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-pop-sample" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/un_ocean_decade_logo.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">UN Decade of the OCean</figcaption><p></p>
+<p><img src="images/population_sample.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 1.1: Population and sample with their distributions</figcaption><p></p>
 </figure>
 </div>
-<p>Decade provides a common framework to ensure that ocean science can fully support countries’ actions to sustainably manage the ocean and more particularly to achieve the 2030 Agenda for Sustainable Development – through the creation of a new foundation, across the science-policy interface, to strengthen the management of the ocean and coasts for the benefit of humanity.</p>
-<p>A vast majority of the ocean remains unmapped, unobserved and unexplored. Our understanding of the ocean and its contribution to sustainability largely depends on our capacity to conduct effective ocean science - through research and sustained observations, supported by adequate infrastructures and investments.</p>
-<p>This decade of the ocean comes down with a slogan the science we want for the ocean we need! But we flip it a little bit and should read the information we want for the ocean we need, why. Because we are at the time of precedented generation of data than ever before. Data generated from sensors to satellite is enormous.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/SDG-logo.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">UN Sustainable Goals</figcaption><p></p>
-</figure>
 </div>
-<p>In the WIO, small-scale fisheries dominate and are crucial for the livelihoods of coastal communities in the region, contributing to the twin imperatives of poverty reduction and economic development. However, these fisheries are dispersed, open-access in nature, multispecies and multi-gear, making their monitoring and determination of stock status for individual species incredibly challenging as data are insufficient for conventional stock assessment routines.</p>
-<p>Efforts to determine stock status and provide evidence-based fisheries management advice are beset with problems, including insufficient or inadequate scientific data and expertise, which are compromised by economic and socio-political realities. For example, the regional state of the coast report for the western Indian Ocean (WIO) states that almost all countries in the region cannot adequately assess their marine resources and lack the financial capacity and technical expertise for effective management. Important impediments to fisheries management in the region relate to the following aspects:</p>
-<ol type="i">
-<li>The lack of quality data available for analysis,</li>
-<li>Inadequate capacity for in-depth analysis of data, especially in monitoring and assessment of the state of fisheries and the likely effects of alternative management interventions, and</li>
-<li>Poor coordination between institutions and insufficient sharing of information on which to build good governance.</li>
-</ol>
-<p>These have been highlighted as some of the impediments to meeting the targets of SDG 14.</p>
-<p>Although the national fisheries institutes in the region do collect data on their fisheries, these data are often not detailed to an adequate granularity (e.g.&nbsp;regarding time, space, fleet or species levels), are not properly organized or linked, lack sufficient quality assurance and control, or are very difficult to retrieve for analysis. Additionally, there is often very limited technical capacity for managing, accessing and extracting data in a way that can be used for analysis.</p>
-<p>Thus, even though data may exist, they often remain underutilized, strongly limiting the possibility of applying even data-limited approaches to stock monitoring. As such, analyses of stock status may be missing or be based on inappropriate metrics and methods, thereby hindering the formulation of relevant policies for the sector.</p>
-<p>In its role as custodian agency of the SDG 14 indicators, FAO has a mandate to support countries to strengthen their capacities to collect, process, analyse and report data while ensuring that different national data sets are comparable and can be aggregated at sub-regional, regional and global levels to monitor the SDGs.</p>
-<section id="initiatives-conducted-in-the-wio" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="initiatives-conducted-in-the-wio">Initiatives conducted in the WIO</h2>
-<p>Two workshops have been undertaken in the WIO/East African region, first a project kick-off meeting of the Fishing Data East Africa (FIDEA) project (Dar es Salaam, Tanzania, 16-17 September 2019), focused on Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, at which FAO agreed to partner with FIDEA to support a capacity development workshop in the East Africa region. This led to a mission by FAO staff to investigate the data infrastructure in Tanzania-Mainland, Tanzania-Zanzibar and Mozambique, as well as the SDG 14.4.1 reporting capacity development workshop in Zanzibar from 2-14 March 2020, which included 10 East African countries and WIO island nations.</p>
-<p>The report of this second workshop recommended some key actions to support countries in improving the collection and use of data for monitoring the SDG 14.4 target. A common point in these recommendations is a greater need to provide long-term support for developing appropriate data management systems. This goes beyond collection to focus particularly on validation, organization, protection, retrieval and summary of the data, essential steps for allowing reliable estimation and reporting of the SDG14.4.1 indicator.</p>
-<p>It has been stated many times that <strong><em>The collection of data is not an end in itself, but is essential for informed decision-making</em></strong>, and data can only be useful for supporting decision-making if they are properly stored, managed, and curated so that they have the quality necessary for providing meaningful and reliable advice. The report also recommended stronger collaboration between the SWIOFC regional process in monitoring the status of stocks and national processes in developing capacities for the monitoring of SDG14.4.1.</p>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The collection of smaller pilot samples is recommended prior to defining a suitable sample size.</p>
+</div>
+</div>
+<p>The design of the spatial sampling scheme is dependent on the availability of outcrops or other material suitable for sampling. Sampling in coral reefs typically leads to clustered data, whereas sampling along shoreline cliffs results in one-dimensional traverse sampling schemes. A more <em>uniform sampling</em> pattern can be designed where there is 100% exposure or if there are no financial limitations. A <em>regular sampling</em> scheme results in a gridded distribution of sample locations, whereas a <em>uniform sampling</em> strategy includes the random location of a sampling point within a grid square. Although these sampling schemes might be expected to provide superior methods for sampling collection, evenly-spaced sampling locations tend to miss small-scale variations in the area.</p>
+<p>The correct sampling strategy will depend on the objectives of the investigation, the type of analysis required and the desired level of confidence in the results. Having chosen a suitable sampling strategy, the quality of the sample can be influenced by a number of factors resulting in the samples not being truly representative of the larger population. It is therefore recommended that the quality of the samples, the method of data analysis employed and the validity of the conclusions drawn from the analysis be checked at each stage of the investigation.</p>
 </section>
-<section id="objectives" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="objectives">Objectives</h2>
-<p>The objective of this consultancy is to support development and refining of training tools related to fisheries data management workflow. This will involve working closely with the fisheries expert towards the development of training tools for enhancing stock monitoring status and national processes for SDG14.4.1 monitoring.</p>
+<section id="types-of-data" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="types-of-data"><span class="header-section-number">1.3</span> Types of Data</h2>
+<p>Most data sets consist of numerical measurements, although some information can also be represented by a list of names such as monsoon seasons (northeast and southeast) and species (Fig. 1.3). The available methods for data analysis may require certain types of data sets. These are</p>
+<ul>
+<li><p><strong><em>nominal data</em></strong> – Information in sciences is sometimes presented as a list of names, e.g., the various fish species collected from a seagrass bed identified in a thin section. In some studies, these data are converted into a binary representation, i.e., one for present and zero for absent. Special statistical methods are available for the analysis of such data sets.</p></li>
+<li><p><strong><em>ordinal data</em></strong> – These are numerical data representing observations that can be ranked, but in which the intervals along the scale are irregularly spaced. A classical example or ordinal data is the maturity stage of fish determined from gonads, which is juvenile (I) to spend (V).</p></li>
+<li><p><strong><em>ratio data</em></strong> – These data are characterized by a constant length of successive intervals, therefore offering a great advantage over ordinal data. The zero point is the natural termination of the data scale, and this type of data allows for either discrete or continuous data sampling. Examples of such data sets include length or weight data.</p></li>
+<li><p><strong><em>interval data</em></strong> – These are ordered data that have a constant length of successive intervals, but in which the data scale is not terminated by zero. Temperatures C and F represent an example of this data type even though arbitrary zero points exist for both scales. This type of data may be sampled continuously or in discrete intervals.</p></li>
+<li><p><strong><em>spatial data</em></strong> – These are collected in a 2D or 3D study area. The spatial distribution of a certain fish species, the spatial variation in chlorophyll-<em>a</em> concentration and the distribution of coral reefs are examples of this type of data.</p></li>
+</ul>
 </section>
-<section id="scope-of-the-work" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="scope-of-the-work">Scope of the work</h2>
-<p>In executing this consultancy, the Consultant will work closely with WIOMSA and FAO and the following tasks will be undertaken for guided data management, analysis and reporting for decision making and management of the fisheries resources in the region using Excel spreadsheet and R language tools. This will include development of the Excel and R tools that help to reproduce lecture material and tutorials.</p>
+<section id="methods-of-data-analysis" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="methods-of-data-analysis"><span class="header-section-number">1.4</span> Methods of Data Analysis</h2>
+<p>Data analysis uses precise characteristics of small samples to hypothesize about the general phenomenon of interest. Which particular method is used to analyze the data depends on the data type and the project requirements. The various methods available include:</p>
+<ul>
+<li><p><strong>Univariate methods</strong> – Each variable is assumed to be independent of the others and is explored individually. The data are presented as a list of numbers representing a series of points on a scaled line. Univariate statistical methods include the collection of information about the variable, such as the minimum and maximum values, the average, and the dispersion about the average. This information is then used to attempt to infer the underlying processes responsible for the variations in the data. Examples are the effects of temperature on the growth of certain fish species.</p></li>
+<li><p><strong>Bivariate methods</strong> – Two variables are investigated together to detect relationships between these two parameters. For example, the correlation coefficient may be calculated to investigate whether there is a linear relationship between two variables. Alternatively, the bivariate regression analysis may be used to find an equation that describes the relationship between the two variables. An example of a bivariate plot is relationship between total length and weight of certain fish species.</p></li>
+<li><p><strong>Time-series analysis</strong> – These methods investigate data sequences as a function of time. The time series is decomposed into a long-term trend, a systematic (periodic, cyclic, rhythmic) component and an irregular (random, stochastic) component. A widely used technique to describe cyclic components of a time series is that of spectral analysis. Examples of the application of these techniques include the investigation of cyclic climatic variations in aquatic organisms.</p></li>
+<li><p><strong>Spatial analysis</strong> – This is the analysis of parameters in 2D or 3D space and hence two or three of the required parameters are coordinate numbers. These methods include descriptive tools to investigate the spatial pattern of geographically distributed data. Other techniques involve spatial regression analysis to detect spatial trends. Also included are 2D and 3D interpolation techniques, which help to estimate surfaces representing the predicted continuous distribution of the variable throughout the area. Examples are spatial distribution of oceanographic variables such as temperature, wind, etc.</p></li>
+<li><p><strong>Image processing</strong> – The processing and analysis of images has become increasingly important in sciences. These methods involve importing and exporting, compressing and decompressing, and displaying images. Image processing also aims to enhance images for improved intelligibility, and to manipulate images in order to increase the signal-to-noise ratio. Advanced techniques are used to extract specific features or analyze shapes and textures, such as for counting microbes in microscope images. Another important application of image processing is in the use of satellite remote sensing to map oceanographic variables and mangrove vegetation.</p></li>
+<li><p><strong>Multivariate analysis</strong> – These methods involve the observation and analysis of more than one statistical variable at a time. Since the graphical representation of multidimensional data sets is difficult, most of these methods include dimension reduction. Multivariate methods are widely used on ecological data, for instance an important usage is in the comparison of species assemblages in ocean sediments for the reconstruction of paleoenvironments.</p></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some of these methods of data analysis require the application of numerical methods such as interpolation techniques.</p>
+</div>
+</div>
+</section>
+<section id="references" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="references">References</h2>
 
 
 </section>
@@ -328,7 +516,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./Rlanguage.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R as a Programming Language</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 9&nbsp; Simple and Multiple linear regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./regressionMultiple.html" rel="next">
+<link href="./outlier.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#simple-linear-regression-reminder" id="toc-simple-linear-regression-reminder" class="nav-link active" data-scroll-target="#simple-linear-regression-reminder"> <span class="header-section-number">9.1</span> Simple linear regression: reminder</a>
+  <ul class="collapse">
+  <li><a href="#the-regression-equation" id="toc-the-regression-equation" class="nav-link" data-scroll-target="#the-regression-equation"> <span class="header-section-number">9.1.1</span> The Regression Equation</a></li>
+  </ul></li>
+  <li><a href="#visualize" id="toc-visualize" class="nav-link" data-scroll-target="#visualize"> <span class="header-section-number">9.2</span> Visualize</a>
+  <ul class="collapse">
+  <li><a href="#fitting-a-line-to-data" id="toc-fitting-a-line-to-data" class="nav-link" data-scroll-target="#fitting-a-line-to-data"> <span class="header-section-number">9.2.1</span> Fitting a line to data</a></li>
+  <li><a href="#predicting-weight-of-fish" id="toc-predicting-weight-of-fish" class="nav-link" data-scroll-target="#predicting-weight-of-fish"> <span class="header-section-number">9.2.2</span> Predicting weight of fish</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>There are two types of linear regression:</p>
+<ol type="1">
+<li><p><strong>Simple linear regression</strong> is a statistical approach that allows to assess the linear relationship between two <a href="https://statsandr.com/blog/variable-types-and-examples/#quantitative">quantitative variables</a>. More precisely, it enables the relationship to be quantified and its significance to be evaluated.</p></li>
+<li><p><strong>Multiple linear regression</strong> is a generalization of simple linear regression, in the sense that this approach makes it possible to evaluate the linear relationships between a response variable (quantitative) and several explanatory variables (quantitative or <a href="https://statsandr.com/blog/variable-types-and-examples/#qualitative">qualitative</a>).</p></li>
+</ol>
+<p>In the real world, multiple linear regression is used more frequently than simple linear regression. This is mostly the case because:</p>
+<ul>
+<li><p>Multiple linear regression allows to evaluate the relationship between two variables, while <strong>controlling for the effect</strong> (i.e., removing the effect) <strong>of other variables</strong>.</p></li>
+<li><p>With data collection becoming easier, more variables can be included and taken into account when analyzing data.</p></li>
+</ul>
+<p>Multiple linear regression being such a powerful statistical tool, I would like to present it so that everyone understands it, and perhaps even use it when deemed necessary. However, I cannot afford to write about multiple linear regression without first presenting simple linear regression.</p>
+<p>So after a reminder about the principle and the interpretations that can be drawn from a simple linear regression, I will illustrate how to perform multiple linear regression in R. I will also show, in the context of multiple linear regression, how to interpret the output and discuss about its conditions of application. I will then conclude the article by presenting more advanced topics directly linked to linear regression.</p>
+<section id="simple-linear-regression-reminder" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="simple-linear-regression-reminder"><span class="header-section-number">9.1</span> Simple linear regression: reminder</h2>
+<p>Simple linear regression is an asymmetric procedure in which:</p>
+<ul>
+<li><p>one of the variable is considered the <code>response</code>. It is also called <strong>dependent variable</strong>, and is represented on the <code>yy-axis</code></p></li>
+<li><p>the other variable is the explanatory or also called <strong>independent variable</strong>, and is represented on the <code>xx-axis</code></p></li>
+</ul>
+<p>Simple linear regression allows to <strong>evaluate the existence of a <em>linear</em> relationship between two variables</strong> and to quantify the strength of the relationship.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>linearity is a strong assumption in linear regression in the sense that it tests and quantifies whether the two variables are <em>linearly</em> dependent.</p>
+</div>
+</div>
+<p>What makes linear regression a powerful statistical tool is that it allows to <em>quantify by what quantity the response/dependent variable varies when the explanatory/independent variable increases by one unit</em>. This concept is key in linear regression and helps to answer the following questions:</p>
+<ul>
+<li><p>Is there a link between elevated sea surface temperature and coral bleaching?</p></li>
+<li><p>Will an increase in sea surface temperature reduce primary productivity?</p></li>
+<li><p>What is the most likely catch of tuna, depending on the monsoon season?</p></li>
+<li><p>Does a fish’s growth depend on season?</p></li>
+</ul>
+<p>Simple linear regression can be seen as an extension to the <a href="https://statsandr.com/blog/anova-in-r/">analysis of variance (ANOVA)</a> and the <a href="https://statsandr.com/blog/student-s-t-test-in-r-and-by-hand-how-to-compare-two-groups-under-different-scenarios/">Student’s t-test</a>. ANOVA and t-test allow to compare groups in terms of a quantitative variable—2 groups for t-test and 3 or more groups for ANOVA.<sup><a href="https://statsandr.com/blog/multiple-linear-regression-made-simple/#fn2">2</a></sup> For these tests, the independent variable, that is, the grouping variable forming the different groups to compare must be a qualitative variable. Linear regression is an extension because in addition to be used to compare groups, it is also used with quantitative independent variables (which is not possible with t-test and ANOVA).</p>
+<p>In this section, we are interested in assessing whether there is a linear relationship between the weight and total length of chinook salmon. For this example we use the ChinookArg dataset from the FSA package.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; Rows: 112
+#&gt; Columns: 3
+#&gt; $ tl  &lt;dbl&gt; 120.1, 115.0, 111.2, 110.2, 110.0, 109.7, 105.0, 100.1, 98.0, 92.1~
+#&gt; $ w   &lt;dbl&gt; 17.9, 17.2, 16.8, 15.8, 14.3, 13.8, 12.8, 11.7, 12.8, 14.8, 9.7, 7~
+#&gt; $ loc &lt;fct&gt; Argentina, Argentina, Argentina, Argentina, Argentina, Argentina, ~</code></pre>
+</div>
+<p>The <a href="https://statsandr.com/blog/graphics-in-r-with-ggplot2/#scatter-plot">scatterplot</a> above shows that there seems to be a <strong>negative relationship between the distance traveled with a gallon of fuel and the weight of a car</strong>. This makes sense, as the heavier the car, the more fuel it consumes and thus the fewer miles it can drive with a gallon.</p>
+<p>This is already a good overview of the relationship between the two variables, but a simple linear regression with the miles per gallon as dependent variable and the car’s weight as independent variable goes further. It will tell us by <strong>how many miles the distance varies, on average, when the weight varies by one unit</strong> (1000 lbs in this case). This is possible thanks to the regression line.</p>
+<p>Consider the scatterplot in <a href="#fig-lw-chinook">Figure&nbsp;<span class="quarto-unresolved-ref">fig-lw-chinook</span></a> shows that there seems to be a positive relationshib between total length and weigth of chinook salmon. This tell us that the as the total length of the salmon increase so as the weight. This is already a good overview of the relationship between the two variables, but how is total length related to weight? I think is hard to tell based just on the picture!!!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lw-chinook" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="regression_files/figure-html/fig-lw-chinook-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 9.1: Total length versus weight of Chinook salmon</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>A simple linear regression with the total length as independent variable and the weight as dependent variable goes further. The principle of simple linear regression is to <strong><em>find the line which passes as close as possible to the observations</em></strong>, that is, the set of points formed by the pairs.</p>
+<p>To find the line which passes as close as possible to all the points, we take the square of the vertical distance between each point and each potential line. Note that we take the square of the distances to make sure that a negative gap (i.e., a point below the line) is not compensated by a positive gap (i.e., a point above the line). The line which passes closest to the set of points is the one which <em>minimizes the sum of these squared distances</em>.</p>
+<p>The resulting regression blue line and the solid red lines represent the vertical distance between the points and the fitted line (<a href="#fig-lw-chinookfit">Figure&nbsp;<span class="quarto-unresolved-ref">fig-lw-chinookfit</span></a>). These vertical distances between each observed point and the fitted line determined by the least squares method are called the residuals of the linear regression model.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lw-chinookfit" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="regression_files/figure-html/fig-lw-chinookfit-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 9.2: Total length versus weight of Chinook. The red line are residual from the data points to fitted line.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Many people have some familiarity with regression models just from reading the news, where straight lines are overlaid on scatterplots.</p>
+</div>
+</div>
+<section id="the-regression-equation" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="the-regression-equation"><span class="header-section-number">9.1.1</span> The Regression Equation</h3>
+<p>Simple linear regression estimates how much Y will change when X changes by a certain amount. With the correlation coefficient, the variables X and Y are interchangeable. With regression, we we are trying to predict the Y variable from X using a linear relationship (i.e., a line):</p>
+<p><span class="math display">\[
+Y = b_0+ b_1X
+\]</span></p>
+<p>The equation is read as <span class="math inline">\(Y\)</span> equals <span class="math inline">\(b_1\)</span> times <span class="math inline">\(X\)</span> plus a constant <span class="math inline">\(b_0\)</span>. A <span class="math inline">\(b_0\)</span> is the intercept (or constant) and <span class="math inline">\(b_1\)</span> is a slope of <span class="math inline">\(X\)</span>.</p>
+<p>The <strong>intercept</strong> is the <strong>mean value of the dependent variable</strong> YY when the independent variable XX takes the value 0. Its estimation has no interest in evaluating whether there is a linear relationship between two variables. It has, however, an interest if you want to know what the mean value of YY could be when x=0x=0.<sup><a href="https://statsandr.com/blog/multiple-linear-regression-made-simple/#fn4">4</a></sup></p>
+<p>The <strong>slope</strong>, on the other hand, corresponds to the expected <strong>variation of</strong> YY when XX varies by one unit. It tells us two important informations:</p>
+<ol type="1">
+<li><p>The <strong>sign of the slope</strong> indicates the <strong>direction of the line</strong>—a positive slope (ˆβ1&gt;0β^1&gt;0) indicates that there is a positive relationship between the two variables of interest (they vary in the same direction), whereas a negative slope (ˆβ1&lt;0β^1&lt;0) means that there is a negative relationship between the two variables (they vary in opposite directions).</p></li>
+<li><p>The <strong>value of the slope</strong> provides information on the <strong>speed of evolution</strong> of the variable YY as a function of the variable XX. The larger the slope in absolute value, the larger the expected variation of YY for each unit of XX. Note, however, that a large value does not necessarily mean that the relationship is statistically significant.</p></li>
+</ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The slope is similar to the correlation coefficient, which gives information about the direction and the strength of the relationship between two variables.</p>
+</div>
+</div>
+<p>To perform a linear regression in R, we use the <code>lm()</code> function (which stands for linear model). The function requires to set the dependent variable first then the independent variable, separated by a tilde (<code>~</code>).</p>
+</section>
+</section>
+<section id="visualize" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="visualize"><span class="header-section-number">9.2</span> Visualize</h2>
+<p>It is recommended to visualize the relationship before we model. There are numerous ways to visualize the relationship between the two variables of interest, but I often use <em>grammer of graphics</em> that <strong>ggplot2</strong> package provide. with the additional functions from <strong>ggpmisc</strong> package, we can make plot like this.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my.formula <span class="ot">=</span> y<span class="sc">~</span><span class="fu">poly</span>(x,<span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>FSA<span class="sc">::</span>ChinookArg <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tl, <span class="at">y =</span> w))<span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> my.formula, <span class="at">alpha =</span> .<span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"blue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>)<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_fit_deviations</span>(<span class="at">formula =</span>  my.formula, <span class="at">color =</span> <span class="st">"red"</span>)<span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span><span class="fu">stat_quant_eq</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(eq.label)), <span class="at">formula =</span> my.formula, <span class="at">color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">quantiles =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  ggpmisc<span class="sc">::</span> <span class="fu">stat_poly_eq</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(adj.rr.label)), <span class="at">formula =</span> my.formula, <span class="at">label.y =</span> .<span class="dv">9</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Total length (cm)"</span>, <span class="at">y =</span> <span class="st">"Weight (kg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can accomplish the same figure with additional function from other packages. For instance, other elements could be displayed on the regression plot (for example the regression equation and the R2). This can easily be done with the <code>stat_regline_equation()</code> and <code>stat_cor()</code> functions from the <strong>ggpubr</strong> package:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regression_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="fitting-a-line-to-data" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="fitting-a-line-to-data"><span class="header-section-number">9.2.1</span> Fitting a line to data</h3>
+<p>Once we have explored and identified that nature of the relationship, we can fit the data into the model and asses the strength of the relation</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>The <code>summary()</code> function gives the results of the model:</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = w ~ tl)
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min     1Q Median     3Q    Max 
+#&gt; -3.530 -1.503 -0.255  1.465  5.782 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -7.26510    0.72628   -10.0   &lt;2e-16 ***
+#&gt; tl           0.17680    0.00888    19.9   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Residual standard error: 2.05 on 110 degrees of freedom
+#&gt; Multiple R-squared:  0.783,  Adjusted R-squared:  0.781 
+#&gt; F-statistic:  397 on 1 and 110 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+<p>The results can be summarized as follows (see the column <code>Estimate</code> in the table <code>Coefficients</code>):</p>
+<ul>
+<li><p>The <strong>intercept</strong> -7.26510 indicates that, for a hypothetical total length 0 cm, we can expect, on average, a weight of around -7.26 kg of salmon. This interpretation is shown for illustrative purposes, but a salmon with total length 0 cm is impossible, the interpretation has no meaning. In practice, we would therefore refrain from interpreting the intercept in this case.</p></li>
+<li><p>The slope 0.17680 indicates that:</p>
+<ul>
+<li><p>There is a <strong>positive relationship</strong> between the total length and weight of chinook salmon. This was also observed of the points in the scatterplot in <a href="#fig-lw-chinookfit">Figure&nbsp;<span class="quarto-unresolved-ref">fig-lw-chinookfit</span></a>.</p></li>
+<li><p>But more importantly, a slope of 0.17680 means that, for an increase of one unit in the total length, the the weight of Chinook increase, on average, by 0.17680 units.</p></li>
+<li><p>The R-squared of 0.783 imply that about 78% of the data points fitted well to the regression line and the fitting was statistically significant (<em>p</em> &lt; 0.05)</p></li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; # A tibble: 2 x 5
+#&gt;   term        estimate std.error statistic  p.value
+#&gt;   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+#&gt; 1 (Intercept)   -7.27    0.726       -10.0 3.84e-17
+#&gt; 2 tl             0.177   0.00888      19.9 2.80e-38</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; # A tibble: 1 x 12
+#&gt;   r.squared adj.r.squa~1 sigma stati~2  p.value    df logLik   AIC   BIC devia~3
+#&gt;       &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1     0.783        0.781  2.05    397. 2.80e-38     1  -238.  482.  490.    461.
+#&gt; # ... with 2 more variables: df.residual &lt;int&gt;, nobs &lt;int&gt;, and abbreviated
+#&gt; #   variable names 1: adj.r.squared, 2: statistic, 3: deviance</code></pre>
+</div>
+<p>A <strong>report</strong> package comes with a handy <code>report</code> function that assist has to interpret most of the model results. Let see how the function can interpret and expalin the result of the modeled total length and weight of the Chinook salmon by typing</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; We fitted a linear model (estimated using OLS) to predict w with tl (formula: w
+#&gt; ~ tl). The model explains a statistically significant and substantial
+#&gt; proportion of variance (R2 = 0.78, F(1, 110) = 396.70, p &lt; .001, adj. R2 =
+#&gt; 0.78). The model's intercept, corresponding to tl = 0, is at -7.27 (95% CI
+#&gt; [-8.70, -5.83], t(110) = -10.00, p &lt; .001). Within this model:
+#&gt; 
+#&gt;   - The effect of tl is statistically significant and positive (beta = 0.18, 95%
+#&gt; CI [0.16, 0.19], t(110) = 19.92, p &lt; .001; Std. beta = 0.88, 95% CI [0.80,
+#&gt; 0.97])
+#&gt; 
+#&gt; Standardized parameters were obtained by fitting the model on a standardized
+#&gt; version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+#&gt; computed using a Wald t-distribution approximation.</code></pre>
+</div>
+</section>
+<section id="predicting-weight-of-fish" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="predicting-weight-of-fish"><span class="header-section-number">9.2.2</span> Predicting weight of fish</h3>
+<p>With <code>lm</code> function in R, we want to identify the relationship between total length and Weight of octopus in the western Indian Ocean region and assess whether total length can be used to accurate predict the weight of octopus based on historical data. Let’s read the dataset into our session.</p>
+<p>We want to describe the relationship between the total length and weight variables in the octopus dataset using a line. In this example, we will use the total length as the explanatory variable, <span class="math inline">\(x\)</span> to predict weight, <span class="math inline">\(y\)</span>. We first read and import the dataset into our session.</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>Before modelling our dataset, we first plot to visualize. Looking on <a href="#fig-lw-octopus">Figure&nbsp;<span class="quarto-unresolved-ref">fig-lw-octopus</span></a>, we notice that the data points follows a positive relation between total length and weight of octopus.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lw-octopus" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="regression_files/figure-html/fig-lw-octopus-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 9.3: The association of total length versus weight of octopus. The red round cicle are data points with values far from the norm distributed values.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then we model using <code>lm</code> tool as follows;</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<p>Then check for the summary statistics</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = weight ~ tl)
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min     1Q Median     3Q    Max 
+#&gt; -3.099 -0.317 -0.090  0.212  4.099 
+#&gt; 
+#&gt; Coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) -1.464662   0.064317   -22.8   &lt;2e-16 ***
+#&gt; tl           0.031351   0.000722    43.5   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Residual standard error: 0.555 on 1077 degrees of freedom
+#&gt; Multiple R-squared:  0.637,  Adjusted R-squared:  0.636 
+#&gt; F-statistic: 1.89e+03 on 1 and 1077 DF,  p-value: &lt;2e-16</code></pre>
+</div>
+<p>From the summary, we can conclude that <code>tl</code> as our predictor variable have p-value below 0.05, this means <code>tl</code> has a significant effect toward <code>Weight</code> as our target variable. For simple interpretation of the coefficient, every increased 1 unit point in <code>tl</code>, will contribute to 0.0314 increase in <code>Weight</code>.</p>
+<p>We also need to check the <code>R-Square</code> of the model, we can see that our <code>R-Square</code> is around 0.637or 63.1%. This means that the model that we create before can explain 63.1% of variance of our target variable.</p>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; We fitted a linear model (estimated using OLS) to predict weight with tl
+#&gt; (formula: weight ~ tl). The model explains a statistically significant and
+#&gt; substantial proportion of variance (R2 = 0.64, F(1, 1077) = 1887.64, p &lt; .001,
+#&gt; adj. R2 = 0.64). The model's intercept, corresponding to tl = 0, is at -1.46
+#&gt; (95% CI [-1.59, -1.34], t(1077) = -22.77, p &lt; .001). Within this model:
+#&gt; 
+#&gt;   - The effect of tl is statistically significant and positive (beta = 0.03, 95%
+#&gt; CI [0.03, 0.03], t(1077) = 43.45, p &lt; .001; Std. beta = 0.80, 95% CI [0.76,
+#&gt; 0.83])
+#&gt; 
+#&gt; Standardized parameters were obtained by fitting the model on a standardized
+#&gt; version of the dataset. 95% Confidence Intervals (CIs) and p-values were
+#&gt; computed using a Wald t-distribution approximation.</code></pre>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./outlier.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./regressionMultiple.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

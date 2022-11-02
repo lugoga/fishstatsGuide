@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>WIO-fish - 11&nbsp; Generalized Additive Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./hypothesisTesting.html" rel="next">
+<link href="./regressionMultiple.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="site_libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="site_libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./" class="sidebar-logo-link">
+      <img src="./FAO_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">WIO-fish</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/lugoga/ecasData" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Rlanguage.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software and Tools</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataTypes.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Structure in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dataManipulation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Manipulating Data with <strong>dplyr</strong></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plotting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Plotting in R with <code>ggplot2</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Exploratory-Data-Analysis-EDA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outlier.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Detect Outlier(s)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Simple and Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionMultiple.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regressionGAM.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTesting.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./onesample.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">One sample test</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ttest.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Two Independent Samples-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./wilcoxon.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Two Independent Samples Non-parametric</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Analysis of Variance (ANOVA)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kwanova.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Kruskal-Wallis test, or the nonparametric version of the ANOVA</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chisquare.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Chi-square test of independence in R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lbspr.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Length Based Spawning Potential Ratio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maps.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Static Maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./mapsDynamic.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Animated maps</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Appendices</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./keyobjects.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Key objects</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#principle" id="toc-principle" class="nav-link active" data-scroll-target="#principle"> <span class="header-section-number">11.1</span> Principle</a></li>
+  <li><a href="#tuna" id="toc-tuna" class="nav-link" data-scroll-target="#tuna"> <span class="header-section-number">11.2</span> tuna</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="gam" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Generalized Additive Models</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>In chapter <span class="citation" data-cites="slm">(<a href="#ref-slm" role="doc-biblioref"><strong>slm?</strong></a>)</span>, we covered the principle behind simple linear regression and you know how to interpret the results. In this chapter discuss about multiple linear regression. We also start with the underlying principle of multiple linear regression, then show how to interpret the results, how to test the conditions of application and finish with more advanced topics.</p>
+<section id="principle" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="principle"><span class="header-section-number">11.1</span> Principle</h2>
+<p>Multiple linear regression is a generalization of simple linear regression, in the sense that this approach makes it possible to relate one variable with <strong>several variables</strong> through a linear function in its parameters.</p>
+<p>Multiple linear regression is used to assess the relationship between two variables <strong>while taking into account the effect of other variables</strong>. By taking into account the effect of other variables, we cancel out the effect of these other variables in order to <strong>isolate</strong> and measure the relationship between the two variables of interest. This point is the main difference with simple linear regression.</p>
+<p>To illustrate how to perform a multiple linear regression in R, we use the pangani dataset than the one used for simple linear regression (<code>mtcars</code>). Below a short preview:</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-multiple" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/fig-multiple-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+<p></p><figcaption class="figure-caption">Figure 11.1: effect of nitrate on chlorophyll concentration in the Pemba and Zanzibar Channel</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Looking on <a href="#fig-multiple">Figure&nbsp;<span class="quarto-unresolved-ref">fig-multiple</span></a>, we see a positive relation between nitrate and chlorophyll concentration both in the Pemba and Zanzibar channels. However, someone may be interested to investigate whether there are other factors other than nitrate that could explain chlorophyll concentration in the two sites.</p>
+<p>This is the whole point of <em>multiple linear regression</em>! In fact, in <em>multiple linear regression</em>, the estimated relationship between the <code>dependent</code> variable and an <code>explanatory</code> variable is an adjusted relationship, that is, free of the linear effects of the other explanatory variables.</p>
+<p>Let’s illustrate this notion of adjustment by adding phosphate and sites in a linear regression model:</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; 
+#&gt; Family: gaussian 
+#&gt; Link function: identity 
+#&gt; 
+#&gt; Formula:
+#&gt; chl ~ s(lat, lon) + s(nitrate) + s(po4) + s(sst) + site
+#&gt; 
+#&gt; Parametric coefficients:
+#&gt;              Estimate Std. Error t value Pr(&gt;|t|)
+#&gt; (Intercept)    -0.816      2.534   -0.32     0.75
+#&gt; siteZanzibar    2.304      5.068    0.45     0.65
+#&gt; 
+#&gt; Approximate significance of smooth terms:
+#&gt;              edf Ref.df     F p-value    
+#&gt; s(lat,lon) 22.75   26.0 29.54  &lt;2e-16 ***
+#&gt; s(nitrate)  1.00    1.0  2.06   0.161    
+#&gt; s(po4)      1.79    2.1  0.85   0.381    
+#&gt; s(sst)      1.00    1.0  3.50   0.071 .  
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; R-sq.(adj) =  0.961   Deviance explained = 97.9%
+#&gt; GCV = 0.010042  Scale est. = 0.0052657  n = 60</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tuna" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="tuna"><span class="header-section-number">11.2</span> tuna</h2>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; # A tibble: 1 x 5
+#&gt;   statistic p.value autocorrelation method             alternative
+#&gt;       &lt;dbl&gt;   &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;      
+#&gt; 1      1.86   0.246          0.0626 Durbin-Watson Test two.sided</code></pre>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<pre><code>#&gt; number of clusters: 1
+#&gt; 
+Median smoothing progress (parallel clusters): 100% - minimum remaining time: 0m 0s           
+#&gt; Elapsed time median smoothing: 0m 0s
+#&gt; 
+#&gt; Family: gaussian 
+#&gt; Link function: identity 
+#&gt; 
+#&gt; Formula:
+#&gt; nbObs ~ s(lon, lat)
+#&gt; 
+#&gt; Parametric coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)   308.21       1.82     169   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; Approximate significance of smooth terms:
+#&gt;             edf Ref.df   F p-value    
+#&gt; s(lon,lat) 28.8     29 980  &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; 
+#&gt; R-sq.(adj) =  0.991   Deviance explained = 99.2%
+#&gt; GCV = 994.22  Scale est. = 883.09    n = 267</code></pre>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="regressionGAM_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="htmlwidget-3c31526b9df89c5f71b3" style="width:90%;height:1112.4px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c31526b9df89c5f71b3">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addRasterImage","args":["data:image/png;base64,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",[[-3.71629086673333,38.9407676381258],[-10.4752639156313,44.8725286156062]],1,null,"tmap401","tuna.predict.tb.raster"]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"tuna.predict.tb.raster",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]}],"limits":{"lat":[-10.4752639156313,-3.71629086673333],"lng":[38.9407676381258,44.8725286156062]},"fitBounds":[-10.3786222064673,38.9407676381258,-3.71629086673332,44.8640038254937,[]]},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./regressionMultiple.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multiple linear regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./hypothesisTesting.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Descriptive versus inferential statistics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
